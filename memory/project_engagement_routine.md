@@ -16,8 +16,15 @@ Edison runs an hourly comment-engagement routine via the skill
   Even with stealth browsers like Browserbase, the risk of Edison's accounts being flagged
   or banned outweighs the engagement upside. Edison replies manually from his phone.
 - What the responder DOES do for these platforms:
-  - Appends each new comment + a suggested reply + PDF link (if applicable) to
-    `./generated/engagement-manual-queue.md`.
+  - Prepares a full "DM package" per new comment: original comment + ready-to-send DM
+    wording ("Hey [First Name] 👋 thanks for commenting...") + Drive PDF link.
+  - Auto-generates a branded PDF (navy #0A1628 + yellow #FFD700) if the post promised a
+    guide and no Drive link exists yet, uploads to Drive, saves the link to
+    rotation-state.json, and includes it in the package.
+  - Writes each package to `./generated/engagement-manual-queue.md` AND prints to the
+    run's stdout/notification so Edison sees it in chat or the task notification.
+  - WhatsApp delivery of packages to Edison's phone is deferred — TBD decision on
+    CallMeBot vs Twilio vs Meta Cloud API.
   - Logs "MANUAL PIN REQUIRED" reminders for Type 8 / Strategy A posts.
 
 **Why:** The cost of an account ban is catastrophic (loss of audience, brand, leads). The
