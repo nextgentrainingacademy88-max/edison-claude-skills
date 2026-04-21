@@ -1,34 +1,34 @@
 ---
-name: Hourly comment engagement routine
-description: Cross-platform auto-reply system for Edison's LinkedIn, Facebook, X, and Instagram posts
+name: Hourly comment engagement routine (X only, others manual)
+description: Auto-reply to X/Twitter comments only; Facebook/LinkedIn/Instagram are manual-only to avoid bans
 type: project
 originSessionId: 42f8fa17-a57a-4d1d-903e-8d50449b4999
 ---
-Edison runs an hourly comment-engagement routine across his social accounts. The logic
-lives in the skill `comment-engagement-responder` (repo: nextgentrainingacademy88-max/
-edison-claude-skills) and is invoked by the scheduled task `social-media-engagement-hourly`.
+Edison runs an hourly comment-engagement routine via the skill
+`comment-engagement-responder` + scheduled task `social-media-engagement-hourly`.
 
-**Scope:**
-- LinkedIn: public comments on Edison's last-48h posts → public replies.
-- Facebook: public comments → public replies + pin-comment check.
-- X/Twitter: replies to Edison's tweets → public replies.
-- Instagram: DMs to Edison's account → private replies (feed comments secondary, only if
-  Blotato supports them).
+**AUTOMATED (only one platform):**
+- **X / Twitter** — replies to tweet-replies via Blotato (official API, safe).
 
-**Key behaviors:**
-- Auto-detects "resource request" comments (asking for PDF/guide/link) and replies with
-  the matching Google Drive link from `rotation-state.json` → `{platform}_pdf_links[topic_slug]`.
-- Must store the Drive link in rotation-state.json BEFORE posting any resource-promising post.
-- Logs "MANUAL PIN REQUIRED" to `./generated/engagement-manual-queue.md` when a Type 8 /
-  Strategy A Facebook or LinkedIn post has no pinned first comment yet (pinning is not
-  supported via API, Edison pins manually).
+**MANUAL ONLY (do NOT automate):**
+- Facebook, Instagram, LinkedIn.
+- Reason: Meta and LinkedIn actively detect and ban headless/automated comment activity.
+  Even with stealth browsers like Browserbase, the risk of Edison's accounts being flagged
+  or banned outweighs the engagement upside. Edison replies manually from his phone.
+- What the responder DOES do for these platforms:
+  - Appends each new comment + a suggested reply + PDF link (if applicable) to
+    `./generated/engagement-manual-queue.md`.
+  - Logs "MANUAL PIN REQUIRED" reminders for Type 8 / Strategy A posts.
 
-**Why:** Edison's Facebook strategy mirrors Kanji Low's format — the CTA "COMMENT FOR MORE"
-only converts if somebody replies fast with the promised value. Within one hour is the
-target response window.
+**Why:** The cost of an account ban is catastrophic (loss of audience, brand, leads). The
+benefit of 10-20 additional auto-replies per day is small by comparison. Decision was made
+2026-04-22 after considering Browserbase and Playwright CLI options and explicitly rejecting
+them for Meta + LinkedIn.
 
-**How to apply:** When Edison posts a tips/PDF-promising post on any of the 4 platforms,
-ensure the topic slug + Drive link pair is added to `rotation-state.json` before the
-scheduled engagement run hits. For Type 8 Facebook posts, also generate the branded
-pin-comment image (Edison pointing down, yellow "ALL X BELOW") at 1:1 — see the Pin
-Comment Protocol in `facebook-content-creator/SKILL.md`.
+**How to apply:**
+- NEVER add Meta or LinkedIn auto-reply to the engagement responder, even if a new cloud
+  browser option appears. If asked, push back and remind about this decision.
+- When Edison posts a PDF-promising post on any platform, still store the topic slug +
+  Drive link pair in `rotation-state.json` under `{platform}_pdf_links` so the suggested
+  reply in the manual queue contains the correct link.
+- X auto-replies only: warm, direct, under 25 words, no em dashes, no markdown.
