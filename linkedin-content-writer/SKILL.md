@@ -229,3 +229,19 @@ style or funnel style), and flag any assumption you made about the angle so Edis
 
 If you write multiple hook options, present them clearly and let Edison choose before writing the
 full post body.
+
+---
+
+## Engagement Routine
+
+Every LinkedIn tips/guide/"comment for more" style post is handled by the shared
+`comment-engagement-responder` skill on an hourly schedule. It auto-replies to commenters,
+delivers the Google Drive PDF link when requested, and flags anything requiring manual
+attention. For posts that promise a PDF, always add the topic slug and Drive link pair to
+`rotation-state.json` under `linkedin_pdf_links` before the post goes live.
+
+Pin-comment requirement: every Strategy A tips post must be paired with a branded pin-comment
+image (Edison pointing down, yellow headline like "ALL 7 BELOW"). Generate it with Nano Banana
+Pro at 1:1 aspect, same style documented in `facebook-content-creator/SKILL.md` under "Pin
+Comment Protocol". LinkedIn does not allow programmatic pin, so the responder logs a
+"MANUAL PIN REQUIRED" note for Edison.
