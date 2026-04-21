@@ -1,25 +1,37 @@
 {
-  "last_updated": "2026-04-22",
+  "last_updated": "2026-04-21",
+  "last_run_utc": "2026-04-21T01:00:00Z",
+  "last_run_topic": "Claude Opus 4.7 launched with 1 million token context window (April 16, 2026) — practical use cases for Malaysian SMEs and corporate trainers",
   "linkedin": {
-    "image_skill": "none",
-    "content_image_subtype": "none",
+    "image_skill": "edison-content-image-creator",
+    "content_image_subtype": "breaking_news_concept",
     "carousel_last_used": "none",
     "infographic_style": "none"
   },
   "facebook": {
-    "post_type": "none"
+    "post_type": "type_8_kanji",
+    "variant": "newspaper_infographic_equivalent"
   },
   "instagram": {
-    "carousel_style": "none"
+    "carousel_style": "branded_navy_yellow_standard",
+    "slide_count": 7
   },
   "threads": {
-    "infographic_style": "none"
+    "infographic_style": "whiteboard"
   },
   "x": {
-    "thumbnail_style": "none"
+    "thumbnail_style": "text_on_black"
   },
   "image_generation": {
-    "last_path_used": "none"
+    "last_path_used": "blotato_templates",
+    "templates_used": {
+      "linkedin": "Breaking News (8800be71-52df-4ac7-ac94-df9d8a494d0f)",
+      "facebook": "Newspaper Infographic (07a5b5c5-387c-49e3-86b1-de822cd2dfc7)",
+      "instagram": "Tutorial Carousel Monocolor (/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1)",
+      "threads": "Whiteboard Infographic (ae868019-820d-434c-8fe1-74c9da99129a)",
+      "x": "Tweet Card Minimal Dark (/base/v2/tweet-card/ba413be6-a840-4e60-8fd6-0066d3b427df/v1)"
+    },
+    "note": "Used Blotato built-in templates across all 5 platforms. No kie.ai fallback needed. Face reference URL from assets-manifest was passed to Instagram Tutorial Carousel and X Tweet Card profileImage fields."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T20:28:48Z",
@@ -36,5 +48,11 @@
   "linkedin_pdf_links": {},
   "facebook_pdf_links": {},
   "instagram_pdf_links": {},
-  "x_pdf_links": {}
+  "x_pdf_links": {},
+  "next_rotation_hint": {
+    "linkedin_image_skill": "carousel-creator (branded navy+yellow) next",
+    "facebook_post_type": "type_2_or_type_4 next (avoid Type 8 back-to-back)",
+    "threads_infographic": "chalkboard next",
+    "x_thumbnail": "news_photo_overlay next"
+  }
 }
