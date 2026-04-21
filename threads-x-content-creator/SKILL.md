@@ -202,7 +202,7 @@ Get URL from `data.resultJson.resultUrls[0]`.
 
 Save to:
 ```
-./generated/ Media Marketing/threads_infographic_[topic_slug].jpg
+/sessions/[session]/mnt/Social Media Marketing/threads_infographic_[topic_slug].jpg
 ```
 
 ---
@@ -218,7 +218,7 @@ This is NOT a photo edit — it is an AI-generated stylised image of Edison.
 
 | Photo | Blotato URL |
 |-------|-------------|
-| Edison Chua Face.jpeg (PRIMARY) | `<face_primary.url from assets-manifest.json>` |
+| Edison Chua Face.jpeg (PRIMARY) | `https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg` |
 | edison2.jpeg | Upload once if needed, then save URL here |
 
 Use the PRIMARY URL directly in `image_input`. Do NOT re-upload.
@@ -255,7 +255,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "nano-banana-pro",
     "input": {
       "prompt": "[crafted thumbnail prompt]",
-      "image_input": ["<face_primary.url from assets-manifest.json>"],
+      "image_input": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
@@ -264,7 +264,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
 
 Save to:
 ```
-./generated/ Media Marketing/x_thumbnail_[topic_slug].jpg
+/sessions/[session]/mnt/Social Media Marketing/x_thumbnail_[topic_slug].jpg
 ```
 
 ---
@@ -312,9 +312,9 @@ Visual: [X thumbnail visual ID]
 Schedule: 09:00 MYT = 01:00 UTC
 ```
 
-### Evening slot (3pm MYT = 07:00 UTC and 6pm MYT = 10:00 UTC)
+### Evening slot (1pm MYT = 05:00 UTC)
 Same flow, different topic angle. Use the topic angle rotation from memory
-(check project_linkedin_automation.md for the day.s 3pm or 6pm angle).
+(check project_linkedin_automation.md for the day's 7pm angle).
 
 ---
 
@@ -322,7 +322,7 @@ Same flow, different topic angle. Use the topic angle rotation from memory
 
 After each run, update memory file `project_linkedin_automation.md`:
 - Record which infographic style was used (Whiteboard / Chalkboard / Manga)
-- Record the date and slot (9am, 3pm, or 6pm)
+- Record the date and slot (10am or 7pm)
 - Update "Next post should use" to the next style in rotation
 
 Rotation order: Whiteboard -> Chalkboard -> Manga -> Whiteboard...
@@ -338,11 +338,11 @@ Never use the same style twice in a row across any platform.
 | X account ID | 16254 |
 | Threads image style | Infographic (1:1 square) |
 | X image style | Bold thumbnail (16:9 landscape) |
-| 9am MYT | 01:00 UTC|9am MYT | 01:00 UTC |
-| 3pm MYT | 07:00 UTC|3pm MYT | 07:00 UTC |
+| 9am MYT | 01:00 UTC |
+| 1pm MYT | 05:00 UTC |
 | kie.ai API key | ${KIE_API_KEY} |
 | kie.ai model | nano-banana-pro |
-| Face photos | <face/workshop photos loaded from Drive URLs in assets-manifest.json>Edison Face only\ |
+| Face photos | See assets-manifest.json face_primary.url |
 
 ---
 
