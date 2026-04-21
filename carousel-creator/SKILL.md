@@ -1,21 +1,39 @@
 ---
 name: carousel-creator
 description: >
-  Edison Chua's LinkedIn carousel creator. Generates a full branded carousel (cover + content
-  slides) using dark navy blue + yellow branding, Edison's face on cover and CTA slides,
-  real internet memes on content slides, and Nano Banana Pro for all graphic generation.
+  Edison Chua's carousel creator for LinkedIn AND Instagram. Generates a full branded carousel
+  (cover + content slides + CTA) using vibrant flat color + yellow + white branding, Edison's
+  face on cover and CTA slides, real internet memes on content slides, and Nano Banana Pro
+  for all graphic generation.
 
   Use this skill whenever Edison says:
   - "Create a carousel about [topic]"
   - "Make me carousel slides on [topic]"
   - "Design a LinkedIn carousel for [topic]"
+  - "Design an Instagram carousel for [topic]"
   - "Generate carousel images about [topic]"
   - "Build a carousel post for [topic]"
   - "Make slides for [topic]"
 
   Always trigger for carousel or multi-slide content requests — even if Edison just says
-  "carousel" or "slides" without specifying LinkedIn.
+  "carousel" or "slides" without specifying the platform. This skill covers BOTH LinkedIn
+  and Instagram carousels with the same style; only the post-time aspect ratio differs
+  (LinkedIn 4:5, Instagram 4:5 or 1:1).
 ---
+
+## IMAGE GENERATION PRIORITY RULE
+
+**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+
+**Priority order:**
+1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
+2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
+3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+
+**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+
+---
+
 
 # Edison's Carousel Creator
 
@@ -41,13 +59,30 @@ Target length: **6-9 slides total**. Don't go over 10 — credits are limited.
 
 ## Edison's Branding
 
-- **Background**: Deep dark navy blue (`#0A1628`)
-- **Headline text**: Bold yellow (`#FFD700`)
+- **Cover slide background**: VIBRANT solid flat color — NOT dark navy. Pick bold and bright based on topic (see Cover Slide Color Guide below). This is a hard rule.
+- **Content slides background**: Same vibrant color as the cover — use the SAME color throughout the entire carousel for consistency. All slides match.
+- **Headline text**: On vibrant cover slides use bold white headline + yellow subtitle. On dark navy content slides use yellow headline + white body.
 - **Body text**: White
 - **Subtext / secondary**: Light grey or cream
 - **Brand name**: "AI with Edison" — appears on cover and CTA slide
-- **Feel**: Bold, modern, professional. Corporate trainer meets AI expert.
+- **Feel**: Bold, energetic, visual storytelling. Think Audrey Chia-style covers — vibrant, punchy, character-driven.
 - **No red** — that's Audrey Chia's branding, not Edison's.
+
+### Cover Slide Color Guide
+
+Pick a vibrant background color that matches the topic energy. Change every carousel — never repeat the same color back to back.
+
+| Topic | Background Color |
+|---|---|
+| AI tools / productivity | Bright teal `#00BFA6` or electric blue `#1565C0` |
+| Corporate training / L&D | Deep orange `#E65100` or warm amber `#FF8F00` |
+| Marketing / funnels | Bold purple `#6A1B9A` or vivid indigo `#283593` |
+| Hook / audience engagement | Bright coral `#FF5252` or vivid green `#2E7D32` |
+| Mistakes / hidden problems | Deep burnt orange `#BF360C` or strong teal `#00695C` |
+| Productivity / automation | Bright cobalt `#0D47A1` or rich emerald `#1B5E20` |
+| Mindset / motivation | Vivid magenta `#AD1457` or deep gold `#F57F17` |
+
+Rule: always a solid flat color fill — no gradients, no dark navy on cover slides.
 
 ---
 
@@ -55,12 +90,12 @@ Target length: **6-9 slides total**. Don't go over 10 — credits are limited.
 
 Face-only photos live at:
 ```
-D:\NEXTGEN ACADEMY\LinkedIn Sample Posting\Edison Chua photos\Edison Face only\
+<face/workshop photos loaded from Drive URLs in assets-manifest.json>Edison Face only\
 ```
 
 The Cowork session may or may not have this folder mounted. Check first:
 ```bash
-ls "/sessions/inspiring-sleepy-einstein/mnt/Edison Face only/" 2>/dev/null \
+ls "./generated/ Face only/" 2>/dev/null \
   || echo "NOT MOUNTED"
 ```
 
@@ -84,22 +119,23 @@ Pick a natural, dynamic pose that fits the topic. Rotate through these:
 
 Never describe the pose as "standing straight" or "arms at sides." Always pick something with energy.
 
-### Outfit — Always Casual, Always Vary
+### Outfit — Colorful, Topic-Matched, Always Vary
 
-Edison's default is **casual fashion wear**. Never put him in a suit, formal blazer, or business attire unless he explicitly asks for it. The vibe is relaxed, stylish, and real.
+Edison's outfit on cover slides should be **colorful and vibrant** — it needs to pop against the bright background and feel visually dynamic, like Audrey Chia's covers. Never dark or muted unless the topic demands it. The vibe is confident, stylish, and energetic.
 
 | Topic | Outfit Suggestion |
 |---|---|
-| AI tools / tech | Clean white or black graphic tee, casual overshirt or bomber jacket open over it |
-| Corporate training | Neat polo shirt or collared knit shirt, no jacket needed |
-| Marketing / funnels | Casual button-down shirt, untucked, sleeves rolled, relaxed fit |
-| Productivity | Simple crew-neck tee or zip hoodie, minimal and clean |
-| Mindset / motivation | Casual jacket over a plain tee, streetwear-adjacent but clean |
-| General business | Smart casual polo or knit shirt, no blazer |
+| AI tools / tech | Bright color tee (yellow, cobalt, teal) with a casual overshirt or bomber jacket |
+| Corporate training | Smart casual polo in a vivid color (orange, electric blue, green) |
+| Marketing / funnels | Colorful casual button-down, untucked, sleeves rolled |
+| Productivity | Bold crew-neck tee or zip hoodie in a standout color |
+| Mindset / motivation | Vibrant casual jacket over a contrasting plain tee |
+| General business | Clean polo or knit shirt in a bright, confident color |
 
 Rules:
 - No suits, no ties, no formal blazers unless Edison explicitly says so
-- Always describe the specific outfit in the prompt — never leave it vague
+- Outfit color should complement or contrast the background color — never blend in
+- Always describe the specific outfit and color in the prompt — never leave it vague
 - Vary the outfit every carousel so it never looks repeated
 
 ---
@@ -165,37 +201,55 @@ Work through the slide plan one by one. Use the right method per slide type.
 
 ### SLIDE TYPE A — Cover Slide (Face + Title)
 
+The cover is the most important slide. It must be vibrant, visual, and immediately tell a story through Edison's outfit, pose, and any props. Think Audrey Chia's carousel covers — the character sells the topic before anyone reads a word.
+
+**Before writing the prompt, decide:**
+1. What vibrant background color fits this topic? (See Cover Slide Color Guide)
+2. What outfit color pops against that background?
+3. What character, prop, or scene tells the story? Examples:
+   - Talking about hooks/audience? Edison holding a fishing rod with a big fish on the line
+   - Talking about mistakes/hidden problems? Edison in a detective outfit with magnifying glass
+   - Talking about recording/video content? Edison holding a boom mic or clapperboard
+   - Talking about AI tools? Edison with a floating robot companion beside him
+   - Talking about funnels/marketing? Edison pointing at a funnel diagram
+   - Talking about productivity? Edison with a stopwatch or checklist
+   - No obvious prop needed? Edison in a confident pose with clean background — no forced icons
+4. Icons/props are optional — only include them if they genuinely add to the storytelling. Sometimes a clean background with just Edison works better.
+
 **Prompt template:**
 ```
 Use the face from the uploaded reference image. Young Asian man, black hair, slim build,
 warm confident smile. Preserve exact facial features — do not alter the face.
 
-Outfit: [pick from outfit guide based on topic — be specific, e.g. "charcoal fitted
-jacket over black t-shirt" or "smart white button-down, sleeves slightly rolled"]
+Outfit: [colorful, topic-matched outfit — be specific about color and style, e.g.
+"bright cobalt blue bomber jacket over a white tee" or "vivid orange polo shirt, untucked"
+or "yellow graphic tee with an open overshirt" — outfit color must pop against the background]
 
-Pose: [pick a natural dynamic pose — e.g. "crossed arms, relaxed confident smile" or
-"one hand gesturing outward as if explaining" or "pointing at a floating icon to his right"]
+Pose: [topic-driven pose — e.g. "holding a fishing rod with a fish on the line, grinning"
+or "wearing a detective hat, holding a magnifying glass, curious expression"
+or "one hand gesturing outward as if explaining, confident smile"
+or "arms slightly open, welcoming and energetic stance"]
 
-Layout: LinkedIn carousel cover poster, 4:5 portrait. Deep dark navy blue background
-(#0A1628). Edison stands center-bottom, 3/4 or full body. Behind Edison, a large soft
-glowing circle in BRIGHT WHITE — a strong white radial glow like a spotlight behind him,
-clearly white against the dark navy background, not teal, not navy.
-Floating around Edison are colorful 3D-style icons related to the topic [e.g. for AI:
-robot emoji, brain with circuits, lightbulb, chat bubble, gear, sparkle stars — for
-training: graduation cap, clipboard, people icons, trophy — pick icons that match the
-carousel topic]. Icons float at different heights and angles, some small some larger,
-giving an energetic dynamic feel.
+[If using a character costume or prop, describe it clearly — detective coat, spy gear,
+fishing vest, boom mic, robot companion, etc.]
+
+Layout: LinkedIn carousel cover poster, 4:5 portrait. Solid vibrant flat background color
+[HEX CODE from color guide]. Edison stands center or slightly off-center, 3/4 or full body.
+Behind Edison, a large bright white soft glowing circle — a strong white radial glow like a
+spotlight shining behind him, clearly white and luminous against the colored background.
+The white circle must be large, centered behind his body. This is mandatory on every cover slide.
+[Only if topic calls for it: floating 3D-style icons or props related to topic around Edison.
+If no icons fit naturally, leave background clean — just Edison + white glow circle.]
 
 At the top: very large bold white text reading "[MAIN TITLE IN CAPS]" — huge, the
-dominant visual element. Below the title in bold yellow: "[subtitle or parenthetical]".
+dominant visual element. Below the title in bold yellow: "(subtitle or parenthetical in brackets)".
 
-At the very bottom of the image, three small items in a row: "AI with Edison" on the
-left, an Instagram icon with "@aiwithedison" in the center, and "nextgentrainingacademy.com"
-on the right. All in small white font.
+Bottom-left corner: small white text "Edison Chua" with subtext "AI Educator + Growth Funnel Expert".
 
-DO NOT render any technical instructions, lighting notes, or camera settings as text
-on the image. Only render the title, subtitle, and the three bottom social items.
+Soft studio lighting on Edison, natural skin tone, subtle rim light.
 Ultra realistic, 8K, photorealistic, cinematic, sharp.
+DO NOT render any technical instructions, lighting notes, or camera settings as text on the image.
+Only render the title, subtitle, and the bottom-left name/title.
 ```
 
 **kie.ai call:**
@@ -220,11 +274,20 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
 
 These slides grab attention with a bold statement and a funny meme image.
 
-**Layout (matching the reference examples):**
-- Navy blue background
-- Bold yellow headline at top (e.g. "10 SECONDS IS ALL YOU GET TO HOOK YOUR READER")
-- Meme image in the center (rectangular, like a photo insert)
+**Layout rules for ALL content slides (B, C, D, E):**
+- Generous padding on all sides — at least 10% whitespace margin. Nothing touches the edges.
+- Font is large and bold but proportionate — content fits comfortably with room to breathe top and bottom.
+- Vertical spacing between elements is generous — do not stack tightly.
+- Font style: Heavy sans-serif (Impact or Montserrat Black style). Clean and modern.
+- Bottom bar on EVERY content slide: thin horizontal line near the bottom, "@aiwithedison" small white text on the left, white right-pointing chevron arrow ">" on the right indicating swipe.
+- Memes must be square or portrait format — never wide/landscape. This prevents cropping issues.
+
+**Layout:**
+- Vibrant flat background (same color as cover)
+- Bold yellow headline at top
+- Meme image in the center (square or portrait crop, clean thin white border)
 - White body text below the meme (1-2 sentences)
+- Bottom bar: "@aiwithedison" left + ">" swipe arrow right
 
 **Step 1 — Source the meme:**
 
@@ -266,7 +329,7 @@ Pass the meme as `image_input` so kie.ai composites it directly into the design.
 Never use a placeholder box — the meme must be visually embedded in the final image.
 
 ```
-Dark navy blue background (#0A1628). Bold yellow headline text at top reading
+Solid vibrant flat background color [SAME HEX as cover slide]. Bold yellow headline text at top reading
 "[HEADLINE IN CAPS]". White supporting text below: "[body text]".
 In the center of the slide, feature the meme from the reference image — both panels
 clearly visible, cleanly embedded into the slide design as a featured graphic.
@@ -291,7 +354,7 @@ Call kie.ai WITH `image_input: ["[meme_public_url]"]`.
 
 **Prompt:**
 ```
-Dark navy blue background (#0A1628). Bold yellow text at top: "[NUMBER + TITLE]".
+Solid vibrant flat background color [SAME HEX as cover slide]. Bold yellow text at top: "[NUMBER + TITLE]".
 White supporting text below: "[supporting line]". Clean rectangular image placeholder
 box in center for a meme or screenshot insert. White closing text at bottom:
 "[closing line]". Bold modern poster layout, no people. 4:5 aspect ratio, sharp,
@@ -313,7 +376,7 @@ goal-setting content, Nicolas Cage "WOW" for surprising stats, etc. Save the URL
 
 **Prompt:**
 ```
-Dark navy blue background (#0A1628). At the top, a bold yellow rounded banner/pill
+Solid vibrant flat background color [SAME HEX as cover slide]. At the top, a bold yellow rounded banner/pill
 shape containing white text "[TITLE]". Below, three rounded white card rows each
 with a gold checkmark icon on the left and dark text: "[item 1]", "[item 2]",
 "[item 3]". At the bottom, a small yellow "HOT TIP" label above a rounded cream
@@ -334,7 +397,7 @@ No people, no faces. 4:5 aspect ratio, ultra sharp, professional.
 
 **Prompt:**
 ```
-Dark navy blue background (#0A1628). Bold yellow text at top: "MEET [TOOL]".
+Solid vibrant flat background color [SAME HEX as cover slide]. Bold yellow text at top: "MEET [TOOL]".
 Yellow subtitle: "[what tool does]". White body text: "[supporting line]".
 A clean rectangular screenshot placeholder box in the center showing a software
 interface. White closing text below. Modern tech poster layout, no people.
@@ -347,26 +410,42 @@ Note the actual tool screenshot URL separately — it will be inserted in Canva.
 
 ### SLIDE TYPE F — CTA / Wrap-up Slide (Face in Circle)
 
-**Layout (matching "Follow Audrey" reference — but for Edison):**
-- Navy background
-- Bell icon or emoji at top
-- Bold white + yellow headline: "FOLLOW EDISON FOR MORE AI TIPS."
-- Edison's face in a circle cutout, bottom-right
-- LinkedIn icon + "Edison Chua / AI with Edison" name label, bottom-left
+Modelled on Audrey Chia's CTA slide. Edison in a circle portrait crop, bottom-right. LinkedIn icon + name + title, bottom-left. Bell icon at top. No full body.
+
+**Outfit rule for CTA:** Fashion-forward streetwear only. Stylish oversized jacket (white, cream, or bold color) over a fitted dark tee. Korean streetwear influencer energy. Never a plain tee. Never formal. Vary the jacket style each carousel.
+
+**Layout:**
+- Same vibrant flat background as rest of carousel
+- Large white bell icon at top center
+- Bold large white text: "FOLLOW EDISON"
+- Bold yellow text below: "FOR MORE AI TIPS."
+- Bottom right: Edison in a clean circular portrait crop with white border
+- Bottom left: LinkedIn square icon (white), bold white "Edison Chua", smaller white subtext "AI Educator + Growth Funnel Expert"
 
 **Prompt:**
 ```
 Use the face from the uploaded reference image. Young Asian man, black hair, slim build,
-warm confident smile. Preserve exact facial features.
+warm confident smile. Preserve exact facial features — do not alter the face.
 
-Layout: Dark navy blue background (#0A1628). Bold white text at top: "FOLLOW EDISON".
-Bold yellow text below: "FOR MORE AI TIPS." A circular portrait cutout of Edison
-in the bottom-right, dressed casual fashion wear, smiling confidently.
-At the bottom left: "AI with Edison" with an Instagram icon and "@aiwithedison"
-and "nextgentrainingacademy.com" in small white font.
-Clean, modern, professional. 4:5 aspect ratio, ultra realistic, photorealistic.
-DO NOT render any technical instructions, lighting notes, or camera settings as text
-on the image.
+Outfit: [Fashion-forward streetwear — e.g. "stylish white oversized jacket with subtle
+design details over a fitted black tee" or "clean cream satin bomber jacket over a dark
+tee" or "structured pastel green coach jacket over a black fitted shirt" — always elevated
+casual, never plain, never formal. Vary each carousel.]
+
+Pose: Relaxed confident chin-rest pose — one hand lightly under chin, slight smile,
+looking directly at camera. Like a lifestyle content creator portrait.
+
+Layout: LinkedIn carousel CTA slide, 4:5 portrait. Solid vibrant flat background color
+[SAME HEX as cover slide]. Large bold white bell icon at the very top center.
+Bold large white text "FOLLOW EDISON". Bold yellow text below "FOR MORE AI TIPS."
+Bottom right: Edison in a clean circular portrait crop with a white border,
+upper body visible inside the circle, confident and stylish.
+Bottom left: LinkedIn square logo icon in white, bold white "Edison Chua",
+smaller white subtext "AI Educator + Growth Funnel Expert".
+
+Clean modern layout. 4:5 aspect ratio. Ultra realistic, 8K, photorealistic, cinematic, sharp.
+DO NOT render any technical instructions as text on the image.
+Only render the headline, subtext, bell icon, and bottom-left name/title.
 ```
 
 Call kie.ai WITH `image_input` (same face URL as cover).
@@ -393,7 +472,7 @@ upload), then do face slides in parallel while graphics are generating.
 
 Save each slide to the outputs folder:
 ```bash
-curl -s -o "/sessions/inspiring-sleepy-einstein/mnt/outputs/carousel_[topic]_slide[N]_[type].jpg" \
+curl -s -o "./generated/" \
   "[resultUrl]"
 ```
 
@@ -427,11 +506,14 @@ Ask Edison: any slides to regenerate or adjust?
 | Issue | Fix |
 |---|---|
 | Face changed | Add: "preserve exact facial features, identical to reference" |
-| Wrong background color | Add: "deep dark navy blue #0A1628, NOT red, NOT light colors" |
+| Cover background too dark / navy | Add: "solid vivid flat [color] background, NOT dark navy, bright and saturated" |
+| Content slide wrong background | Add: "deep dark navy blue #0A1628, NOT light colors" |
+| Outfit too dark / muted | Add: "outfit is [bright color], vibrant and colorful, clearly visible against background" |
 | Text unreadable in image | Keep embedded text to 4 words max; add longer text in Canva |
 | Image too dark | Add: "well-lit, balanced exposure, soft studio lighting" |
 | Looks too AI-generated | Add: "ultra realistic, photorealistic, 8K, natural skin texture" |
 | Circle cutout looks bad | Add: "clean circular portrait crop, sharp edges, white border" |
+| Prop/costume looks forced | Remove the prop and use a clean pose instead — not every slide needs a prop |
 
 ---
 
@@ -454,28 +536,3 @@ Source memes from: `https://api.imgflip.com/get_memes` or search directly on
 `https://imgflip.com/memetemplates` and copy the image URL.
 
 No love hearts, no romantic memes — keep it professional and funny.
-
-
----
-
-## Asset Management & Workshop Variant (80/20 Rotation)
-
-All asset URLs (face photo, workshop photos) live in `assets-manifest.json` at repo root. Always fetch at start:
-```
-GET https://raw.githubusercontent.com/nextgentrainingacademy88-max/edison-claude-skills/main/assets-manifest.json
-```
-
-### 80/20 Rotation
-- **80% standard** — use the default branded style documented above
-- **20% workshop variant** — use real workshop photos with darkened overlay + bold text
-
-See `WORKSHOP-VARIANT-GUIDE.md` at repo root for full workshop variant prompts, rotation logic, and state tracking via `rotation-state.json`.
-
-### Face Photo (for face-required slides/images)
-Use `face_primary.url` from manifest — primary Edison face photo (stable Google Drive URL).
-
-### Workshop Photos (for 20% rotation variant)
-Random pick from `workshop_photos[]` array in manifest (28 photos).
-
-### Rotation State
-Tracked in `rotation-state.json` at repo root. Check `posts_since_workshop` — when it reaches 4, next post must use workshop variant.
