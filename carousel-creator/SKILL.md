@@ -536,3 +536,13 @@ Source memes from: `https://api.imgflip.com/get_memes` or search directly on
 `https://imgflip.com/memetemplates` and copy the image URL.
 
 No love hearts, no romantic memes — keep it professional and funny.
+
+---
+
+## Engagement Routine
+
+When a carousel post promises a resource ("full PDF in comments", "link below", "comment GUIDE"),
+store the Drive link in `rotation-state.json` under the platform's `*_pdf_links` map before
+publishing. The shared `comment-engagement-responder` skill runs hourly and delivers the link
+to every commenter asking for it, across LinkedIn, Facebook, and Instagram. Pin-comment image
+generation and manual-pin flagging are documented in `facebook-content-creator/SKILL.md`.
