@@ -1,33 +1,61 @@
 # Edison's Threads Content Creator
 
 ## Core Purpose
-This skill creates Threads posts using meme + caption format, adapted for Threads' conversational and native tone. Content is based on the latest AI news researched each morning. Posts feel organic to the Threads platform — no hashtags, no hard sells, just genuine value with humor.
+This skill creates Threads posts with **rotating image styles** — alternating between meme + caption format AND YouTube thumbnail style (from `edison-content-image-creator`). Content is based on the latest AI news researched each morning. Posts feel organic to Threads — no hashtags, no hard sells, just genuine value with humor and authority.
 
 ## Platform Specs
 - **Platform:** Threads (Meta)
-- **Post Type:** Single image (meme) + caption
 - **Character Limit:** 500 characters per post
 - **Hashtags:** None (Threads does not use hashtags effectively)
 - **Tone:** Conversational, witty, genuine — like texting a smart friend
-- **Optimal Post Time:** 9:00 AM MYT
+- **Optimal Post Time:** 9:00 AM & 3:00 PM MYT
+
+## Image Style Rotation
+
+Threads rotates between 2 image styles across posts:
+
+| Rotation | Style | When to Use |
+|----------|-------|-------------|
+| 1 | **Meme + Caption** | Humor/relatable takes, trending moments |
+| 2 | **YouTube Thumbnail** (from `edison-content-image-creator`) | Authority moments, tool comparisons, AI news |
+
+The routine tracks which style was last used and alternates. Within the YouTube Thumbnail style, rotate across 3 Y-sub-styles:
+- **Y1 (MrBeast Bold):** High-energy AI news, tool lists, viral-style
+- **Y2 (Half-Face Cyborg):** AI transformation, future of work, agentic AI
+- **Y3 (Clean Authority):** Corporate training, credibility posts
 
 ## Content Philosophy
-Threads rewards authenticity over polish. The meme handles the entertainment; the caption handles the insight. Together they stop the scroll and deliver value without feeling like an ad.
+Content Split: **80% AI/tech value | 20% humor/entertainment**
+Voice: Casual Edison — the same guy who trains CEOs but also laughs at AI memes
 
-**Content Split:** 80% AI/tech value | 20% humor/entertainment
-**Voice:** Casual Edison — the same guy who trains CEOs but also laughs at AI memes
+---
 
-## Post Structure
+## Style 1: Meme + Caption
 
+### Structure
 ```
-[Meme image — recognizable format, AI-relevant]
+[Meme image — recognizable internet format, AI-relevant]
 
 [1-3 line caption — conversational, punchy, no hashtags]
 
 [Optional: question to spark replies]
 ```
 
-### Caption Examples by Style
+### Meme Sourcing
+- Use **recognizable formats**: Drake, Distracted Boyfriend, This Is Fine, Expanding Brain, etc.
+- `GET https://api.imgflip.com/get_memes` → pick top trending relevant to topic
+- Max 6 words per meme text block
+- Never use offensive, political, or divisive memes
+
+### Custom Meme via Nano Banana Pro (when imgflip doesn't fit)
+```
+POST https://api.kie.ai/api/v1/jobs/createTask
+
+Prompt: "Internet meme style image, [MEME FORMAT DESCRIPTION], bold white impact font text 
+'[TOP TEXT]' and '[BOTTOM TEXT]', classic meme aesthetic, square 1:1 format"
+```
+
+### Caption Examples
 
 **Observation style:**
 ```
@@ -50,53 +78,63 @@ Most people won't notice the difference.
 The ones who do will be 3x faster by Friday.
 ```
 
-**Question hook:**
-```
-What's one thing you do manually that AI could 100% handle?
-(Asking for a friend who just automated their inbox.)
-```
+---
 
-## Meme Selection Rules
-- Use **recognizable internet meme formats** — Drake, Distracted Boyfriend, This Is Fine, Expanding Brain, etc.
-- Meme must relate to the AI news topic of the day
-- Keep meme text short — max 6 words per text block on the meme
-- Prefer memes that are **currently trending** — check imgflip top memes
-- Never use memes that are offensive, political, or divisive
+## Style 2: YouTube Thumbnail (from edison-content-image-creator)
 
-## Meme Sourcing
-```
-GET https://api.imgflip.com/get_memes
-```
-- Pull top 100 memes
-- Select the most relevant format for the day's AI topic
-- Generate meme via imgflip or use Nano Banana Pro for custom meme-style image
+### Purpose
+Used for authority-driven content on Threads — tool comparisons, AI news with commentary, credibility moments. Drawn from Edison's existing `edison-content-image-creator` skill with the Y1/Y2/Y3 sub-rotation.
 
-### Custom Meme via Nano Banana Pro (when imgflip doesn't fit)
-```
-POST https://api.kie.ai/api/v1/jobs/createTask
+### Aspect Ratio
+- 16:9 for thumbnail feel, OR 4:5 for better Threads feed visibility
 
-Prompt: "Internet meme style image, [MEME FORMAT DESCRIPTION], bold white impact font text 
-'[TOP TEXT]' and '[BOTTOM TEXT]', classic meme aesthetic, square 1:1 format"
+### Y1 — MrBeast Bold
+```
+Ultra-bright colors, Edison's shocked/excited face large on left, 
+giant bold white text with yellow outline on right reading "[TOPIC]", 
+explosive visual energy, clickbait style
 ```
 
-## Workflow
+### Y2 — Half-Face Cyborg
+```
+Edison's face on left side (50% human), right side showing AI/tech cyborg half 
+with circuit overlays, bold yellow text "[TOPIC]" at top, dark cinematic background
+```
 
-1. **Research** latest AI news via WebSearch — pick the top story of the day
-2. **Select meme format** from imgflip that fits the topic
-3. **Write meme text** — top text (setup) + bottom text (punchline)
-4. **Generate or source meme image**
-5. **Write caption** — 1-3 lines, conversational, no hashtags
-6. **Optionally add** a reply-baiting question at the end
-7. **Post to Threads** via Blotato
+### Y3 — Clean Authority
+```
+Edison in professional attire on right side, clean dark background, 
+bold white headline "[TOPIC]" on left, minimalist corporate thumbnail style
+```
 
-## Caption Writing Rules
-- **No hashtags** — Threads does not boost posts with hashtags
-- **No em dashes** — use commas, colons, or line breaks instead
-- **Max 3 lines** — Threads favors short, punchy text
-- **One idea per line** — never cram two thoughts into one line
-- **End with a question** at least 3x per week to drive replies
-- **No hard CTAs** — no "follow me", no "link in bio" — Threads culture rejects this
-- **Sound human** — contractions, casual phrasing, occasional dry humor
+### Caption Style for YouTube Thumbnail Posts
+```
+[Direct statement about AI tool or news — 1 line]
+
+[1-2 lines of insight or take]
+
+[Optional: question]
+```
+
+Example:
+```
+Claude 4.5 is the first AI that genuinely thinks before replying.
+
+Most people will still use it like ChatGPT.
+Biggest waste of a model in 2026.
+```
+
+---
+
+## Caption Writing Rules (both styles)
+
+- **No hashtags** — hard rule for Threads
+- **No em dashes** — use commas, colons, line breaks
+- **Max 3 lines** — Threads favors punchy text
+- **One idea per line**
+- **End with a question** 3x per week to drive replies
+- **No hard CTAs** — no "follow me", no "link in bio"
+- **Sound human** — contractions, casual phrasing
 
 ## Tone Reference
 
@@ -106,25 +144,41 @@ Prompt: "Internet meme style image, [MEME FORMAT DESCRIPTION], bold white impact
 > Welcome to the club I guess.
 
 **Not like this:**
-> Exciting news! Claude 4 has been released with groundbreaking new features that will revolutionize your workflow! #AI #Claude #Productivity
+> Exciting news! Claude 4 has been released with groundbreaking new features! #AI #Claude #Productivity
+
+---
+
+## Workflow
+
+1. **Research** latest AI news via WebSearch — pick top story
+2. **Check rotation state** — is it meme turn or YouTube thumbnail turn?
+3. **If meme turn:**
+   - Pick recognizable meme format from imgflip
+   - Write meme top/bottom text
+   - Generate or source meme image
+4. **If YouTube thumbnail turn:**
+   - Rotate Y1/Y2/Y3 sub-style (check last_y_style)
+   - Generate thumbnail via Nano Banana Pro with Edison's face
+5. **Write caption** — match style to image type (humor for meme, insight for thumbnail)
+6. **Post to Threads** via Blotato
+7. **Update rotation state** — flip style for next run
 
 ## Blotato Integration
 
-### Post to Threads
 ```
 POST /posts
 {
   "accountId": "[THREADS_ACCOUNT_ID]",
   "content": "[CAPTION]",
-  "mediaUrls": ["[MEME_IMAGE_URL]"],
+  "mediaUrls": ["[IMAGE_URL]"],
   "postType": "single_image"
 }
 ```
 
 ## Critical Rules
-- Always base content on the day's researched AI news — never recycle topics
-- Meme must be recognizable — obscure formats do not perform on Threads
-- Caption must feel typed by a human, not generated by AI
-- Never use hashtags — this is a hard rule for Threads
-- Keep the whole post under 500 characters including caption
-- One post per day — do not flood the feed
+- Always alternate between meme and YouTube thumbnail styles across posts
+- Within YouTube thumbnail, rotate Y1 → Y2 → Y3 sequentially
+- Meme = humor/relatable | Thumbnail = authority/insight (match caption tone to style)
+- No hashtags ever (hard rule)
+- Post under 500 characters total
+- Content must always be based on day's researched AI news
