@@ -27,17 +27,18 @@ someone.
 
 ## Scope
 
-| Platform | Status | Why |
-|----------|--------|-----|
-| X / Twitter | AUTOMATED — public reply via Blotato | Legit API, low ban risk |
-| Facebook | MANUAL ONLY — logged to queue for Edison | Meta actively bans headless comment automation |
-| Instagram | MANUAL ONLY — logged to queue for Edison | Meta actively bans headless comment automation |
-| LinkedIn | MANUAL ONLY — logged to queue for Edison | LinkedIn bans automated engagement, account at risk |
+| Platform | Primary path | Fallback |
+|----------|-------------|----------|
+| X / Twitter | AUTOMATED via Blotato API | — |
+| Facebook | AUTOMATED via Claude-in-Chrome MCP using Edison's real browser session | Manual DM queue if PC asleep |
+| Instagram | AUTOMATED via Claude-in-Chrome MCP (feed comments + DMs) | Manual DM queue if PC asleep |
+| LinkedIn | AUTOMATED via Claude-in-Chrome MCP | Manual DM queue if PC asleep |
 
-For the three manual-only platforms, this skill's only job is to generate the pin-comment
-image and remind Edison to pin + reply manually. Every new comment on those platforms is
-appended to `./generated/engagement-manual-queue.md` with platform, post URL, commenter,
-and suggested reply text — Edison copy-pastes the reply himself from his phone/laptop.
+**Why Claude-in-Chrome instead of Browserbase or Playwright cloud:** the browser is Edison's
+own, already logged in, with his real cookies, real user agent, and real typing cadence.
+Meta and LinkedIn do not block this because it IS a human browser — Claude is just driving
+the clicks and keystrokes. It only runs when Edison's PC is awake. When the PC is off the
+hourly run falls through to the manual queue instead.
 
 ---
 
@@ -54,29 +55,49 @@ treat them as empty and create them before writing state back.
 
 ---
 
-## Step 2: Fetch New Replies (X/Twitter only)
+## Step 2: Detect Environment (PC awake check)
 
-**Scope is intentionally narrow.** Auto-replying on Meta (Facebook, Instagram) and LinkedIn is
-NOT supported — these platforms actively detect and ban headless/automated comment activity,
-and the risk of Edison's accounts being flagged or banned outweighs the engagement upside.
-Those platforms are handled MANUALLY by Edison.
+At the start of every run, probe whether Claude-in-Chrome MCP is connected:
+```
+Tool: mcp__Claude_in_Chrome__tabs_context_mcp  (or any lightweight Chrome MCP call)
+```
+- If it returns a live response within 5 seconds → `pc_awake = true`, full automation available.
+- If it errors or times out → `pc_awake = false`, browser-based platforms fall through to manual queue.
 
-The only platform this responder acts on autonomously is **X/Twitter**, where Blotato (and the
-X API it wraps) supports legitimate programmatic replies.
+Always print "Mode: [automated | manual fallback]" at the top of the run output.
 
+---
+
+## Step 3: Fetch New Comments / Replies Per Platform
+
+### X / Twitter (always automated, never needs PC)
+Use Blotato MCP:
 ```
 Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_list_accounts
 ```
+Find Edison's X account → list-posts last 48h → list-replies on each → collect items.
+De-dup against `./generated/engagement-log.jsonl`.
 
-Find Edison's X account. Call Blotato list-posts for the last 48h, then list-comments/replies
-on each post. Collect a flat list of reply items:
-`{ platform: "x", post_id, post_topic_slug, reply_id, commenter_name, commenter_handle,
-reply_text, timestamp }`.
+### Facebook / Instagram / LinkedIn (automated when pc_awake, manual when not)
 
-De-duplicate against `./generated/engagement-log.jsonl`.
+**When `pc_awake = true`:** use Claude-in-Chrome MCP to navigate Edison's logged-in browser:
+- LinkedIn: `https://www.linkedin.com/in/edisonchua/recent-activity/comments/` — use
+  `mcp__Claude_in_Chrome__navigate`, then `mcp__Claude_in_Chrome__get_page_text` to grab
+  recent comment threads. Filter to comments newer than `last_engagement_run_utc`.
+- Facebook: navigate to `https://www.facebook.com/edisonchua` → click each recent post →
+  extract comment text + commenter name via `mcp__Claude_in_Chrome__read_page`.
+- Instagram: navigate to `https://www.instagram.com/edisonchua` for feed comments AND
+  `https://www.instagram.com/direct/inbox/` for DMs.
 
-If Blotato's X reply endpoint is NOT available, log each new reply to the manual queue and
-skip — do NOT fall through to browser automation.
+Use `mcp__Claude_in_Chrome__find` with selector hints to locate comment blocks. For each new
+comment, collect the same item schema: `{ platform, post_id, post_topic_slug, comment_id,
+commenter_name, commenter_handle, comment_text, timestamp }`.
+
+Human-like pacing: wait 3-8 seconds (randomized) between navigations. Do not open more than
+6 posts per platform per run.
+
+**When `pc_awake = false`:** skip the scrape entirely for FB/LI/IG and write a single line
+to the manual queue: `⏸ PC asleep at [timestamp] - FB/LI/IG scrape skipped this run`.
 
 Collect a flat list of engagement items, each with: `{ platform, post_id, post_topic_slug,
 comment_id, commenter_name, commenter_handle, comment_text, timestamp }`.
@@ -143,14 +164,37 @@ Log as "MANUAL REVIEW" and skip.
 
 ---
 
-## Step 5: Post the Reply (X only)
+## Step 5: Post the Reply
 
-For X/Twitter items, post the reply via Blotato with `parentPostId` set to the original
-tweet/reply ID. Rate-limit: max 1 reply per 4 seconds. Max 20 replies per run.
+### X/Twitter (Blotato)
+Post the reply via Blotato with `parentPostId` set to the original tweet/reply ID.
+Rate-limit: 1 reply per 4 seconds, max 20 per run.
 
-For Facebook / LinkedIn / Instagram items, do NOT attempt to reply. Instead prepare a
-complete "DM package" Edison can copy-paste directly into the commenter's DM on that
-platform. Each package has three parts:
+### Facebook / Instagram / LinkedIn when `pc_awake = true` (Claude-in-Chrome)
+
+Drive the real browser to reply as Edison, exactly like a human:
+1. `mcp__Claude_in_Chrome__navigate` to the post URL that holds the comment.
+2. Scroll to the comment using `mcp__Claude_in_Chrome__find`.
+3. Click the "Reply" link/button under the comment: `mcp__Claude_in_Chrome__left_click`
+   or equivalent from the Chrome MCP toolkit.
+4. Type the reply text slowly using `mcp__Claude_in_Chrome__form_input` or `type`.
+   Simulate human typing cadence (50-120 ms per char); never paste the whole string at once.
+5. Click Post/Send.
+6. Take a screenshot via `mcp__Claude_in_Chrome__preview_screenshot` (or equivalent) for
+   the log.
+7. Wait 8-20 seconds (randomized) before the next reply on the same platform.
+
+Rate limits (strict, do NOT exceed):
+- Facebook: max 8 replies per run
+- LinkedIn: max 5 replies per run
+- Instagram (feed comments + DMs combined): max 8 per run
+
+If ANY reply attempt fails (selector not found, login wall, 2FA prompt, rate-limit banner),
+STOP the platform run immediately, fall through to the manual DM package for the remaining
+items, and log the failure reason.
+
+### Facebook / Instagram / LinkedIn when `pc_awake = false` OR automation fails
+Prepare the manual DM package Edison can copy-paste:
 
 1. **Copy of the original comment** (so Edison has context without opening the app).
 2. **Ready-to-send DM text** in Edison's warm voice, example:
