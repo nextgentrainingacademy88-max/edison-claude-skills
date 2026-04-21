@@ -17,6 +17,20 @@ description: >
   fits best, generates the image if needed, writes the copy, and posts via Blotato.
 ---
 
+## IMAGE GENERATION PRIORITY RULE
+
+**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+
+**Priority order:**
+1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
+2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
+3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+
+**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+
+---
+
+
 # Edison's Facebook Content Creator
 
 ## Overview
@@ -121,24 +135,22 @@ Bold title text at bottom.
 
 ## Part 2: Image Generation (Types 2 and 7 only)
 
-### Face Photos
+### Face Photos — Permanent Blotato URLs (no upload needed)
 
-```
-/sessions/[current-session]/mnt/Social Media Marketing/Edison Chua photos/Edison Face only/Edison Chua Face.jpeg
-/sessions/[current-session]/mnt/Social Media Marketing/Edison Chua photos/Edison Face only/edison2.jpeg
-/sessions/[current-session]/mnt/Social Media Marketing/Edison Chua photos/Edison Face only/edison3.jpeg
-```
+**Do NOT re-upload Edison's face. Use these permanent URLs directly as `image_input` in kie.ai.**
 
-On Windows (D: drive):
-```
-D:\NEXTGEN ACADEMY\LinkedIn Sample Posting\Social Media Marketing\Edison Chua photos\Edison Face only\Edison Chua Face.jpeg
-```
+| Photo | Blotato URL | Best For |
+|-------|-------------|----------|
+| Edison Chua Face.jpeg (PRIMARY) | `<face_primary.url from assets-manifest.json>` | AI tools, tech, most Facebook posts |
+| edison2.jpeg | Upload once if needed, save URL here | Tech/gaming vibe |
+| edison3.jpeg | Upload once if needed, save URL here | Outdoor/travel feel |
 
 **Photo selection:**
-- AI tools, LinkedIn tips, tech content → `Edison Chua Face.jpeg`
-- Workshop/training/teaching → blue blazer workshop shot
-- Outdoor/travel feel → `edison3.jpeg`
-- Tech/gaming vibe → `edison2.jpeg`
+- AI tools, tech content → PRIMARY URL above (use directly)
+- Outdoor/travel feel → `edison3.jpeg` (upload once, then save URL here)
+- Tech/gaming vibe → `edison2.jpeg` (upload once, then save URL here)
+
+Skip the upload step for Type 2 and Type 7 — use the PRIMARY URL directly in `image_input`.
 
 ### Search Nano Banana Pro Prompt Library
 
@@ -195,20 +207,17 @@ Use this structure for movie-character-style posts (like The Flash reference ima
 - Creativity / design → Spider-Man, creative aesthetic
 - Any topic → Search Google Images for a relevant movie still, describe the character
 
-### Upload Photo to Blotato
+### Upload Photo to Blotato (SKIP for primary face — already uploaded)
 
-```
-Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_presigned_upload_url
-  filename: "edison_face.jpeg"
-```
+The primary face photo is already on Blotato. Use the permanent URL from the table above directly.
 
-Returns `presignedUrl` and `publicUrl`. Then upload:
-
+Only run the upload step if using a photo that does NOT yet have a saved URL:
 ```bash
 curl -X PUT "[presignedUrl]" \
   --data-binary "@[local_file_path]" \
   -H "Content-Type: image/jpeg"
 ```
+Then save the new `publicUrl` into the table above for permanent reuse.
 
 ### Generate with kie.ai Nano Banana Pro
 
@@ -241,7 +250,7 @@ When `data.state` is `"success"`, extract: `data.resultJson` (parse as JSON stri
 ### Download and Save
 
 ```bash
-curl -s -o "/sessions/[current]/mnt/Social Media Marketing/facebook_[topic]_[date].jpg" \
+curl -s -o "./generated/ Media Marketing/facebook_[topic]_[date].jpg" \
   "[resultUrl]"
 ```
 
@@ -435,8 +444,8 @@ Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_post
 ```
 
 **Default posting times (MYT = UTC+8):**
-- Morning: 10:00 AM MYT = 02:00 UTC
-- Evening: 6:00 PM MYT = 10:00 UTC
+- Morning: 09:00 AM MYT = 01:00 UTC
+- Afternoon: 1:00 PM MYT = 05:00 UTC
 
 ---
 
@@ -463,28 +472,3 @@ Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_post
 | 5. Meme + caption | Yes (meme) | No | Humor, relatable AI takes |
 | 6. Person collage | Yes (sourced) | No | Top X creators/tools |
 | 7. Face + flow diagram | Yes | Yes | Funnels, step-by-step |
-
-
----
-
-## Asset Management & Workshop Variant (80/20 Rotation)
-
-All asset URLs (face photo, workshop photos) live in `assets-manifest.json` at repo root. Always fetch at start:
-```
-GET https://raw.githubusercontent.com/nextgentrainingacademy88-max/edison-claude-skills/main/assets-manifest.json
-```
-
-### 80/20 Rotation
-- **80% standard** — use the default branded style documented above
-- **20% workshop variant** — use real workshop photos with darkened overlay + bold text
-
-See `WORKSHOP-VARIANT-GUIDE.md` at repo root for full workshop variant prompts, rotation logic, and state tracking via `rotation-state.json`.
-
-### Face Photo (for face-required slides/images)
-Use `face_primary.url` from manifest — primary Edison face photo (stable Google Drive URL).
-
-### Workshop Photos (for 20% rotation variant)
-Random pick from `workshop_photos[]` array in manifest (28 photos).
-
-### Rotation State
-Tracked in `rotation-state.json` at repo root. Check `posts_since_workshop` — when it reaches 4, next post must use workshop variant.
