@@ -1,0 +1,7 @@
+- [Model choice preference](feedback_model_choice.md) — default to Haiku for routine/parallel subtasks; Opus only for strategic work
+- [Image prompt workflow](feedback_image_prompt_workflow.md) — always consult nano-banana-pro-prompts-recommend-skill before generating any image
+- [Check OLD skill bundles](feedback_check_old_skills.md) — before saying an instruction doesn't exist, grep OLD `.skill` bundles (they often have the source of truth)
+- [No cyborg style](feedback_no_cyborg_style.md) — skip Y2 half-face cyborg image style; rotate only Y1 (MrBeast) and Y3 (Authority) for thumbnails
+- [Auto-push to GitHub](feedback_auto_push_github.md) — after ANY edit to skills, CLAUDE.md, rotation-state.json, or memory, push to GitHub immediately without asking
+- [Engagement routine](project_engagement_routine.md) — hourly comment-engagement-responder covers LinkedIn, Facebook, X, Instagram DMs; auto-delivers Drive PDF links
+- [Kanji-style Facebook default](project_kanji_style_facebook.md) — Type 8 branded post (face + floating logo + navy/yellow block + "COMMENT FOR MORE") is the Facebook default
