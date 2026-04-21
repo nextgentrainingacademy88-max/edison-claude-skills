@@ -148,14 +148,41 @@ Log as "MANUAL REVIEW" and skip.
 For X/Twitter items, post the reply via Blotato with `parentPostId` set to the original
 tweet/reply ID. Rate-limit: max 1 reply per 4 seconds. Max 20 replies per run.
 
-For Facebook / LinkedIn / Instagram items, do NOT attempt to reply. Instead write one
-line per item to `./generated/engagement-manual-queue.md`:
+For Facebook / LinkedIn / Instagram items, do NOT attempt to reply. Instead prepare a
+complete "DM package" Edison can copy-paste directly into the commenter's DM on that
+platform. Each package has three parts:
+
+1. **Copy of the original comment** (so Edison has context without opening the app).
+2. **Ready-to-send DM text** in Edison's warm voice, example:
+   ```
+   Hey [First Name] 👋 thanks for commenting on my post! Here's the free guide I promised:
+   [Drive link]. Hope it helps. If you find it useful, a share means a lot 🙏
+   ```
+3. **Resource link** — Drive PDF / website / prompt pack URL pulled from rotation-state.json
+   under `{platform}_pdf_links[topic_slug]`. If no PDF exists yet for the post, create one
+   using the PDF generation skill (see "PDF Generation" section below), upload to Drive,
+   and save the new link back to rotation-state.json before writing the package.
+
+Write each package to `./generated/engagement-manual-queue.md` in this format:
 ```
-[timestamp] [platform] - [commenter_name] on [post_url]
-  Comment: "[comment_text]"
-  Suggested reply: "[generated reply text]"
-  PDF link (if applicable): [Drive URL]
+---
+📌 [platform] — [commenter_name] ([commenter_handle])
+Post: [post_url]
+Time: [timestamp]
+
+ORIGINAL COMMENT:
+> [comment_text]
+
+COPY-PASTE THIS DM:
+Hey [First Name] 👋 thanks for commenting on my post! Here's the free guide I promised:
+[Drive link]. Hope it helps. If you find it useful, a share means a lot 🙏
+
+RESOURCE: [Drive URL or website link]
+---
 ```
+
+Also print the full package to stdout at the end of the run so Edison sees it in the
+run's notification or chat output (until WhatsApp delivery is wired up later).
 
 Append every sent X reply to `./generated/engagement-log.jsonl`.
 
@@ -190,6 +217,36 @@ Engagement run complete.
 - Instagram: [N] items queued for manual reply
 - Manual queue: ./generated/engagement-manual-queue.md
 ```
+
+---
+
+## PDF Generation (for resource requests when no PDF exists yet)
+
+When a commenter asks for a guide/PDF that Edison promised in a post but no Drive link
+exists yet under the `{platform}_pdf_links[topic_slug]` map, create it on-the-fly:
+
+1. Read the original post caption + any tip comments to extract the guide content.
+2. Generate clean markdown for the PDF. Format: title page with "AI with Edison" branding
+   (navy #0A1628 background + yellow #FFD700 accent), author line "By Edison Chua - HRDC
+   Certified AI Trainer", then one tip per page with a short intro + the actual prompt or
+   step-by-step, then a closing CTA page ("Follow @edisonchua on LinkedIn / Facebook / X").
+   No em dashes. Match Edison's voice from the original post.
+3. Render to PDF using either:
+   - `pandoc` CLI: `pandoc input.md -o output.pdf --pdf-engine=xelatex -V mainfont="Inter" -V geometry:margin=1in`
+   - OR a headless Chromium print via `puppeteer` / `playwright` with a styled HTML template
+     that uses the brand colors.
+4. Save to `./generated/pdfs/[topic_slug]_[date].pdf`.
+5. Upload to Google Drive folder `1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm-` with sharing set to
+   "Anyone with the link". Grab the shareable link.
+6. Write the link back to `rotation-state.json` → `{platform}_pdf_links[topic_slug]` and
+   push to GitHub so future runs reuse the same link.
+
+If PDF generation tools are not available in the runtime, fall back to writing a clean
+Google Doc via the Drive MCP (`mcp__d5e14817-74fe-4021-806c-825d865400cd__create_file`)
+with MIME type `application/vnd.google-apps.document` and sharing the Doc link instead.
+
+The goal is that every manual-queue package always has a real, working resource link — not
+"PDF coming soon".
 
 ---
 
