@@ -59,11 +59,14 @@ Use Type 5 (Meme + Caption) for these. Never two meme posts in a row.
 
 ## Post Type Rotation
 
-Vary post types so the feed doesn't feel repetitive. A good rotation pattern across 7 posts:
-Type 2 → Type 1 → Type 4 → Type 5 (meme) → Type 7 → Type 3 → Type 6
+Vary post types so the feed doesn't feel repetitive. A good rotation pattern across 8 posts:
+Type 8 → Type 2 → Type 1 → Type 4 → Type 5 (meme) → Type 7 → Type 3 → Type 6
+
+**Type 8 (Kanji-Style Branded Post) is the PREFERRED default for AI tool/tip posts.** Lean on it
+for any post that teaches a tool, lists tips, or announces a new AI product. Only drop to other
+types when Type 8 doesn't fit the topic (e.g. pure opinion, meme, or celebrity news).
 
 Never use the same type twice in a row. Never use Type 5 (meme) back to back.
-When in doubt, pick whichever type best fits the topic — rotation is a guide, not a strict rule.
 
 ---
 
@@ -124,6 +127,73 @@ Write a short punchy caption above or below.
 **Example trigger:** "5 AI creators who went from broke to millionaires", "These 3 CEOs changed AI forever"
 **Production:** Screenshot or collage of real photos sourced online. Bold text overlay. No Nano Banana Pro.
 
+### Type 8 — Kanji-Style Branded Post (PREFERRED DEFAULT)
+**When to use:** AI tool spotlights, "how to master [tool]" guides, tip lists, product announcements,
+"BREAKING:" style posts. This is the default for 60%+ of Facebook posts. Inspired by Kanji Low's
+viral Facebook format.
+
+**Design (locked structure — follow exactly):**
+- **Aspect ratio:** 4:5 portrait
+- **Top 60% of frame:** cinematic hero scene. Edison holding or standing beside a large glowing
+  3D brand logo of the featured tool (Claude, NotebookLM, Gemini, ChatGPT, Manus, Perplexity, etc.),
+  OR the two tool logos connected with a glowing energy line (for "X + Y" posts), OR Edison looking
+  at floating UI panels representing the topic. Warm cinematic lighting, slight lens flare, orange/
+  gold accent light. The brand logo must be big, crisp, and readable.
+- **Middle strip:** thin horizontal divider line.
+- **Author badge (just below divider):** small circular headshot of Edison on the LEFT, then the
+  name "Edison Chua" with a small blue verified tick next to it, and directly under the name in
+  smaller grey text the tagline "AI Marketing Strategist" (or "HRDC Certified AI Trainer" when
+  the post is about corporate training).
+- **Bottom 30% of frame:** solid dark navy (#0A1628) block. Bold oversized headline text in 2 to
+  3 stacked lines. Use WHITE for most words and YELLOW (#FFD700) for the key/emphasized words.
+  Keep it under 14 words total. Examples:
+  - "BREAKING: I STOPPED WASTING HOURS READING TEXTBOOKS COVER TO COVER."
+  - "HOW TO MASTER CLAUDE COWORK A COMPLETE GUIDE"
+  - "CLAUDE CAN NOW THINK LIKE A $100M FOUNDER — USE THESE 8 PROMPTS"
+- **Very bottom center:** the text "COMMENT FOR MORE" in small clean white uppercase.
+
+**Headline hook styles:**
+- "BREAKING: I STOPPED [painful old habit]."
+- "HOW TO MASTER [TOOL] — A COMPLETE GUIDE"
+- "[TOOL] CAN NOW [surprising new capability]. USE THESE [X] PROMPTS."
+- "[TOOL A] + [TOOL B] — HOW TO CONNECT THESE POWERFUL TOOLS FOR FREE."
+- "USE [TOOL] TO [OUTCOME] 100X FASTER. THE ONLY [X] PROMPTS YOU NEED."
+
+**Example trigger:** "How to use NotebookLM", "Claude Opus 4.7 just shipped", "5 Gemini prompts"
+**Production:** Requires Nano Banana Pro with Edison's face. Use the prompt template below.
+**Post-posting:** ALWAYS pair with Strategy A comment thread (full tips in comments) AND pin the
+first comment (see Pin Comment Protocol below).
+
+**Nano Banana Pro prompt template for Type 8:**
+```
+Use the face from the uploaded reference photo exactly. Preserve exact likeness, skin tone,
+hair, facial features. Young Asian man, black hair, slim build, warm confident smile, wearing
+a clean modern outfit (dark blazer over white shirt, or smart casual shirt depending on topic).
+
+Scene: Edison is [holding a large glowing 3D [TOOL] logo floating above his open palm / standing
+between two large glowing 3D logos ([TOOL A] on left, [TOOL B] on right) with a curved glowing
+energy line connecting them / looking up at floating holographic UI panels showing [topic]].
+Warm cinematic lighting with orange and gold accent glow from the logo, clean studio-style
+background with soft light rays, slight lens flare. The logo must be crisp, high-resolution,
+immediately recognizable.
+
+Composition: subject occupies the TOP 60 percent of frame. BOTTOM 30 percent is a solid dark
+navy block (#0A1628) containing bold oversized stacked headline text: line 1 "[HEADLINE WORDS]"
+and line 2 "[HEADLINE WORDS]", with key words in bright yellow (#FFD700) and the rest in white,
+clean sans-serif font. Above the navy block, a thin horizontal divider, and immediately under
+the divider a small circular headshot of Edison on the left, the name "Edison Chua" with a
+small blue verified tick beside it, and beneath the name the smaller grey tagline
+"AI Marketing Strategist". Centered at the very bottom inside the navy block, small clean white
+uppercase text reading "COMMENT FOR MORE".
+
+Aspect ratio 4:5. Ultra realistic, photorealistic, 8K, cinematic lighting, sharp, high contrast.
+Preserve exact facial features from reference photo. No em dashes in any text.
+```
+
+**Save path:** `./generated/ Media Marketing/facebook_kanji_[topic]_[date].jpg`
+
+---
+
 ### Type 7 — Face + Flow Diagram
 **When to use:** Step-by-step processes, funnels, journey maps, "how I went from X to Y" content.
 **Design:** Edison's face on one side. A visual curve or flow diagram with labeled steps on the other.
@@ -133,7 +203,7 @@ Bold title text at bottom.
 
 ---
 
-## Part 2: Image Generation (Types 2 and 7 only)
+## Part 2: Image Generation (Types 2, 7, and 8)
 
 ### Face Photos — Permanent Blotato URLs (no upload needed)
 
@@ -150,7 +220,7 @@ Bold title text at bottom.
 - Outdoor/travel feel → `edison3.jpeg` (upload once, then save URL here)
 - Tech/gaming vibe → `edison2.jpeg` (upload once, then save URL here)
 
-Skip the upload step for Type 2 and Type 7 — use the PRIMARY URL directly in `image_input`.
+Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `image_input`.
 
 ### Search Nano Banana Pro Prompt Library
 
@@ -412,6 +482,85 @@ the actual article or tool page before writing the comment.
 
 ---
 
+### Pin Comment Protocol (MANDATORY for Type 8 and all Strategy A posts)
+
+Every Type 8 post AND every Strategy A tips post MUST have its first comment pinned. The pinned
+comment is a second branded image + a CTA block that carries the reader from the post into the
+value drop (the full tip comments) or into a PDF/resource link.
+
+**Step 1 — Generate the pin-comment image with Nano Banana Pro** (use Edison's face, 1:1 square):
+
+Prompt template:
+```
+Use the face from the uploaded reference photo exactly. Preserve exact likeness, skin tone,
+hair, facial features. Young Asian man, black hair, slim build, warm confident smile, pointing
+down with his index finger toward the bottom of the frame, friendly inviting expression.
+Scene: Edison on the right side, a large bold yellow arrow curving down from him toward the
+bottom-left corner. Background: clean dark navy (#0A1628) with soft golden light rays.
+
+Bold yellow (#FFD700) text on the LEFT side, stacked in 2 to 3 lines: "[CTA HEADLINE]" (examples:
+"FULL GUIDE BELOW", "ALL 7 PROMPTS BELOW", "GET THE FREE PDF", "LINK IN THE REPLY"). Under the
+headline in smaller white text: a one-line descriptor (e.g. "Save this before Facebook hides it").
+
+Small "Edison Chua | AI Marketing Strategist" tag at bottom. Aspect ratio 1:1. Ultra realistic,
+photorealistic, 8K, cinematic, sharp. Preserve exact facial features. No em dashes.
+```
+
+Save as: `./generated/ Media Marketing/facebook_pin_[topic]_[date].jpg`
+
+**Step 2 — Post the pinned comment** immediately after the main post. The comment text:
+
+For a tips post (Strategy A):
+```
+All [X] below 👇 save this before Facebook hides it.
+
+[image attached: the pin-comment image from Step 1]
+```
+
+For a resource/PDF post:
+```
+Grab the free PDF guide 👇 link in my first reply.
+
+[image attached: the pin-comment image from Step 1]
+```
+
+Then post the tip comments OR the PDF link as reply-to-pin (so everything cascades under the pin).
+
+**Step 3 — Pin it.** Blotato does not currently support programmatic pinning. Log "MANUAL PIN
+REQUIRED" in the post status so Edison pins it by hand in the Facebook app the first time he
+sees the post go live.
+
+---
+
+### PDF / Resource Delivery via Google Drive
+
+When a post topic involves a guide, cheat sheet, prompt pack, or step-by-step walkthrough, create
+a PDF and share it via Google Drive. This is what the pin comment promises ("Grab the free PDF").
+
+**Creation flow:**
+1. Write the full guide as clean markdown (no em dashes, same voice as the post).
+2. Convert to PDF. Save to `./generated/ Media Marketing/pdfs/[topic_slug]_[date].pdf`.
+3. Upload to Google Drive folder: `1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm-` (the shared folder from CLAUDE.md).
+4. Set sharing to "Anyone with the link can view".
+5. Grab the shareable link. Store it in `rotation-state.json` under:
+   ```json
+   "facebook_pdf_links": { "[topic_slug]": "https://drive.google.com/..." }
+   ```
+
+**Posting flow:**
+- First pinned comment: the Nano Banana pin image + "PDF link in my reply below 👇".
+- Reply under the pinned comment: the Google Drive share link + one line on what's inside.
+
+**Auto-reply to commenters asking for the link:** when someone comments asking for the guide
+(e.g. "link?", "can you share?", "interested", "yes please"), reply to their comment with:
+```
+Hey [first name] 👋 here you go, free guide: [Drive link]. If you find it useful, a share means a lot 🙏
+```
+
+This flow is driven by the `facebook-comment-responder` scheduled task (see below).
+
+---
+
 ### When to use which strategy
 
 | Post type | Comment strategy |
@@ -472,3 +621,20 @@ Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_post
 | 5. Meme + caption | Yes (meme) | No | Humor, relatable AI takes |
 | 6. Person collage | Yes (sourced) | No | Top X creators/tools |
 | 7. Face + flow diagram | Yes | Yes | Funnels, step-by-step |
+| 8. Kanji-style branded (DEFAULT) | Yes | Yes | AI tool spotlights, tips, "HOW TO" posts |
+
+---
+
+## Engagement Routine (cross-platform)
+
+Every Type 8 post and every Strategy A tips post is handled by the shared
+`comment-engagement-responder` skill. That skill runs hourly and:
+
+1. Polls Facebook (and LinkedIn, Instagram DMs) for new comments on Edison's recent posts.
+2. Replies to every new comment in Edison's voice (warm, helpful, under 20 words).
+3. If the commenter asks for the guide/link/PDF, replies with the Google Drive link from
+   `rotation-state.json` → `facebook_pdf_links[topic_slug]`.
+4. Flags posts missing a pinned comment as "MANUAL PIN REQUIRED".
+
+The responder skill is invoked by the `social-media-engagement-hourly` scheduled task.
+See `comment-engagement-responder/SKILL.md` for the full flow.
