@@ -4,223 +4,186 @@ description: >
   Edison Chua's complete social media image creation system — from choosing the right photo,
   to designing the concept and style, to generating and saving the final image. Use this skill
   whenever Edison wants to create any social media post image, thumbnail, carousel cover, or
-  content visual using his face or real workshop photos.
+  content visual using his face or photos.
 
   Trigger when Edison says things like: "create a post image", "generate an image of me",
-  "make a LinkedIn visual", "design a thumbnail", "YouTube thumbnail style", "MrBeast style",
-  "cyborg face", "half face AI", "workshop photo with overlay", "use my training photos",
-  "post photos of me with students", "use my face to generate", "create a social post visual",
-  "content image post", or any request to produce a new image for social media using Edison's
-  face or real photos. Always trigger for content image requests — this skill handles all
-  3 content image sub-types and decides which one to use based on the rotation.
+  "make a LinkedIn visual", "design a thumbnail", "create something like MrBeast style",
+  "make an image for this topic", "use my face to generate", "create a social post visual",
+  or any request to produce a new AI-generated image for social media content.
+
+  This skill combines photo selection, style decision, Nano Banana Pro prompt crafting,
+  Blotato upload, kie.ai generation, and saving — all in one workflow.
 ---
+
+## IMAGE GENERATION PRIORITY RULE
+
+**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+
+**Priority order:**
+1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
+2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
+3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+
+**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+
+---
+
 
 # Edison's Content Image Creator
 
 ## Overview
 
-Content images rotate through THREE distinct sub-types. Each has its own photo selection
-rules, prompt style, and output format. The rotation keeps the LinkedIn feed visually varied.
+This skill handles everything from picking the right source photo to delivering the final
+generated image. It has two parts that always work together:
 
-**The 3 Content Image Sub-Types (rotate in this order):**
-1. **Workshop Action** — real teaching photo of Edison solo, bold text overlay added via AI
-2. **Real Classroom** — authentic photos of Edison with students, multi-photo, no heavy AI
-3. **YouTube Thumbnail** — AI-generated dramatic composite using Edison's face as reference
+1. **Style & Prompt** — decide the concept, study the prompt library, craft the prompt
+2. **Pipeline** — upload photo to Blotato, generate via kie.ai, download and save result
 
 ---
 
-## Step 1: Check the Sub-Type Rotation
+## PART 1: Style & Concept
 
-Read `/sessions/[current-session-id]/mnt/.auto-memory/project_linkedin_automation.md`.
+### Core Rules (Never Break These)
 
-Find the "Content Image Sub-Type Rotation Tracker" section. Rotation order:
-**Workshop Action → Real Classroom → YouTube Thumbnail → Workshop Action (repeat)**
-
-Use the next sub-type after the last one recorded. If no tracker exists yet, start with Workshop Action.
-
-After generating, update the tracker (see Step 8 at the bottom).
-
----
-
-## Step 2: Select Photos from the Library
-
-All photos live under:
-```
-/sessions/[current]/mnt/Social Media Marketing/Edison Chua photos/
-```
-
-Always use the Read tool to visually confirm any photo before selecting. Never guess from filename alone.
-
-**Face-only portraits** (use for YouTube Thumbnail sub-type):
-```
-Edison Face only/Edison Chua Face.jpeg      <- primary, use this first
-Edison Face only/edison2.jpeg
-Edison Face only/edison3.jpeg
-```
-
-**Workshop teaching shots** (Edison standing, teaching, arms gesturing — for Workshop Action):
-```
-edisonchuaofficial_1755684526_3703272678101445496_321228572.jpg   <- best: blue blazer, arms raised wide
-edisonchuaofficial_1755684526_3703272678135018164_321228572.jpg
-edisonchuaofficial_1769012405_3815075026920105102_321228572.jpg
-edisonchuaofficial_1771048946_3832152369991861466_321228572.jpg
-edisonchuaofficial_1763113368_3765590317405040611_69009783030.jpg
-```
-
-**Group and classroom shots** (Edison with students — for Real Classroom):
-```
-aiwithedison_1763977312_3772837611246414586_69009783030.jpg
-aiwithedison_1763977312_3772837611246447536_69009783030.jpg
-aiwithedison_1763977312_3772837611355451807_69009783030.jpg
-aiwithedison_1752335629_3675180093032447902_69009783030.jpg
-aiwithedison_1752335629_3675180093032473025_69009783030.jpg
-edisonchuaofficial_1755684526_3703272678101445496_321228572.jpg   <- also works: participants in foreground
-```
+- **Edison's face must always stay realistic and unchanged** — skin tone, hair, facial features
+  are preserved in every image. Only the outfit, background, lighting, and concept change.
+- **Match style to topic** — don't apply a fixed template. Ask: what visual makes someone stop
+  scrolling for THIS specific topic?
+- **Text behind, not on top** — when adding text overlays, text should be layered BEHIND Edison,
+  blended into the background. Not a flat bar at the bottom. Not text on top of his face.
+- **Use the Nano Banana Pro library first** — always search for prompt inspiration before writing
+  from scratch.
 
 ---
 
-## Sub-Type 1: Workshop Action
+### Step 1: Search the Nano Banana Pro Prompt Library
 
-**What it is:** A real workshop photo of Edison teaching solo — standing, arms out, commanding
-the room. Nano Banana Pro adds a bold text overlay connected to the post topic.
-Text sits behind Edison or as a large backdrop, never on top of his face.
-
-**Photo:** Pick the best standing action teaching shot. Default: blue blazer, arms raised wide.
-
-**Prompt template:**
-```
-Use the face and body from the uploaded reference photo exactly. Preserve exact likeness,
-skin tone, hair, facial features. Keep the person in their original teaching pose — standing,
-arms gesturing, mid-presentation in a training room. Warm cinematic lighting, participants
-partially visible in foreground or background. Add a large bold text overlay integrated BEHIND
-the subject (not covering his face) reading: "[POST HEADLINE IN CAPS, max 6 words]". Text
-style: white with dark navy drop shadow, looks like a projection on the wall or backdrop.
-Small "AI with Edison" branding at the bottom in yellow. Warm cinematic color grade, slight
-vignette. Ultra realistic, photorealistic, 8K, sharp, high contrast. Aspect 4:5.
+Fetch the manifest to find the right category:
+```bash
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/manifest.json"
 ```
 
-**Aspect ratio:** `4:5`
-**Post copy style:** Full LinkedIn post — hook, list, closing, repost CTA, P.S., hashtags.
+Then search the relevant category file. For social/thumbnail content, the most useful files are:
+- `youtube-thumbnail.json` — bold text, dramatic concepts, thumbnail styles
+- `social-media-post.json` — LinkedIn, Instagram, general post styles
+- `poster-flyer.json` — bold graphic poster styles
+
+Search example:
+```bash
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
+  -o /tmp/yt_thumbnails.json
+
+python3 -c "
+import json
+with open('/tmp/yt_thumbnails.json') as f:
+    data = json.load(f)
+keywords = ['your', 'search', 'keywords']
+for item in data:
+    content = item.get('content','').lower()
+    title = item.get('title','').lower()
+    if any(k in content or k in title for k in keywords):
+        if item.get('sourceMedia'):
+            print(f'ID:{item[\"id\"]} | {item[\"title\"]}')
+            print(item.get('content','')[:300])
+            print()
+"
+```
+
+Study the prompt structure — the composition language, lighting descriptors, and style terms
+are what make Nano Banana Pro prompts work well.
 
 ---
 
-## Sub-Type 2: Real Classroom (Multi-Photo, No AI Generation)
+### Step 2: Choose the Style
 
-**What it is:** Authentic unedited photos of Edison with workshop participants posted together.
-No AI generation needed. Post 2-4 real photos in one LinkedIn post to show social proof,
-real training, and community energy. These feel human and credible.
+These are **examples of styles that work** — not a fixed rotation. Pick based on the topic.
 
-**Photo selection:** Pick 2-4 from the group/classroom library above. Mix formats:
-1 action shot + 1-2 group shots works well. Use Read tool to visually review each one.
+**Style A — Bold Text + Face** (LinkedIn/Personal Brand, 1:1)
+- Dark solid background. Edison's face RIGHT side. Large bold white stacked text LEFT side.
+- Use for: professional tips, business lessons, personal branding
+- Inspired by: Chris Donnelly LinkedIn style
 
-**No kie.ai generation for this sub-type.** Upload the real photos directly.
+**Style B — Concept / Creative Composite** (YouTube 16:9 or portrait 4:5)
+- The image tells a story. Dramatic environment, split scene, or strong metaphor. Examples: Edison holding a giant glowing logo of the AI tool, walking through a floating document cloud, pointing at a workflow diagram that explodes into steps.
+- Bold text optional — only if it adds to the concept.
+- Use for: AI tools content, money/business transformation, strong metaphor topics
+- **DO NOT use the half-face human/cyborg split style — Edison dislikes it.** Pick concept metaphors that are warm and educator-friendly, not dystopian.
+- Key rule: concept must match the topic — pick story over decoration
 
-Upload each photo to Blotato via separate presigned URLs. Collect all publicUrls into an
-array and pass as `mediaUrls` in `blotato_create_post`.
+**Style C — Big Text Layered BEHIND Subject** (portrait 4:5)
+- Edison sharp in foreground. Large bold italic text overlaid on the background BEHIND him.
+- Text feels like a backdrop or projection — part of the scene, not a graphic overlay.
+- Use for: workshop content, speaking topics, authority positioning, teaching content
 
-**Post copy style:** More personal and story-driven. Good hook angles:
-- "I just finished training [X] staff from [type of company] on AI..."
-- "Real moment from last week's workshop..."
-- "This is what it looks like when a whole team finally gets AI..."
+**Style D — Full Body / Action Shot** (portrait 4:5)
+- Edison full body in a setting that fits the content — doesn't have to be a stage.
+- Could be a rooftop, conference room, outdoor, office — whatever fits the topic.
+- Use for: aspirational content, speaking, high-energy posts, "I do this" positioning
 
-Less list-heavy. Warmer and more human. P.S. can invite corporate training inquiries.
-
----
-
-## Sub-Type 3: YouTube Thumbnail (AI Face Composite)
-
-**What it is:** Fully AI-generated image using Edison's face as reference. Output is a
-dramatic eye-catching YouTube-thumbnail-style visual. Three Y-styles rotate within this
-sub-type — check the tracker and use the next one in the Y1 → Y2 → Y3 → Y1 sequence.
-
-**Photo to always use for this sub-type:** `Edison Face only/Edison Chua Face.jpeg`
-Upload to Blotato, use as `image_input` in kie.ai.
-
----
-
-### Y1: MrBeast Bold (16:9)
-
-**When to use:** High-energy AI news, tool lists, viral-style content.
-Be exaggerated — big expression, big text, big energy. That is the point of this style.
-
-**Prompt:**
-```
-Use the face from the uploaded reference photo. Young Asian man, black hair, slim build.
-YouTube thumbnail MrBeast format: subject on RIGHT side of frame, upper body visible,
-dramatic blue and orange split rim lighting, mouth open in exaggerated excited expression,
-eyebrows raised high, one hand pointing LEFT toward text area. LEFT side: bold oversized
-white text "[HEADLINE, max 5 words]" with thick black stroke outline, stacked 2-3 lines,
-text takes up 40% of the frame. Background: deep dark navy blue with golden light burst
-from centre. Small "AI with Edison" logo bottom right in yellow. Aspect 16:9.
-Photorealistic, ultra realistic, 8K, cinematic, sharp. Preserve exact facial features.
-```
-
-**Aspect ratio:** `16:9`
+**Style E — MrBeast Thumbnail** (YouTube 16:9)
+- Edison right side with dramatic blue + orange rim lighting, excited expression.
+- Bold oversized white text with black stroke on left. Navy background with golden light rays.
+- Use for: high-energy topics, "I tried X", viral-style content
 
 ---
 
-### Y2: Half-Face Cyborg / AI Concept (16:9)
+### Step 3: Craft the Prompt
 
-**When to use:** AI transformation topics, "AI vs Human", future of work, agentic AI,
-AI replacing tasks. The drama of the split face IS the message — concept first.
+Combine the library learnings with the chosen style. Always include:
 
-**Prompt:**
-```
-Use the face from the uploaded reference photo. Young Asian man, black hair, slim build.
-Split-face concept portrait: LEFT half of face is photorealistic human with natural warm
-skin tones and soft studio lighting. RIGHT half seamlessly transitions into chrome metallic
-cyborg plating with panel lines, glowing cyan circuit traces, and light-emitting data streams
-flowing from the eye socket. Hard clean vertical split line down the centre of the face with
-subtle cyan glow at the seam. Background: deep black with scattered cyan and blue light
-particles. Bold white text overlay: "[HEADLINE, max 5 words]" positioned above or beside
-the face, clean sans-serif font. Aspect 16:9. Ultra realistic on the human side, ultra
-detailed mechanical on the AI side. 8K, sharp, cinematic. Preserve exact facial structure.
-```
+1. `"Use the face from the uploaded image"` — at the start
+2. Edison's description: `"young Asian man, black hair, slim build, warm confident smile"`
+3. Specific outfit — don't leave it vague
+4. Explicit lighting description
+5. Aspect ratio and composition intent
+6. Quality closers: `"ultra realistic, 8K, photorealistic, cinematic"`
 
-**Aspect ratio:** `16:9` (or `4:5` for portrait if topic fits better)
+**Aspect ratios:**
+- `"1:1"` — LinkedIn square, profile-style
+- `"4:5"` — LinkedIn portrait, carousel covers, stage shots
+- `"16:9"` — YouTube thumbnails, widescreen
+- `"9:16"` — Stories, vertical content
 
 ---
 
-### Y3: Clean Authority (16:9)
+## PART 2: Image Generation Pipeline
 
-**When to use:** Corporate training, HRDC content, credibility posts, client results,
-professional positioning. Trust over drama — calm, confident, credible.
+### Step 4: Select the Right Source Photo
 
-**Prompt:**
-```
-Use the face from the uploaded reference photo. Young Asian man, black hair, slim build,
-confident calm expression. Professional YouTube thumbnail: subject at slight 3/4 angle,
-direct gaze toward camera, soft dramatic key light from upper left, clean dark navy gradient
-background (darker on left, slightly lighter on right). Bold clean sans-serif text on LEFT:
-"[HEADLINE, max 5 words]" in white with one accent word or line highlighted in yellow #FFD700.
-Small "AI with Edison" text bottom right in yellow. No exaggeration, no dramatic expressions.
-Strong, professional, trustworthy presence. Aspect 16:9. Ultra realistic, photorealistic,
-8K, cinematic, sharp. Preserve exact facial features from reference photo.
-```
+**PERMANENT BLOTATO URLs — use these directly. Do NOT re-upload.**
 
-**Aspect ratio:** `16:9`
+| Photo | Blotato URL | Best For |
+|-------|-------------|----------|
+| Edison Chua Face.jpeg (PRIMARY) | `<face_primary.url from assets-manifest.json>` | AI tools, LinkedIn, personal branding, most posts |
+| edison2.jpeg | Upload once if needed, then save URL here | Tech/gaming vibe |
+| edison3.jpeg | Upload once if needed, then save URL here | Outdoor/travel feel |
+| Workshop photo | Upload once if needed, then save URL here | Teaching/training content |
+
+**How to pick:**
+- AI tools, LinkedIn tips, personal branding → PRIMARY face URL above
+- Workshop, training, teaching → blue blazer workshop shot (upload once, save URL)
+- Outdoor/travel feel → `edison3.jpeg` (upload once, save URL)
+- Tech/gaming vibe → `edison2.jpeg` (upload once, save URL)
+
+**SKIP Step 5 entirely when using the PRIMARY face.** Go straight to Step 6 and use the URL above as `image_input`.
 
 ---
 
-## Step 3: Upload Source Photo to Blotato (Sub-Types 1 and 3 only)
+### Step 5: Upload to Blotato (only for photos NOT yet uploaded)
 
-```
-Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_presigned_upload_url
-  filename: "edison_source_[date].jpeg"
-```
+Only do this if you need edison2.jpeg, edison3.jpeg, or the workshop photo and do not yet have a saved URL for them.
 
-Upload via curl:
 ```bash
 curl -X PUT "[presignedUrl]" \
   --data-binary "@[local_file_path]" \
   -H "Content-Type: image/jpeg"
 ```
 
-200 = success. Use `publicUrl` as `image_input` for kie.ai.
+200 response = success. Save the new `publicUrl` into this table above for future reuse.
 
 ---
 
-## Step 4: Generate with kie.ai Nano Banana Pro (Sub-Types 1 and 3 only)
+### Step 6: Generate with kie.ai Nano Banana Pro
 
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
@@ -229,7 +192,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -d '{
     "model": "nano-banana-pro",
     "input": {
-      "prompt": "[crafted prompt]",
+      "prompt": "[crafted prompt from Step 3]",
       "image_input": ["[publicUrl from Blotato]"],
       "aspect_ratio": "[chosen ratio]",
       "resolution": "2K"
@@ -237,93 +200,54 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   }'
 ```
 
-Poll every 25-30 seconds until `data.state == "success"`:
+Returns a `taskId`.
+
+---
+
+### Step 7: Poll for Result
+
+Poll every 25-30 seconds. Typical wait: 60-180 seconds.
+
 ```bash
 curl -s "https://api.kie.ai/api/v1/jobs/recordInfo?taskId=[taskId]" \
   -H "Authorization: Bearer ${KIE_API_KEY}"
 ```
-Get the image URL from `data.resultJson.resultUrls[0]`.
+
+When `data.state` is `"success"`, extract image URL from `data.resultJson.resultUrls[0]`.
 
 ---
 
-## Step 5: Download and Save
+### Step 8: Download and Save
 
 ```bash
-curl -s -o "/sessions/[current]/mnt/Social Media Marketing/[descriptive_name].jpg" "[resultUrl]"
+curl -s -o "./generated/ Chua photos/[descriptive_name].jpg" \
+  "[resultUrl]"
 ```
 
-Naming convention:
-- `content_workshop_action_[topic]_[date].jpg`
-- `content_thumbnail_y1_mrbeast_[topic]_[date].jpg`
-- `content_thumbnail_y2_cyborg_[topic]_[date].jpg`
-- `content_thumbnail_y3_authority_[topic]_[date].jpg`
+Use a clear descriptive filename (e.g., `post_ai_tools_linkedin_bold.jpg`).
 
-Display to Edison using Read tool for visual review before posting.
+Display the image to Edison using the Read tool for review.
 
 ---
 
-## Step 6: Upload Final Image to Blotato for Posting
+## Platform Quick Reference
 
-Sub-Types 1 and 3: get a fresh presigned URL for the generated output file, upload it,
-use the publicUrl in `blotato_create_post mediaUrls`.
-
-Sub-Type 2: upload all selected real photos as separate presigned URLs. Pass all publicUrls
-as an array in `mediaUrls`.
+| Platform | Ratio | Best Style |
+|----------|-------|-----------|
+| LinkedIn square | 1:1 | A or B |
+| LinkedIn portrait | 4:5 | C or D |
+| YouTube thumbnail | 16:9 | B or E |
+| Facebook/Instagram | 4:5 or 1:1 | Any |
+| Threads/Twitter | 1:1 or 16:9 | A or B |
 
 ---
 
-## Step 7: Common Prompt Fixes
+## Common Prompt Fixes
 
 | Issue | Fix |
 |-------|-----|
 | Face changed too much | Add: "preserve exact facial features, do not alter the face" |
-| Cyborg split not sharp | Add: "hard clean vertical split line, precise edge, no blending" |
-| MrBeast text too small | Add: "extremely large bold text, text takes up 40% of frame" |
-| Text garbled in image | Reduce to fewer words, remove punctuation from the text string |
+| Text garbled in image | Simplify to fewer words, no punctuation |
 | Background too busy | Add: "clean simple background, minimal distractions" |
-| Expression wrong | Add: "confident warm expression, natural relaxed energy" |
-| Image too dark | Add: "soft even dramatic lighting, well lit subject" |
-
----
-
-## Step 8: Update Rotation Trackers in Memory
-
-After every run, update `/sessions/[current]/mnt/.auto-memory/project_linkedin_automation.md`.
-Add these sections if they do not exist yet:
-
-```
-## Content Image Sub-Type Rotation Tracker
-Last used (most recent first):
-- [date] [time] MYT: [Sub-Type name] — [topic slug]
-- [previous entries, keep last 6]
-Next should use: [next sub-type in rotation]
-
-## YouTube Thumbnail Y-Style Rotation (within Sub-Type 3 only)
-Last Y style used: [Y1 / Y2 / Y3]
-Next Y style: [next in Y1 → Y2 → Y3 → Y1 rotation]
-```
-
-
----
-
-## Asset Management & Workshop Variant (80/20 Rotation)
-
-All asset URLs (face photo, workshop photos) live in `assets-manifest.json` at repo root. Always fetch at start:
-```
-GET https://raw.githubusercontent.com/nextgentrainingacademy88-max/edison-claude-skills/main/assets-manifest.json
-```
-
-### 80/20 Rotation
-- **80% standard** — use the default branded style documented above
-- **20% workshop variant** — use real workshop photos with darkened overlay + bold text
-
-See `WORKSHOP-VARIANT-GUIDE.md` at repo root for full workshop variant prompts, rotation logic, and state tracking via `rotation-state.json`.
-
-### Face Photo (for face-required slides/images)
-Use `face_primary.url` from manifest — primary Edison face photo (stable Google Drive URL).
-
-### Workshop Photos (for 20% rotation variant)
-Random pick from `workshop_photos[]` array in manifest (28 photos).
-
-### Rotation State
-Tracked in `rotation-state.json` at repo root. Check `posts_since_workshop` — when it reaches 4, next post must use workshop variant.
+| Expression feels off | Add: "confident warm smile, natural relaxed expression" |
+| Image too dark | Add: "soft even studio lighting, well lit" |
