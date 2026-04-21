@@ -1,25 +1,28 @@
 {
-  "last_updated": "2026-04-22",
+  "last_updated": "2026-04-21",
+  "last_topic_morning": "none",
+  "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
+  "last_run_slot": "afternoon",
   "linkedin": {
-    "image_skill": "none",
+    "image_skill": "carousel-creator",
     "content_image_subtype": "none",
-    "carousel_last_used": "none",
+    "carousel_last_used": "branded_standard_cobalt_opus47",
     "infographic_style": "none"
   },
   "facebook": {
-    "post_type": "none"
+    "post_type": "type_8_kanji"
   },
   "instagram": {
-    "carousel_style": "none"
+    "carousel_style": "branded_standard_cobalt_opus47"
   },
   "threads": {
-    "infographic_style": "none"
+    "infographic_style": "whiteboard"
   },
   "x": {
-    "thumbnail_style": "none"
+    "thumbnail_style": "bold_face_thumbnail"
   },
   "image_generation": {
-    "last_path_used": "none"
+    "last_path_used": "blotato_carousel_slideshow_nano_banana_pro"
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T20:28:48Z",
