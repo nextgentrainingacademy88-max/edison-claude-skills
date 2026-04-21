@@ -1,5 +1,45 @@
+# Secrets - NEVER commit
 .env
 .env.local
-*.log
+.env.*.local
+*.key
+*.pem
+credentials.json
+
+# Local staging (skills are pushed at repo root, not from .staging)
+.staging/
+
+# Temp dirs
+.tmp_*/
+.tmp/
+
+# Generated output (images, PDFs, logs - kept local only)
+generated/
+
+# Claude Code local state
+.claude/
+
+# Separate unrelated project - has its own repo
+jarvis/
+
+# Obsolete local skill dirs (replaced by skills at repo root)
+instagram-carousel-creator/
+threads-content-creator/
+x-twitter-content-creator/
+
+# Node
+node_modules/
+
+# OS
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
