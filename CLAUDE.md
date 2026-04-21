@@ -74,7 +74,7 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 ### Engagement / Comment Reply Routine
 - Runs hourly via `comment-engagement-responder` skill + `social-media-engagement-hourly` scheduled task.
 - **AUTOMATED:** X/Twitter replies only (legit API via Blotato, low ban risk).
-- **MANUAL ONLY:** Facebook, LinkedIn, Instagram — these platforms actively detect and ban headless/automated comment activity, so Edison handles them himself. The responder generates suggested-reply text and queues each new comment to `./generated/engagement-manual-queue.md` for Edison to copy-paste from his phone.
+- **MANUAL ONLY:** Facebook, LinkedIn, Instagram — Meta/LinkedIn actively ban headless automation, so Edison DMs these commenters himself. The responder prepares a full "DM package" per new comment (original comment text + ready-to-send DM wording + Drive PDF link) and writes it to `./generated/engagement-manual-queue.md` AND prints it to the run summary. If the post promised a PDF and no Drive link exists yet, the responder auto-generates a branded PDF (navy + yellow, Edison's "AI with Edison" brand), uploads it to Drive, and includes the link in the package. WhatsApp delivery to Edison is deferred for now.
 - Delivers Google Drive PDF guide on request (PDF links stored in `rotation-state.json` under `{platform}_pdf_links[topic_slug]`) — automated for X, suggested in the queue for the others.
 - Every Type 8 / Strategy A tips post needs a branded pin-comment image (Edison pointing down at "ALL X BELOW"). Pinning is always manual.
 
