@@ -1,0 +1,79 @@
+{
+  "_comment": "Edison's social media asset URLs — used by all skills. Update here when photos change.",
+  "last_updated": "2026-04-22",
+
+  "face_primary": {
+    "name": "Edison Chua Face.jpeg",
+    "drive_id": "1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh",
+    "url": "https://lh3.googleusercontent.com/d/1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh",
+    "use_for": "Primary face reference for Nano Banana Pro image-to-image generation on all carousel covers, CTA slides, and YouTube thumbnails"
+  },
+
+  "face_alternatives": [
+    {
+      "name": "edison2.jpeg",
+      "drive_id": "1H3sn_ubomQ3CIlVQhTdc0LeLgIPG9fUd",
+      "url": "https://lh3.googleusercontent.com/d/1H3sn_ubomQ3CIlVQhTdc0LeLgIPG9fUd"
+    },
+    {
+      "name": "edison3.jpeg",
+      "drive_id": "1W5-MWJtap3jqix5kJ6-95HW7yiXKXA1N",
+      "url": "https://lh3.googleusercontent.com/d/1W5-MWJtap3jqix5kJ6-95HW7yiXKXA1N"
+    }
+  ],
+
+  "workshop_photos": [
+    {"name": "edisonchuaofficial_1755684526_a", "url": "https://lh3.googleusercontent.com/d/1zghvJUwJFrrTEM0da3t8ukw4yL-tYAFt"},
+    {"name": "edisonchuaofficial_1755684526_b", "url": "https://lh3.googleusercontent.com/d/1kopFa3dqqv-TdJ80zvZdzxglkamP6ZNc"},
+    {"name": "edisonchuaofficial_1753526250_a", "url": "https://lh3.googleusercontent.com/d/1kPWZqI6NqK1UvkYsoNXEPPDnk9-nVSTb"},
+    {"name": "aiwithedison_1752335629_a", "url": "https://lh3.googleusercontent.com/d/1K-uQeFuR_cz9G0ahUlzO8nNd8Enxq76q"},
+    {"name": "edisonchuaofficial_1753526250_b", "url": "https://lh3.googleusercontent.com/d/1h9xHab3lSg7tw6mCrWYiS3NVxIYWQfG7"},
+    {"name": "edisonchuaofficial_1753526250_c", "url": "https://lh3.googleusercontent.com/d/1JeF2sFlxTOh9XQ1oY1ds2pziUbo6M4-T"},
+    {"name": "edisonchuaofficial_1753526250_d", "url": "https://lh3.googleusercontent.com/d/195c9fJqnOCQNEWbT_rXgVN_OauYwLYnN"},
+    {"name": "edisonchuaofficial_1755684526_c", "url": "https://lh3.googleusercontent.com/d/1LXPLvAQyAFKCo0rtrhfNW1iJWZqDLeSj"},
+    {"name": "edisonchuaofficial_1755684526_d", "url": "https://lh3.googleusercontent.com/d/1VzR1QRr6Mbb3U1SuRzT4f_iqbITXuwxg"},
+    {"name": "aiwithedison_1763113368", "url": "https://lh3.googleusercontent.com/d/1GtALysAkdK0Tfe4bqM5RxuVj9dQ3nPur"},
+    {"name": "aiwithedison_1763977312_a", "url": "https://lh3.googleusercontent.com/d/1PRBcZ2pojCruDNneux9N9i4df84UcptN"},
+    {"name": "aiwithedison_1763977312_b", "url": "https://lh3.googleusercontent.com/d/1uSrwbj43pL-TT742G7Rz9scDkaOB1cHj"},
+    {"name": "aiwithedison_1763977312_c", "url": "https://lh3.googleusercontent.com/d/1DOUpPXrpGwZZ_NFgJ26L4EPmj_ZKmvGX"},
+    {"name": "aiwithedison_1765450080_a", "url": "https://lh3.googleusercontent.com/d/1yAKOHVIHeRBBhl5pN54OB03SNqpNopzx"},
+    {"name": "aiwithedison_1765450080_b", "url": "https://lh3.googleusercontent.com/d/1a_QtuheN9cI_mzDtRhWf4bK_hZyNq4Hc"},
+    {"name": "aiwithedison_1752335629_a", "url": "https://lh3.googleusercontent.com/d/1RfQlNBT8uv-iDxMSgXF_vyYui5e1kQ57"},
+    {"name": "aiwithedison_1752335629_b", "url": "https://lh3.googleusercontent.com/d/1RcRdi72zK4Tw1dMDyP_PCRtGwzoQQtL6"},
+    {"name": "aiwithedison_1752335629_c", "url": "https://lh3.googleusercontent.com/d/1jRy5F1_Hnvc7EmMSKJQ9-lg6hjr-NJPt"},
+    {"name": "aiwithedison_1752335629_d", "url": "https://lh3.googleusercontent.com/d/1-4plBU9ULQBHp8f8ZHD70hvkt0yFr10R"},
+    {"name": "aiwithedison_1752335629_e", "url": "https://lh3.googleusercontent.com/d/1M5Y365qcT4hrij3kl1nhY2Km2Ga3rTqp"},
+    {"name": "edisonchuaofficial_1755684526_e", "url": "https://lh3.googleusercontent.com/d/1wIRTlGc8zddHynINFt4awGfmmZqJ5b8V"},
+    {"name": "edisonchuaofficial_1755684526_f", "url": "https://lh3.googleusercontent.com/d/1XMuTl-htes-9G7PgywgUA7jvikK3aSKD"},
+    {"name": "edisonchuaofficial_1758723101_a", "url": "https://lh3.googleusercontent.com/d/16hAtktSufyC2pQ1-mCRhsJX7H79USA-h"},
+    {"name": "edisonchuaofficial_1758723101_b", "url": "https://lh3.googleusercontent.com/d/1QUdL0ECIbbo44PP26OlHAfdHkyDoQDV6"},
+    {"name": "edisonchuaofficial_1764165863_a", "url": "https://lh3.googleusercontent.com/d/1WZD9YUX3cGjywIUQJXbwQg410PBOB0XC"},
+    {"name": "edisonchuaofficial_1764165863_b", "url": "https://lh3.googleusercontent.com/d/1Vww_mf9XeZ4NDFwMG2hl_yMsPhB35z25"},
+    {"name": "edisonchuaofficial_1771048946", "url": "https://lh3.googleusercontent.com/d/1H3RofTr9p9WJPdUuS--MBjERrnM0dkKm"},
+    {"name": "edisonchuaofficial_1774012039", "url": "https://lh3.googleusercontent.com/d/1xvFGhq9MsyY735sgzJ1tkQZijJEjvDPc"}
+  ],
+
+  "blotato_accounts": {
+    "linkedin": {"id": "18089", "name": "Edison Chua", "default_page": "108414535"},
+    "facebook": {"id": "27053", "name": "Edison H. Yuan Chua", "default_page": "726492947207808"},
+    "instagram_primary": {"id": "41734", "username": "aiwithedison"},
+    "instagram_secondary": {"id": "41427", "username": "edisonchuaofficial"},
+    "threads": {"id": "5937", "username": "edisonchuaofficial"},
+    "twitter": {"id": "16254", "username": "aiwithedison"}
+  },
+
+  "branding": {
+    "colors": {
+      "primary_dark": "#0A1628",
+      "accent_yellow": "#FFD700",
+      "text_white": "#FFFFFF"
+    },
+    "brand_name": "AI with Edison",
+    "edison_appearance": "Young Asian man, black hair, slim build, confident smile, casual outfits (graphic tees, polos, rolled-sleeve shirts), no suits unless requested"
+  },
+
+  "rotation_ratio": {
+    "standard_vs_workshop": "80/20",
+    "note": "80% of posts use standard rotation (carousel-creator branded, edison-content-image-creator, infographic); 20% use workshop-photo-based variant with darkened photo + title overlay"
+  }
+}
