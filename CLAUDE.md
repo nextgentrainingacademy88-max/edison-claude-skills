@@ -51,6 +51,7 @@ Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, 
 | `edison-infographic-creator` | LinkedIn | Whiteboard/Analogy/Manga styles |
 | `facebook-content-creator` | Facebook | 7 rotating post types |
 | `threads-x-content-creator` | Threads, X/Twitter | Threads infographic + X bold thumbnail |
+| `comment-engagement-responder` | LinkedIn, Facebook, Instagram DMs, X/Twitter | Hourly auto-reply to comments and DMs, delivers Google Drive PDF links on request, flags manual-pin items |
 
 ### LinkedIn Content Type Rotation (80/20 logic)
 Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
@@ -66,8 +67,15 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 - 80% standard / 20% workshop rotation
 
 ### Facebook
-- 7 post types rotated (`facebook-content-creator`)
+- 8 post types rotated (`facebook-content-creator`)
+- **Type 8 (Kanji-style branded post) is the PREFERRED default** for AI tool/tip posts — Edison holding a floating brand logo, navy bottom block, yellow + white stacked headline, "Edison Chua | AI Marketing Strategist" verified badge, "COMMENT FOR MORE" CTA at the bottom. Inspired by Kanji Low's Facebook style.
 - 80% standard / 20% workshop-photo-based (new subtype)
+
+### Engagement / Comment Reply Routine
+- Runs hourly via `comment-engagement-responder` skill + `social-media-engagement-hourly` scheduled task.
+- Covers LinkedIn, Facebook, X/Twitter (public replies) + Instagram DMs (private replies).
+- Auto-replies to every new commenter. Delivers Google Drive PDF guide when a commenter asks for it (PDF links stored in `rotation-state.json` under `{platform}_pdf_links[topic_slug]`).
+- Every Type 8 / Strategy A tips post needs a branded pin-comment image (Edison pointing down at "ALL X BELOW"). Pinning is manual — the responder logs "MANUAL PIN REQUIRED" to `./generated/engagement-manual-queue.md`.
 
 ### Threads
 - Rotates: meme + caption AND YouTube thumbnail style
