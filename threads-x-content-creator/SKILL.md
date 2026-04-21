@@ -353,3 +353,14 @@ No jargon, no hype. End with a question.
 
 **X voice:** Direct, punchy, slightly provocative. Edison knows something
 most people don't. Thread structure delivers value fast.
+
+---
+
+## Engagement Routine (X/Twitter)
+
+Replies to Edison's tweets are handled hourly by the shared `comment-engagement-responder`
+skill. When an X post promises a resource or thread continuation, store the Drive link in
+`rotation-state.json` under `x_pdf_links[topic_slug]` before posting. The responder replies
+to every tweet-reply with either the Drive link (on resource requests), a short helpful
+answer (on questions), or a warm thanks (on compliments). Threads replies are also covered
+if the Threads API comments endpoint is available; otherwise flagged for manual review.
