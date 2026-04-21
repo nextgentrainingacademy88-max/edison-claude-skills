@@ -20,5 +20,13 @@
   },
   "image_generation": {
     "last_path_used": "none"
-  }
+  },
+  "engagement": {
+    "last_engagement_run_utc": "none",
+    "engagement_stats": {}
+  },
+  "linkedin_pdf_links": {},
+  "facebook_pdf_links": {},
+  "instagram_pdf_links": {},
+  "x_pdf_links": {}
 }
