@@ -27,15 +27,17 @@ someone.
 
 ## Scope
 
-| Platform | Surface monitored | Reply type |
-|----------|------------------|-----------|
-| LinkedIn | Comments on Edison's posts from the last 48 hours | Public reply |
-| Facebook | Comments on Edison's posts from the last 48 hours | Public reply (+ pin first if missing) |
-| X / Twitter | Replies to Edison's tweets from the last 48 hours | Public reply |
-| Instagram | Direct messages (DMs) to Edison's account | Private DM reply |
+| Platform | Status | Why |
+|----------|--------|-----|
+| X / Twitter | AUTOMATED — public reply via Blotato | Legit API, low ban risk |
+| Facebook | MANUAL ONLY — logged to queue for Edison | Meta actively bans headless comment automation |
+| Instagram | MANUAL ONLY — logged to queue for Edison | Meta actively bans headless comment automation |
+| LinkedIn | MANUAL ONLY — logged to queue for Edison | LinkedIn bans automated engagement, account at risk |
 
-Instagram public comments on feed posts are lower priority — cover DMs first. If Blotato's
-Instagram comment API is available, add feed comments too; otherwise DM-only.
+For the three manual-only platforms, this skill's only job is to generate the pin-comment
+image and remind Edison to pin + reply manually. Every new comment on those platforms is
+appended to `./generated/engagement-manual-queue.md` with platform, post URL, commenter,
+and suggested reply text — Edison copy-pastes the reply himself from his phone/laptop.
 
 ---
 
@@ -52,19 +54,29 @@ treat them as empty and create them before writing state back.
 
 ---
 
-## Step 2: Fetch New Comments / DMs Per Platform
+## Step 2: Fetch New Replies (X/Twitter only)
 
-For each platform, list Edison's recent posts and pull comments newer than
-`last_engagement_run_utc`. Use Blotato MCP where available:
+**Scope is intentionally narrow.** Auto-replying on Meta (Facebook, Instagram) and LinkedIn is
+NOT supported — these platforms actively detect and ban headless/automated comment activity,
+and the risk of Edison's accounts being flagged or banned outweighs the engagement upside.
+Those platforms are handled MANUALLY by Edison.
+
+The only platform this responder acts on autonomously is **X/Twitter**, where Blotato (and the
+X API it wraps) supports legitimate programmatic replies.
 
 ```
 Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_list_accounts
 ```
 
-Then for each connected account on LinkedIn / Facebook / X / Instagram, call the appropriate
-list-posts and list-comments tools (or the platform's native API via the Blotato source layer).
-If a direct tool is not exposed, fall back to reading via Claude in Chrome MCP on the logged-in
-browser session.
+Find Edison's X account. Call Blotato list-posts for the last 48h, then list-comments/replies
+on each post. Collect a flat list of reply items:
+`{ platform: "x", post_id, post_topic_slug, reply_id, commenter_name, commenter_handle,
+reply_text, timestamp }`.
+
+De-duplicate against `./generated/engagement-log.jsonl`.
+
+If Blotato's X reply endpoint is NOT available, log each new reply to the manual queue and
+skip — do NOT fall through to browser automation.
 
 Collect a flat list of engagement items, each with: `{ platform, post_id, post_topic_slug,
 comment_id, commenter_name, commenter_handle, comment_text, timestamp }`.
@@ -131,33 +143,29 @@ Log as "MANUAL REVIEW" and skip.
 
 ---
 
-## Step 5: Post the Reply
+## Step 5: Post the Reply (X only)
 
-Use the platform-appropriate tool:
+For X/Twitter items, post the reply via Blotato with `parentPostId` set to the original
+tweet/reply ID. Rate-limit: max 1 reply per 4 seconds. Max 20 replies per run.
 
-- **Facebook / LinkedIn / X:** Blotato `blotato_create_post` with `parentPostId` set to the
-  original comment ID if Blotato supports threaded replies; otherwise use Claude-in-Chrome
-  navigation to the post URL and click Reply + type the reply text.
-- **Instagram DM:** reply via Blotato DM endpoint if exposed; otherwise Claude-in-Chrome on
-  instagram.com/direct/.
+For Facebook / LinkedIn / Instagram items, do NOT attempt to reply. Instead write one
+line per item to `./generated/engagement-manual-queue.md`:
+```
+[timestamp] [platform] - [commenter_name] on [post_url]
+  Comment: "[comment_text]"
+  Suggested reply: "[generated reply text]"
+  PDF link (if applicable): [Drive URL]
+```
 
-Rate-limit: max 1 reply per 4 seconds per platform to avoid spam flags. Max 30 replies per
-platform per run.
-
-Append every sent reply to `./generated/engagement-log.jsonl` with the full payload.
+Append every sent X reply to `./generated/engagement-log.jsonl`.
 
 ---
 
 ## Step 6: Pin Comment Check (Facebook + LinkedIn)
 
-For each recent Edison post on Facebook and LinkedIn, verify the pinned first comment exists.
-If the top comment is not from Edison AND the post was a Type 8 / Strategy A post, log:
-```
-MANUAL PIN REQUIRED: [platform] post [post_id] - topic [topic_slug]
-```
-
-Write all manual-action items to `./generated/engagement-manual-queue.md` with a timestamp
-so Edison can clear them in one sitting.
+For each recent Edison post on Facebook and LinkedIn that was a Type 8 / Strategy A post,
+log a "MANUAL PIN REQUIRED" entry to `./generated/engagement-manual-queue.md`. Do NOT try
+to verify the pin via scraping — just remind Edison to pin manually when he publishes.
 
 ---
 
@@ -176,11 +184,11 @@ Push the updated file back to GitHub.
 Print a short summary:
 ```
 Engagement run complete.
-- Facebook: [X] replies sent, [Y] manual review, [Z] pins required
-- LinkedIn: [X] replies sent, [Y] manual review
-- X/Twitter: [X] replies sent
-- Instagram DMs: [X] replies sent
-- Manual queue: ./generated/engagement-manual-queue.md ([N] items)
+- X/Twitter: [X] replies sent automatically
+- Facebook: [N] items queued for manual reply
+- LinkedIn: [N] items queued for manual reply
+- Instagram: [N] items queued for manual reply
+- Manual queue: ./generated/engagement-manual-queue.md
 ```
 
 ---
