@@ -320,3 +320,12 @@ speech bubble "Done in 5 minutes!".
 Bold headline above panels: "YOUR AI VA IN 4 PANELS". Clean crisp digital manga
 art style. 4K quality.
 ```
+
+---
+
+## Engagement Routine
+
+Infographic posts that end with "comment for more" or promise additional tips in the comments
+are covered by the shared `comment-engagement-responder` skill (hourly). Store any PDF/Drive
+links tied to the post under the relevant platform map in `rotation-state.json` before
+publishing so the responder can deliver them on demand.
