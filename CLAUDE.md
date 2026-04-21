@@ -1,7 +1,7 @@
 # Social Media Automation — Project Context
 
 ## Project Goal
-Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, Facebook, Instagram, Threads, X/Twitter) using a scheduled remote routine that runs twice daily at **9:00 AM and 3:00 PM MYT**. Each run researches latest AI news, then generates platform-optimized content using a library of skills.
+Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, Facebook, Instagram, Threads, X/Twitter) using a scheduled remote routine that runs twice daily at **9:00 AM and 1:00 PM MYT**. Each run researches latest AI news, then generates platform-optimized content using a library of skills.
 
 ## User Profile
 - **Name:** Edison Chua
@@ -48,11 +48,9 @@ Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, 
 | `linkedin-content-writer` | LinkedIn | Copy-only (must pair with image skill) |
 | `edison-content-image-creator` | LinkedIn, Facebook | Workshop/Classroom/YouTube Thumbnail styles |
 | `carousel-creator` | LinkedIn, Facebook, Instagram | Branded carousels (navy + yellow OR workshop rotation) |
-| `edison-infographic-creator` | LinkedIn | Whiteboard/Chalkboard/Manga styles |
+| `edison-infographic-creator` | LinkedIn | Whiteboard/Analogy/Manga styles |
 | `facebook-content-creator` | Facebook | 7 rotating post types |
-| `instagram-carousel-creator` | Instagram | Branded navy + yellow carousels |
-| `threads-content-creator` | Threads | Rotates meme + YouTube thumbnail styles |
-| `x-twitter-content-creator` | X/Twitter | Rotates text-on-black, news overlay, YouTube thumbnail |
+| `threads-x-content-creator` | Threads, X/Twitter | Threads infographic + X bold thumbnail |
 
 ### LinkedIn Content Type Rotation (80/20 logic)
 Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
@@ -81,7 +79,7 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 
 ## Daily Routine Design
 
-**Schedule:** Daily at **9:00 AM and 3:00 PM MYT** (cron: `0 9,15 * * *` Asia/Kuala_Lumpur)
+**Schedule:** Daily at **9:00 AM and 1:00 PM MYT** (cron: `0 1,5 * * *` UTC)
 
 **Flow per run:**
 1. **Research** — WebSearch latest AI news (last 24 hrs) focusing on Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity
@@ -89,9 +87,8 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 3. **Generate content per platform** (each skill applies its own voice/style):
    - LinkedIn → writer + rotated image skill
    - Facebook → facebook-content-creator (rotate types)
-   - Instagram → instagram-carousel-creator
-   - Threads → threads-content-creator (rotate style)
-   - X/Twitter → x-twitter-content-creator (rotate style)
+   - Instagram → carousel-creator
+   - Threads + X/Twitter → threads-x-content-creator
 4. **Post via Blotato** to all 5 connected accounts
 5. **Update `rotation-state.json`** in GitHub with last-used styles
 
@@ -126,16 +123,12 @@ Example structure documented in skills.
 
 ## Pending / Next Steps
 
+- [x] Push all 6 skills to GitHub (done 2026-04-22)
+- [x] Delete obsolete instagram-carousel-creator, threads-content-creator, x-twitter-content-creator dirs
+- [x] rotation-state.json created with initial values
 - [ ] Upload `Edison Chua Face.jpeg` to Blotato, save permanent URL to `assets-manifest.json`
 - [ ] Collect all workshop photo Drive URLs into `assets-manifest.json`
 - [ ] Push `assets-manifest.json` to GitHub
-- [ ] Create `rotation-state.json` with initial values
-- [ ] Update `carousel-creator` with workshop rotation variant (80/20 logic)
-- [ ] Update `edison-content-image-creator` with workshop+overlay subtype
-- [ ] Update `facebook-content-creator` with workshop+overlay option
-- [ ] Update all image-using skills to reference `assets-manifest.json` URLs
-- [ ] Run LinkedIn demo first, then expand to all 5 platforms
-- [ ] Create scheduled task (9am + 3pm MYT cron)
 
 ---
 
