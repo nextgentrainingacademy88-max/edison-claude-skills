@@ -1,0 +1,148 @@
+# Social Media Automation — Project Context
+
+## Project Goal
+Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, Facebook, Instagram, Threads, X/Twitter) using a scheduled remote routine that runs twice daily at **9:00 AM and 3:00 PM MYT**. Each run researches latest AI news, then generates platform-optimized content using a library of skills.
+
+## User Profile
+- **Name:** Edison Chua
+- **Role:** HRDC-certified AI educator & corporate trainer, also runs a funnel agency
+- **Platforms:** LinkedIn, Facebook, Instagram, Threads, X/Twitter
+- **Email:** nextgentrainingacademy88@gmail.com
+- **Topic Split:** 70% AI/tech (Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity) | 30% funnel/agency
+- **Content Split:** 80% value | 20% humor/entertainment
+
+---
+
+## Connected Services
+
+| Service | Status | Notes |
+|---------|--------|-------|
+| **GitHub** | ✅ Connected | PAT stored in `.env` as `GITHUB_TOKEN` |
+| **Google Drive** | ✅ Connected | Edison's photos folder shared "Anyone with link" |
+| **Blotato** | ✅ Connected (MCP) | Used for posting to all 5 platforms |
+| **kie.ai Nano Banana Pro** | API-based | Image generation |
+
+### Key Files & URLs
+- **GitHub repo:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills (public)
+- **Google Drive folder:** https://drive.google.com/drive/folders/1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm-
+- **Drive folder ID:** `1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm-`
+- **Face photos subfolder ID:** `1_dYFMpgJIu_l08d3smTz1PJvYDAICJVO`
+- **Workshop photos subfolder ID:** `1_Q7BHAyM9H7ebYFT4zENFtSVkzRN-8bo`
+
+### Primary Face Photo (for AI image generation reference)
+- **File:** `Edison Chua Face.jpeg`
+- **Drive ID:** `1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh`
+- **Drive URL:** https://lh3.googleusercontent.com/d/1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh
+- **Blotato URL:** (to be added after first upload — see `assets-manifest.json`)
+
+### Face Alternatives
+- `edison2.jpeg` — ID: `1H3sn_ubomQ3CIlVQhTdc0LeLgIPG9fUd`
+- `edison3.jpeg` — ID: `1W5-MWJtap3jqix5kJ6-95HW7yiXKXA1N`
+
+---
+
+## Skill Library (in GitHub repo)
+
+| Skill | Platform(s) | Purpose |
+|-------|-------------|---------|
+| `linkedin-content-writer` | LinkedIn | Copy-only (must pair with image skill) |
+| `edison-content-image-creator` | LinkedIn, Facebook | Workshop/Classroom/YouTube Thumbnail styles |
+| `carousel-creator` | LinkedIn, Facebook, Instagram | Branded carousels (navy + yellow OR workshop rotation) |
+| `edison-infographic-creator` | LinkedIn | Whiteboard/Chalkboard/Manga styles |
+| `facebook-content-creator` | Facebook | 7 rotating post types |
+| `instagram-carousel-creator` | Instagram | Branded navy + yellow carousels |
+| `threads-content-creator` | Threads | Rotates meme + YouTube thumbnail styles |
+| `x-twitter-content-creator` | X/Twitter | Rotates text-on-black, news overlay, YouTube thumbnail |
+
+### LinkedIn Content Type Rotation (80/20 logic)
+Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
+- **Standard rotation (80%):**
+  - `edison-content-image-creator` (Workshop/Classroom/Thumbnail)
+  - `carousel-creator` (branded navy + yellow)
+  - `edison-infographic-creator` (Whiteboard/Chalkboard/Manga)
+- **Workshop rotation (20%):**
+  - `carousel-creator` workshop variant (Edison face cover + darkened workshop photo slides)
+
+### Instagram Carousel
+- Uses same style as LinkedIn `carousel-creator` (branded navy + yellow + Edison face)
+- 80% standard / 20% workshop rotation
+
+### Facebook
+- 7 post types rotated (`facebook-content-creator`)
+- 80% standard / 20% workshop-photo-based (new subtype)
+
+### Threads
+- Rotates: meme + caption AND YouTube thumbnail style
+
+### X/Twitter
+- Rotates: text-on-black, news photo overlay, YouTube thumbnail
+
+---
+
+## Daily Routine Design
+
+**Schedule:** Daily at **9:00 AM and 3:00 PM MYT** (cron: `0 9,15 * * *` Asia/Kuala_Lumpur)
+
+**Flow per run:**
+1. **Research** — WebSearch latest AI news (last 24 hrs) focusing on Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity
+2. **Pick top story** → use it as core topic for all 5 platforms
+3. **Generate content per platform** (each skill applies its own voice/style):
+   - LinkedIn → writer + rotated image skill
+   - Facebook → facebook-content-creator (rotate types)
+   - Instagram → instagram-carousel-creator
+   - Threads → threads-content-creator (rotate style)
+   - X/Twitter → x-twitter-content-creator (rotate style)
+4. **Post via Blotato** to all 5 connected accounts
+5. **Update `rotation-state.json`** in GitHub with last-used styles
+
+---
+
+## State Management (remote memory)
+
+Because routines run remotely with no persistent memory, state is stored in GitHub:
+
+### `assets-manifest.json` (GitHub root)
+Permanent asset URLs: face photo Blotato URL, workshop photo Drive URLs, etc.
+
+### `rotation-state.json` (GitHub root)
+Tracks last-used style per skill. Read at start of each run, updated at end.
+
+Example structure documented in skills.
+
+---
+
+## Decisions Made
+
+1. **Every LinkedIn post needs an image** — `linkedin-content-writer` is copy only, always paired with image skill.
+2. **Instagram uses same style as LinkedIn carousel** — not Facebook-style.
+3. **Threads rotates memes + YouTube thumbnails** — not meme-only.
+4. **X/Twitter rotates 3 styles** — text-on-black, news overlay, YouTube thumbnail.
+5. **80/20 split** — 80% standard content rotation, 20% workshop photo rotation.
+6. **Face photo:** Upload `Edison Chua Face.jpeg` to Blotato ONCE, save URL permanently.
+7. **Workshop photos:** Use Google Drive direct URLs (public), darken + text overlay for background use.
+8. **GitHub PAT:** Stored in `.env` as `GITHUB_TOKEN` for auto-updating repo.
+
+---
+
+## Pending / Next Steps
+
+- [ ] Upload `Edison Chua Face.jpeg` to Blotato, save permanent URL to `assets-manifest.json`
+- [ ] Collect all workshop photo Drive URLs into `assets-manifest.json`
+- [ ] Push `assets-manifest.json` to GitHub
+- [ ] Create `rotation-state.json` with initial values
+- [ ] Update `carousel-creator` with workshop rotation variant (80/20 logic)
+- [ ] Update `edison-content-image-creator` with workshop+overlay subtype
+- [ ] Update `facebook-content-creator` with workshop+overlay option
+- [ ] Update all image-using skills to reference `assets-manifest.json` URLs
+- [ ] Run LinkedIn demo first, then expand to all 5 platforms
+- [ ] Create scheduled task (9am + 3pm MYT cron)
+
+---
+
+## Key Conventions
+
+- **No em dashes** in any generated content (Edison's rule across all skills)
+- **Hashtags:** LinkedIn 3-5, Facebook 5 max, Instagram 10-15, Threads 0, X 1-2 max
+- **Image aspect ratios:** LinkedIn 4:5, Facebook 1:1 or 4:5, Instagram 4:5, Threads 1:1 or 4:5, X 1:1 or 16:9
+- **Edison's face appearance:** Young Asian man, black hair, slim build, casual outfits (no suits), warm confident smile — must remain identical across all AI-generated images
+- **Branding colors:** Deep dark navy `#0A1628` + bold yellow `#FFD700` + white body text
