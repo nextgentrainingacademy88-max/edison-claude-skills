@@ -30,7 +30,7 @@ This skill generates branded Instagram carousels (6-9 slides) featuring Edison C
 | CTA | Yes (circle) | No | Image-to-image |
 
 ## Edison's Appearance Requirements
-Young Asian man, black hair, slim build, confident smile. **Facial features must remain identical across all slides.** Poses should vary naturally ��� crossed arms, gesturing, pointing, leaning forward — never static. Outfits stay casual: graphic tees, polos, rolled-sleeve shirts. **No suits unless explicitly requested.**
+Young Asian man, black hair, slim build, confident smile. **Facial features must remain identical across all slides.** Poses should vary naturally ���� crossed arms, gesturing, pointing, leaning forward — never static. Outfits stay casual: graphic tees, polos, rolled-sleeve shirts. **No suits unless explicitly requested.**
 
 ## Caption Structure
 ```
@@ -130,3 +130,28 @@ For a 7-slide carousel on an AI news topic:
 - Check if Edison's photo is available before generating cover/CTA slides
 - 4:5 aspect ratio is mandatory for all slides (Instagram carousel requirement)
 - Always include a "Save this" CTA — saves boost Instagram algorithmic reach
+
+
+---
+
+## Asset Management & Workshop Variant (80/20 Rotation)
+
+All asset URLs (face photo, workshop photos) live in `assets-manifest.json` at repo root. Always fetch at start:
+```
+GET https://raw.githubusercontent.com/nextgentrainingacademy88-max/edison-claude-skills/main/assets-manifest.json
+```
+
+### 80/20 Rotation
+- **80% standard** — use the default branded style documented above
+- **20% workshop variant** — use real workshop photos with darkened overlay + bold text
+
+See `WORKSHOP-VARIANT-GUIDE.md` at repo root for full workshop variant prompts, rotation logic, and state tracking via `rotation-state.json`.
+
+### Face Photo (for face-required slides/images)
+Use `face_primary.url` from manifest — primary Edison face photo (stable Google Drive URL).
+
+### Workshop Photos (for 20% rotation variant)
+Random pick from `workshop_photos[]` array in manifest (28 photos).
+
+### Rotation State
+Tracked in `rotation-state.json` at repo root. Check `posts_since_workshop` — when it reaches 4, next post must use workshop variant.
