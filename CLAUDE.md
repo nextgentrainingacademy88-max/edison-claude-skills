@@ -73,10 +73,12 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 
 ### Engagement / Comment Reply Routine
 - Runs hourly via `comment-engagement-responder` skill + `social-media-engagement-hourly` scheduled task.
-- **AUTOMATED:** X/Twitter replies only (legit API via Blotato, low ban risk).
-- **MANUAL ONLY:** Facebook, LinkedIn, Instagram — Meta/LinkedIn actively ban headless automation, so Edison DMs these commenters himself. The responder prepares a full "DM package" per new comment (original comment text + ready-to-send DM wording + Drive PDF link) and writes it to `./generated/engagement-manual-queue.md` AND prints it to the run summary. If the post promised a PDF and no Drive link exists yet, the responder auto-generates a branded PDF (navy + yellow, Edison's "AI with Edison" brand), uploads it to Drive, and includes the link in the package. WhatsApp delivery to Edison is deferred for now.
-- Delivers Google Drive PDF guide on request (PDF links stored in `rotation-state.json` under `{platform}_pdf_links[topic_slug]`) — automated for X, suggested in the queue for the others.
-- Every Type 8 / Strategy A tips post needs a branded pin-comment image (Edison pointing down at "ALL X BELOW"). Pinning is always manual.
+- **X/Twitter** — always automated via Blotato API (runs regardless of PC state).
+- **Facebook, Instagram, LinkedIn** — automated via Claude-in-Chrome MCP driving Edison's real, logged-in browser session. Human-like typing cadence (50-120ms per char) and randomized 8-20s delays between replies keep it indistinguishable from Edison typing himself. Runs ONLY when Edison's PC is awake (probe Claude-in-Chrome at start of run; if it doesn't respond within 5s, assume PC asleep).
+- **Fallback when PC is asleep OR a browser reply fails mid-run:** the responder prepares a full "DM package" (original comment + ready-to-send DM wording + Drive PDF link) and writes to `./generated/engagement-manual-queue.md` + prints to run summary. Edison copy-pastes from his phone.
+- **Auto-PDF generation:** if a post promised a guide and no Drive link exists under `{platform}_pdf_links[topic_slug]` yet, the responder auto-generates a branded PDF (navy + yellow, "AI with Edison"), uploads to Drive, saves the link.
+- Per-run caps to stay human: FB ≤8, IG ≤8, LinkedIn ≤5, X ≤20. If any reply attempt hits a login wall, 2FA prompt, rate-limit banner, or selector-not-found error, STOP that platform immediately for the run and fall through to manual queue.
+- Pin-comment on Type 8 / Strategy A posts is always manual (platforms don't expose programmatic pin).
 
 ### Threads
 - Rotates: meme + caption AND YouTube thumbnail style
