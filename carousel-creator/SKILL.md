@@ -15,10 +15,22 @@ description: >
   - "Build a carousel post for [topic]"
   - "Make slides for [topic]"
 
+  TEST MODE triggers (generate just 1-2 representative slides to verify style + face + layout):
+  - "test carousel cover" → generate cover slide only, follow lines 252-286 template VERBATIM
+  - "test carousel cover for [topic]" → same, with topic-matched outfit/prop
+  - "test carousel slide 2" or "test content slide" → generate content slide B/C/D only
+  - "preview carousel style" → cover + 1 content slide only, 4:5 portrait
+  - "sample carousel" / "carousel test" → cover + 1 content slide
+
   Always trigger for carousel or multi-slide content requests — even if Edison just says
   "carousel" or "slides" without specifying the platform. This skill covers BOTH LinkedIn
   and Instagram carousels with the same style; only the post-time aspect ratio differs
   (LinkedIn 4:5, Instagram 4:5 or 1:1).
+
+  **In TEST MODE, READ the exact Cover Slide template section of this file (lines 252-286)
+  and fill in variables verbatim. Do NOT write prompts from scratch. Mandatory elements
+  (white glowing circle behind Edison, vibrant flat color background, topic-matched outfit
+  and prop) MUST be included.**
 ---
 
 ## IMAGE GENERATION PRIORITY RULE
