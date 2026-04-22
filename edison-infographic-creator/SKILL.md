@@ -160,6 +160,12 @@ Set `image_input` to `[]` in the API call.
 ## PART 3: Generation Pipeline
 
 ### IMAGE GENERATION PRIORITY RULE
+
+**This skill produces CONCEPT-ONLY infographics with no Edison face.** The Blotato-first
+priority below is correct here. If a task requires Edison's face in the image, do NOT use
+this skill — use `edison-content-image-creator` or `carousel-creator` instead (both route
+to kie.ai first with `face_primary.blotato_url`).
+
 **Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
 
 ---
