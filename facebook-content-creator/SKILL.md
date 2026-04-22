@@ -89,6 +89,13 @@ Use Type 5 (Meme + Caption) for these. Never two meme posts in a row.
 - 70% AI and tech: trending tools, Claude, NotebookLM, Manus, Gemini, GPT, automation workflows
 - 30% funnel/agency: lead gen tips, funnel hacks, client acquisition, offer building
 
+**Target audience — business owners, NOT trainers (see memory/project_target_audience.md):**
+Every post addresses business owners, solopreneurs, SME founders, agency owners, and
+operators juggling multiple roles (accounting / HR / admin / marketing alone). NEVER
+address trainers, training providers, L&D professionals, or employers. Frame content as:
+"replace a hire with AI", "run leaner", "do 3 jobs alone", "save 10 hours/week" — never
+"teach your team", "train your staff", or "your L&D department".
+
 **Content focus (every post fits one of these three buckets — see memory/project_content_topic_strategy.md):**
 1. Latest AI news / tool updates / new features (last 24-72 hrs only) — Claude updates, ChatGPT new features, NotebookLM, Manus, Gemini, Perplexity, Sora, Veo, etc.
 2. Practical how-to tips — "Here's how to use [tool] for [outcome]", copy-paste prompts, workflow chains.
