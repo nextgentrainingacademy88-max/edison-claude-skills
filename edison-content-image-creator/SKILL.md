@@ -11,6 +11,17 @@ description: >
   "make an image for this topic", "use my face to generate", "create a social post visual",
   or any request to produce a new AI-generated image for social media content.
 
+  TEST MODE triggers (generate a single sample image):
+  - "test content image" or "test post image" → Workshop Action by default
+  - "test workshop photo" → Workshop Action sub-type
+  - "test youtube thumbnail" or "test thumbnail" → MrBeast Y1 style by default
+  - "test Y1" / "test mrbeast" → YouTube Thumbnail Y1 (MrBeast Bold)
+  - "test Y3" / "test authority thumbnail" → YouTube Thumbnail Y3 (Clean Authority)
+  - "test real classroom" → Real Classroom sub-type (multi-photo, no AI generation)
+  - "sample face image for [topic]" → auto-pick best sub-type for the topic
+  Always read the specific sub-type prompt template section in this file before generating.
+  Face-required paths use kie.ai with `face_primary.blotato_url` from assets-manifest.json.
+
   This skill combines photo selection, style decision, Nano Banana Pro prompt crafting,
   Blotato upload, kie.ai generation, and saving — all in one workflow.
 ---
