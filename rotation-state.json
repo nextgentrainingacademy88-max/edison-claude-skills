@@ -25,14 +25,14 @@
     "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T20:28:48Z",
+    "last_engagement_run_utc": "2026-04-22T07:31:58Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
       "manual_queue_items": 0,
-      "note": "Chrome extension connection timeout, manual fallback initiated"
+      "note": "Claude-in-Chrome MCP unavailable; Blotato API lacks post/comment listing"
     },
     "last_mode": "manual_fallback"
   },
