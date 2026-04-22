@@ -23,14 +23,47 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+**Route by slide requirement. Face-required slides bypass Blotato built-in templates.**
 
-**Priority order:**
+### Rule A — Face-required slides (Cover, CTA, any slide with Edison)
+
+**MUST use kie.ai Nano Banana Pro FIRST as the primary path.** Do NOT use Blotato built-in
+templates (Tutorial Carousel, Quote Card, etc.) for these slides — those templates are
+text-to-image only and will produce a generic Asian male that does not look like Edison.
+
+```
+POST https://api.kie.ai/api/v1/jobs/createTask
+{
+  "model": "nano-banana-pro",
+  "input": {
+    "prompt": "[full prompt]",
+    "image_input": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "aspect_ratio": "[ratio]",
+    "resolution": "2K"
+  }
+}
+```
+
+Always pull `face_primary.blotato_url` from assets-manifest.json — NOT the Google Drive URL
+(some fetchers hit a redirect on Drive). If kie.ai fails, retry once with a simplified
+prompt; if still fails, fall back to Blotato Instagram Carousel Slideshow template (#2
+below) with the face URL passed as an image input. If all three fail, log to the manual
+queue with the intended prompt so Edison can regenerate manually — do NOT post a carousel
+with missing or wrong-face slides.
+
+### Rule B — Face-free slides (numbered points, checklists, quote cards, decorative graphics)
+
+Priority order for these:
 1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
 2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+3. **kie.ai Nano Banana Pro direct** — fall back if Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error. Use `${KIE_API_KEY}` from env.
 
-**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+### Logging
+
+Log the actual path used per slide in `rotation-state.json` → `image_generation.last_path_used`
+with enough detail to diagnose partial-credit failures, e.g. `"carousel_mixed: cover=kie_ai_face, slide2=blotato_tutorial, slide3=blotato_insufficient_credits_fallback_kie_ai_no_face, cta=kie_ai_face"`.
+If any slide was missing the face when it should have had one, ALSO log
+`face_coverage: "incomplete"` and append a manual-queue note for Edison.
 
 ---
 
