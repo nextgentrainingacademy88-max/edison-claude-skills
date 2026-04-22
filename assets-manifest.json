@@ -5,8 +5,10 @@
   "face_primary": {
     "name": "Edison Chua Face.jpeg",
     "drive_id": "1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh",
-    "url": "https://lh3.googleusercontent.com/d/1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh",
-    "use_for": "Primary face reference for Nano Banana Pro image-to-image generation on all carousel covers, CTA slides, and YouTube thumbnails"
+    "drive_url": "https://lh3.googleusercontent.com/d/1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh",
+    "blotato_url": "https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg",
+    "url": "https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg",
+    "use_for": "Primary face reference for Nano Banana Pro image-to-image generation on all carousel covers, CTA slides, and YouTube thumbnails. ALWAYS pass this URL as image_input[0] to kie.ai when a face is required. The blotato_url is the canonical reference because kie.ai reliably fetches from there; the drive_url sometimes returns redirect/thumbnail content depending on fetcher user-agent."
   },
 
   "face_alternatives": [
