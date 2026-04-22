@@ -28,11 +28,17 @@ Step 1 - Pull latest skills and state from the GitHub repo nextgentrainingacadem
 
 Step 2 - Research: WebSearch the latest AI news from the last 24 hours. Focus on Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity, and anything practical for Malaysian SME and corporate trainers. Pick ONE top story as the core topic.
 
-Step 3 - Generate content for all 5 platforms following the skills:
+Step 3 - Generate content for all 5 platforms following the skills. BEFORE writing any image prompt, READ the relevant section of the skill file verbatim (e.g. carousel-creator Cover Slide lines 252-286, facebook-content-creator Type 8 section). Do NOT write prompts from scratch. Fill in topic variables against the skill's template exactly.
 - LinkedIn: linkedin-content-writer + ONE rotated image skill. Use rotation-state.json to pick the next one.
 - Facebook: facebook-content-creator, rotate next post type. Type 8 Kanji-style is the preferred default for AI tool/tip topics.
-- Instagram: carousel-creator (branded navy + yellow).
+- Instagram: carousel-creator (vibrant flat color + white glow circle behind Edison + topic-matched outfit/prop on cover).
 - Threads + X/Twitter: threads-x-content-creator.
+
+**Mandatory elements the skills enforce:**
+- Carousel cover: vibrant flat color background (NOT dark navy), mandatory large white glowing circle behind Edison, topic-matched outfit with props (e.g. detective + magnifying glass, fishing rod, boom mic).
+- Facebook Type 8 Kanji: Edison holding glowing 3D brand logo, blue verified badge, navy bottom block with yellow+white stacked headline, "COMMENT FOR MORE" CTA, 4:5.
+- Memes: NEVER use placeholders. Always source the actual meme from imgflip API / Reddit r/memes top-week / knowyourmeme trending. Pick what fits THIS topic, not a fixed list. No romance memes. Square/portrait only.
+- Screenshots: actual screenshot must be embedded, never a placeholder box.
 
 Step 4 - Generate images using the CORRECT path per image type:
 
