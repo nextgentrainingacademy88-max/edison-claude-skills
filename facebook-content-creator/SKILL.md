@@ -19,14 +19,38 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+**Route by post type. Face-required post types MUST go through kie.ai first.**
 
-**Priority order:**
-1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
-2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+### Face-required Facebook post types (MUST use kie.ai with face_input)
 
-**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+- Type 2 (YouTube Thumbnail face + tools)
+- Type 7 (Face + Flow Diagram)
+- Type 8 (Kanji-style Branded Post — PREFERRED DEFAULT)
+- Pin comment images (Edison pointing down)
+
+For these: call kie.ai Nano Banana Pro FIRST with `image_input: [face_primary.blotato_url]`
+pulled from assets-manifest.json. Do NOT use Blotato built-in templates (Tutorial Carousel,
+Quote Card, etc.) — those are text-to-image and will produce a generic Asian male.
+
+Fallback order if kie.ai fails:
+1. Retry kie.ai once with simplified prompt.
+2. Blotato Instagram Carousel Slideshow template (`53cfec04-2500-41cf-8cc1-ba670d2c341a`)
+   with `model: "nano-banana-pro"` AND the face URL as input.
+3. Manual queue log (do NOT post without face).
+
+### Face-free Facebook post types
+
+- Type 1 (Plain text on black) — no image or Blotato Quote Card template
+- Type 3 (News photo) — use sourced photo, no generation
+- Type 4 (Text list) — no image
+- Type 5 (Meme) — sourced meme image
+- Type 6 (Person collage) — sourced photos
+
+Priority order:
+1. Blotato built-in template if one matches.
+2. kie.ai Nano Banana Pro direct if custom prompt needed.
+
+Log the path used per image in `rotation-state.json` → `image_generation.last_path_used`.
 
 ---
 
