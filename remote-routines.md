@@ -26,7 +26,11 @@ Step 1 - Pull latest skills and state from the GitHub repo nextgentrainingacadem
 - assets-manifest.json
 - Every file under memory/
 
-Step 2 - Research: WebSearch the latest AI news from the last 24 hours. Focus on Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity, and anything practical for Malaysian SME and corporate trainers. Pick ONE top story as the core topic.
+Step 2 - Research: WebSearch the latest AI news/updates from the last 24-72 hours. Prioritize in this order:
+(a) NEW AI tool releases or NEW features (Claude updates, ChatGPT new features like GPT-5 image gen, NotebookLM new capabilities, Manus releases, Gemini, Perplexity, Midjourney, Runway, ElevenLabs, Sora, Veo, Kling).
+(b) If nothing breaking in (a), pivot to a high-engagement practical how-to angle using a recently released tool ("Here's how to use [tool] for [outcome]").
+(c) If neither (a) nor (b) have a fresh angle, pivot to a monetization angle ("How to make money with Claude Code", "AI side-hustle with [tool]").
+Pick ONE top story as the core topic for all 5 platforms. Pick a short KEYWORD tied to the topic (e.g. CLAUDE, PROMPT, AGENT, GUIDE, NOTEBOOK) for the comment-for-link CTA.
 
 Step 3 - Generate content for all 5 platforms following the skills. BEFORE writing any image prompt, READ the relevant section of the skill file verbatim (e.g. carousel-creator Cover Slide lines 252-286, facebook-content-creator Type 8 section). Do NOT write prompts from scratch. Fill in topic variables against the skill's template exactly.
 - LinkedIn: linkedin-content-writer + ONE rotated image skill. Use rotation-state.json to pick the next one.
@@ -56,6 +60,8 @@ Step 4 - Generate images using the CORRECT path per image type:
 Always log the path used per image in `rotation-state.json` under `image_generation.last_path_used` with enough detail to debug (e.g. `"kie_ai_face_ok"`, `"blotato_template_tutorial_carousel"`, `"kie_ai_retry_after_blotato_credit_fail"`).
 
 No em dashes anywhere. Colors: navy #0A1628 + yellow #FFD700.
+
+Step 4b - Before publishing, create or locate the resource tied to the KEYWORD (GitHub link, Drive PDF, prompt pack). If no resource exists yet for this topic, auto-generate a branded PDF (navy + yellow, "AI with Edison" cover, practical content) and upload to Google Drive folder 1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm- with "Anyone with link" sharing. Store the keyword and link in rotation-state.json under {platform}_pdf_links[topic_slug] so the hourly engagement responder auto-delivers it when someone comments the KEYWORD. Every post copy MUST end with: `Comment [KEYWORD] and I'll DM you the [GitHub link / prompt pack / PDF guide].` Example KEYWORDS: CLAUDE (GitHub repo https://github.com/nextgentrainingacademy88-max/edison-claude-skills), PROMPT (prompt pack), AGENT (agent template), GUIDE (how-to PDF), NOTEBOOK (NotebookLM workflow).
 
 Step 5 - Post to all 5 platforms via the Blotato connector.
 
