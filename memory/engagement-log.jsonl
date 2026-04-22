@@ -1,0 +1,2 @@
+{"timestamp":"2026-04-22T11:34:14Z","run_id":"hourly_engagement_2026-04-22-11","mode":"manual_fallback","status":"started","note":"Blotato post/reply listing unavailable; X automation blocked; FB/IG/LI manual queue only"}
+{"timestamp":"2026-04-22T11:34:14Z","platform":"all","status":"completed","mode":"manual_fallback","x_replies":0,"fb_items":0,"ig_items":0,"li_items":0,"manual_queue_file":"generated/engagement-manual-queue-2026-04-22-11.md","limitation":"Blotato post/reply listing unavailable; Claude-in-Chrome MCP not accessible"}
