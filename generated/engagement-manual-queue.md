@@ -1,23 +1,25 @@
 # Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+**Generated:** 2026-04-22T23:33:00Z UTC
+**Run ID:** hourly-engagement-routine-2026-04-22T23:33:00Z
 
 ---
 
-## Infrastructure Status
+## Run Status
 
-✅ **Engagement logging system online**
-- Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter
-- Manual queue ready for DM packages
-- Engagement log: `engagement-log.jsonl`
+**Mode:** Manual Fallback (no comment fetching available)
 
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
+⚠️ **Limitations this run:**
+- Blotato MCP does not expose `list-posts` or `list-comments` endpoints
+- Claude-in-Chrome MCP unavailable → pc_awake = false
+- No comment data could be fetched from any platform
+
+## Platform Status
+- **X/Twitter:** Cannot list posts/replies (Blotato API limitation)
+- **Facebook:** Manual queue only (Claude-in-Chrome unavailable)
+- **Instagram:** Manual queue only (Claude-in-Chrome unavailable)
+- **LinkedIn:** Manual queue only (Claude-in-Chrome unavailable)
 
 ## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+*None collected this run. No comment data source available.*
 
 ---
