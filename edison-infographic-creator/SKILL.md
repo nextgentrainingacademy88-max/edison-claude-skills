@@ -10,8 +10,20 @@ description: >
   "whiteboard infographic", "analogy style", "manga panel", "4-panel comic",
   or any request to visually explain an AI or tech concept as an educational image.
 
+  TEST MODE triggers (generate a single sample infographic):
+  - "test infographic" → next style in rotation (check rotation-state.json)
+  - "test whiteboard" or "test whiteboard infographic" → Style W (Charlie Hill style)
+  - "test analogy" or "test analogy style" → Style A (top/bottom split illustration)
+  - "test manga" or "test manga style" or "test 4 panel" → Style M (4-panel comic)
+  - "sample infographic for [topic]" → auto-select best style for the topic
+  Read the exact Style Guide section for the chosen style (W/A/M) and use the
+  prompt pattern verbatim. This skill is face-free — Blotato templates are the
+  primary path (Whiteboard: `ae868019-820d-434c-8fe1-74c9da99129a`, Manga:
+  `49c61370-a706-4b82-98f7-62d557d1c66d`); Analogy has no Blotato template so
+  use kie.ai direct.
+
   This skill handles: selecting the right style, crafting the prompt, generating
-  via kie.ai Nano Banana Pro, and saving the result.
+  via Blotato template or kie.ai Nano Banana Pro, and saving the result.
 ---
 
 # Edison's Infographic Creator
