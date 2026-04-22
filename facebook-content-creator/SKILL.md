@@ -89,6 +89,13 @@ Use Type 5 (Meme + Caption) for these. Never two meme posts in a row.
 - 70% AI and tech: trending tools, Claude, NotebookLM, Manus, Gemini, GPT, automation workflows
 - 30% funnel/agency: lead gen tips, funnel hacks, client acquisition, offer building
 
+**Content focus (every post fits one of these three buckets — see memory/project_content_topic_strategy.md):**
+1. Latest AI news / tool updates / new features (last 24-72 hrs only) — Claude updates, ChatGPT new features, NotebookLM, Manus, Gemini, Perplexity, Sora, Veo, etc.
+2. Practical how-to tips — "Here's how to use [tool] for [outcome]", copy-paste prompts, workflow chains.
+3. How to make money with AI tools — "How to make money with Claude Code", "AI side-hustle stack", case studies.
+
+**Comment-for-link CTA pattern:** Every post promising a resource ends with `"Comment [KEYWORD] and I'll DM you the [GitHub link / prompt pack / PDF]."` Examples: `Comment CLAUDE` (GitHub repo), `Comment PROMPT` (prompt pack), `Comment AGENT` (agent template), `Comment GUIDE` (PDF). Store the keyword + resource link in `rotation-state.json` under `facebook_pdf_links[topic_slug]` before publishing.
+
 ---
 
 ## Post Type Rotation
