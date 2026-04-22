@@ -81,7 +81,8 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 - Pin-comment on Type 8 / Strategy A posts is always manual (platforms don't expose programmatic pin).
 
 ### Threads
-- Rotates: meme + caption AND YouTube thumbnail style
+- Uses same infographic style as LinkedIn (whiteboard / analogy / manga rotation)
+- Same topic as X/Twitter, adapted for each platform's format
 
 ### X/Twitter
 - Rotates: text-on-black, news photo overlay, YouTube thumbnail
