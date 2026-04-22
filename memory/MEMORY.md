@@ -5,3 +5,4 @@
 - [Auto-push to GitHub](feedback_auto_push_github.md) — after ANY edit to skills, CLAUDE.md, rotation-state.json, or memory, push to GitHub immediately without asking
 - [Engagement routine](project_engagement_routine.md) — hourly comment-engagement-responder covers LinkedIn, Facebook, X, Instagram DMs; auto-delivers Drive PDF links
 - [Kanji-style Facebook default](project_kanji_style_facebook.md) — Type 8 branded post (face + floating logo + navy/yellow block + "COMMENT FOR MORE") is the Facebook default
+- [Face-required images use kie.ai first](feedback_face_required_kie_ai_first.md) — Blotato built-in templates (Tutorial Carousel, Quote Card, etc.) are text-to-image only; they produce a generic face. For face-required images ALWAYS route via kie.ai Nano Banana Pro with `face_primary.blotato_url`
