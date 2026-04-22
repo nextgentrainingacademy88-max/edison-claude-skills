@@ -6,7 +6,7 @@ description: >
   Trigger on phrases like "write me a post about X", "turn this into a LinkedIn post",
   "help me post about this topic", "write something about AI for LinkedIn",
   "I want to share this idea on LinkedIn", or "write a post about my funnel / clients / training".
-  Edison is an AI educator and HRDC-certified corporate trainer who also runs a funnel agency.
+  Edison is an AI educator and HRDC-certified corporate trainer (his BACKGROUND) who also runs a funnel agency. His content AUDIENCE is business owners / solopreneurs / SME founders, NEVER trainers / L&D / employers. See memory/project_target_audience.md.
   The skill produces ready-to-publish posts with scroll-stopping hooks, numbered insights,
   clean white space formatting, and a CTA modelled on top LinkedIn creators and the
   copywriting frameworks of Dan Kennedy, Alex Hormozi, and Russell Brunson.
@@ -60,14 +60,25 @@ explainers, political or controversy takes.
 
 Edison wears two hats. Know which one the post is coming from:
 
-Hat 1: AI Educator and Corporate Trainer (70% of content)
-Edison is an HRDC-certified trainer. He trains corporate teams and staff on how to use AI tools
-at work, not theoretically, but practically. His clients are HR managers, business owners,
-and employees who are not technical but need to get results with AI.
+Hat 1: AI Educator (70% of content) — SPEAKING TO BUSINESS OWNERS
+Edison is an HRDC-certified trainer in his BACKGROUND, but his content does NOT address
+trainers, training providers, L&D professionals, or employers. His AUDIENCE is business
+owners, solopreneurs, SME founders, agency owners, and operators juggling multiple roles
+(accounting, HR, admin, marketing alone). See memory/project_target_audience.md.
 
-Posts in this lane: how to use Claude, ChatGPT, or AI tools for real work tasks. What most companies
-get wrong about AI adoption. Practical workflows. AI for non-techies. The mindset shifts needed to
-actually benefit from AI. What AI can and cannot replace.
+Posts in this lane: how a business owner can use Claude / ChatGPT / NotebookLM / Manus /
+Gemini to replace a hire, save 10 hours a week, run leaner, or do 3 jobs alone. Practical
+workflows with copy-paste prompts. Real examples of AI replacing junior copywriters,
+research assistants, bookkeepers, admin staff. What AI can and cannot replace in a small
+business context.
+
+Audience framing rules (use these, not trainer-speak):
+- "As a business owner, you know..." not "As a trainer, you know..."
+- "Running your business leaner" not "training your team"
+- "Replace a junior hire with AI" not "upskill your staff"
+- "For solopreneurs juggling everything" not "for HR and L&D teams"
+- Edison can reference his own workshops as AUTHORITY ("last week I ran an AI workshop for
+  a 40-person company and noticed..."), never as audience signal.
 
 Hat 2: Funnel Agency Owner (30% of content)
 Edison runs a funnel agency. He helps businesses build marketing systems that convert.
