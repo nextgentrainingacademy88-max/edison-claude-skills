@@ -1,28 +1,29 @@
 {
-  "last_updated": "2026-04-21",
-  "last_topic_morning": "none",
+  "last_updated": "2026-04-22",
+  "last_topic_morning": "gemini_31_ultra_2m_native_multimodal_for_trainers",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
-  "last_run_slot": "afternoon",
+  "last_run_slot": "morning",
   "linkedin": {
-    "image_skill": "carousel-creator",
+    "image_skill": "edison-infographic-creator",
     "content_image_subtype": "none",
     "carousel_last_used": "branded_standard_cobalt_opus47",
-    "infographic_style": "none"
-  },
-  "facebook": {
-    "post_type": "type_8_kanji"
-  },
-  "instagram": {
-    "carousel_style": "branded_standard_cobalt_opus47"
-  },
-  "threads": {
     "infographic_style": "whiteboard"
   },
+  "facebook": {
+    "post_type": "type_4_text_list"
+  },
+  "instagram": {
+    "carousel_style": "branded_navy_yellow_tutorial_minimalist_gemini31"
+  },
+  "threads": {
+    "infographic_style": "chalkboard"
+  },
   "x": {
-    "thumbnail_style": "bold_face_thumbnail"
+    "thumbnail_style": "news_photo_overlay_breaking_news"
   },
   "image_generation": {
-    "last_path_used": "blotato_carousel_slideshow_nano_banana_pro"
+    "last_path_used": "blotato_templates_whiteboard_chalkboard_breakingnews_tutorialcarousel",
+    "manga_template_failed_2026_04_22": true
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T20:28:48Z",
@@ -36,8 +37,16 @@
     },
     "last_mode": "manual_fallback"
   },
-  "linkedin_pdf_links": {},
-  "facebook_pdf_links": {},
-  "instagram_pdf_links": {},
-  "x_pdf_links": {}
+  "linkedin_pdf_links": {
+    "gemini_31_5_prompt_repurpose_pack": "PENDING_GENERATION"
+  },
+  "facebook_pdf_links": {
+    "gemini_31_5_prompt_repurpose_pack": "PENDING_GENERATION"
+  },
+  "instagram_pdf_links": {
+    "gemini_31_5_prompt_repurpose_pack": "PENDING_GENERATION"
+  },
+  "x_pdf_links": {
+    "gemini_31_5_prompt_repurpose_pack": "PENDING_GENERATION"
+  }
 }
