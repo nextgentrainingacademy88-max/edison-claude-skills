@@ -6,3 +6,4 @@
 - [Engagement routine](project_engagement_routine.md) — hourly comment-engagement-responder covers LinkedIn, Facebook, X, Instagram DMs; auto-delivers Drive PDF links
 - [Kanji-style Facebook default](project_kanji_style_facebook.md) — Type 8 branded post (face + floating logo + navy/yellow block + "COMMENT FOR MORE") is the Facebook default
 - [Face-required images use kie.ai first](feedback_face_required_kie_ai_first.md) — Blotato built-in templates (Tutorial Carousel, Quote Card, etc.) are text-to-image only; they produce a generic face. For face-required images ALWAYS route via kie.ai Nano Banana Pro with `face_primary.blotato_url`
+- [Always use skill template verbatim](feedback_use_skill_template_verbatim.md) — when generating any image, READ the exact prompt template section from the skill file FIRST, fill in variables only, never improvise a prompt from scratch. Mandatory visual elements (like the carousel cover's white glow circle) must always be included.
