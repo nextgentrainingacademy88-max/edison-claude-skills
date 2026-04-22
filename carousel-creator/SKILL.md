@@ -562,11 +562,49 @@ Ask Edison: any slides to regenerate or adjust?
 
 ---
 
-## Meme Quick Reference
+## Meme Rules (READ BEFORE PICKING)
 
-Good memes to use for corporate training / AI / business content:
+### HARD RULES — these are non-negotiable:
 
-| Situation | Meme |
+1. **NEVER use a placeholder.** No "meme goes here" box, no grey rectangle, no dotted
+   outline saying "insert meme". The actual meme image must be downloaded, uploaded to
+   Blotato, passed as `image_input` to kie.ai, and composited into the final slide. If
+   the meme cannot be sourced, skip the meme and use a clean text-only slide instead.
+   Never publish a slide with a placeholder.
+
+2. **Pick the meme that fits THIS topic, not a meme from a fixed list.** The reference
+   table below is just inspiration. Do NOT default to "This is Fine dog" or Boromir
+   just because they're on the list. Every carousel should pick memes based on what
+   the specific slide is saying.
+
+3. **Prefer current trending memes** over recycled classics. Before picking, search
+   for what's trending right now — check the imgflip trending feed, Reddit's r/memes,
+   knowyourmeme trending page, or the current-week viral TikTok meme formats. Use a
+   fresh meme when one fits; fall back to a timeless classic only when nothing current
+   matches the point.
+
+4. **No romantic memes, no love hearts.** Keep it professional and funny.
+
+5. **Square or portrait crop only.** No landscape memes — they break the carousel
+   composition.
+
+### Meme sourcing (in order of preference)
+
+1. **Current trending feeds (check these first):**
+   - `https://api.imgflip.com/get_memes` — imgflip top 100 trending memes, JSON
+   - `https://knowyourmeme.com/memes/trending` — weekly trending page
+   - `https://www.reddit.com/r/memes/top/.json?t=week` — Reddit top-week
+   - `https://giphy.com/explore/meme` — Giphy meme trending
+2. **imgflip template browse:** `https://imgflip.com/memetemplates` — copy image URL
+3. **Google Images search:** only as last resort, and only if the image is clearly a
+   known meme template with no licensing issues.
+
+### Reference table (INSPIRATION, not a rotation)
+
+Use these ONLY when one of them genuinely fits the slide's point. Do not force a slide
+to use one of these just because they're listed.
+
+| Situation | Classic meme that could fit |
 |---|---|
 | Surprising stat or fact | Nicolas Cage "WOW VERY INTERESTING" |
 | Something everyone does wrong | "This is Fine" dog in burning room |
@@ -577,10 +615,10 @@ Good memes to use for corporate training / AI / business content:
 | Ignoring the obvious solution | "Is this a pigeon?" |
 | Something taking forever | Waiting skeleton |
 
-Source memes from: `https://api.imgflip.com/get_memes` or search directly on
-`https://imgflip.com/memetemplates` and copy the image URL.
-
-No love hearts, no romantic memes — keep it professional and funny.
+If the current topic is about a 2026 AI tool like Claude Opus 4.7 or NotebookLM, FIRST
+look for an AI-specific or tech-current meme (e.g. Sam Altman reaction memes, Elon
+reaction faces, recent AI panic memes, "AI replaced my job" tweet-style memes) before
+falling back to these classics.
 
 ---
 
