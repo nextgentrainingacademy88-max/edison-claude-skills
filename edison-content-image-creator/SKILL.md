@@ -17,14 +17,27 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+**This skill ALWAYS generates Edison's face in the output. Therefore kie.ai is the PRIMARY
+path for this skill — not Blotato built-in templates.**
+
+**Rule:** Every content image produced by this skill uses Edison's face as reference.
+Blotato built-in templates (Tutorial Carousel, Quote Card, etc.) are text-to-image only
+and will produce a generic Asian male that does not look like Edison. They MUST NOT be
+used for face-required images.
 
 **Priority order:**
-1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
-2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+1. **kie.ai Nano Banana Pro with image_input** — PRIMARY. Pass `face_primary.blotato_url` from
+   `assets-manifest.json` as `image_input[0]`. Use `${KIE_API_KEY}` from env.
+2. **Retry kie.ai once with simplified prompt** if the first call fails/times out.
+3. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`)
+   with `model: "nano-banana-pro"` AND the face URL as input — only if both kie.ai attempts fail.
+4. **Manual queue** — if all three fail, log the intended prompt to
+   `./generated/engagement-manual-queue.md` so Edison can regenerate manually. Do NOT post
+   a face-required image with no face or a wrong face.
 
-**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+Log the path used per image in `rotation-state.json` → `image_generation.last_path_used` with
+the specific path (e.g. `"kie_ai_face_ok"`, `"kie_ai_retry_ok"`, `"blotato_carousel_slideshow_fallback"`,
+`"manual_queue_all_paths_failed"`).
 
 ---
 
