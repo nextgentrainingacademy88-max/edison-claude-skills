@@ -20,14 +20,29 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Always try Blotato first. Fall back to kie.ai only if Blotato fails or credits are exhausted.**
+**Route by platform. X thumbnail is face-required → kie.ai first. Threads infographic is face-free → Blotato first.**
 
-**Priority order:**
+### X / Twitter thumbnail (face-required)
+
+ALWAYS use kie.ai Nano Banana Pro FIRST with `image_input: [face_primary.blotato_url]`
+from `assets-manifest.json`. Do NOT use Blotato built-in templates (Tutorial Carousel,
+Quote Card, etc.) — those are text-to-image only and will generate a generic Asian male
+that does not look like Edison.
+
+Fallback chain if kie.ai fails:
+1. Retry kie.ai once with simplified prompt.
+2. Blotato Instagram Carousel Slideshow template (`53cfec04-2500-41cf-8cc1-ba670d2c341a`)
+   with `model: "nano-banana-pro"` AND face URL passed as input.
+3. Manual queue log — do NOT post the X thumbnail without Edison's real face.
+
+### Threads infographic (face-free, concept-only)
+
+Priority order:
 1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
 2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — ONLY fall back to kie.ai when Blotato cannot handle the request (e.g. requires image-to-image with a reference face, requires combining a face reference with a separate meme embed, or Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error). Use `${KIE_API_KEY}` from env.
+3. **kie.ai Nano Banana Pro direct** — fall back if Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error. Use `${KIE_API_KEY}` from env.
 
-**When a Blotato call fails for any reason, immediately fall back to kie.ai with the same crafted prompt. Log which path was used in rotation-state.json.**
+Log the actual path used per image in `rotation-state.json` → `image_generation.last_path_used`.
 
 ---
 
