@@ -34,7 +34,22 @@ Step 3 - Generate content for all 5 platforms following the skills:
 - Instagram: carousel-creator (branded navy + yellow).
 - Threads + X/Twitter: threads-x-content-creator.
 
-Step 4 - Generate images: Blotato templates first, kie.ai Nano Banana Pro fallback. Always use face_primary URL from assets-manifest.json for face-reference images. No em dashes. Colors: navy #0A1628 + yellow #FFD700.
+Step 4 - Generate images using the CORRECT path per image type:
+
+**Face-required images** (LinkedIn Type 8, Facebook Type 2/7/8, carousel cover, carousel CTA slide, X/Twitter MrBeast thumbnail, pin-comment image, any image where Edison must appear):
+- ALWAYS call kie.ai Nano Banana Pro FIRST with `image_input: ["<face_primary.blotato_url from assets-manifest.json>"]`.
+- The canonical URL is `face_primary.blotato_url` in assets-manifest.json (NOT `drive_url` — the Drive URL sometimes returns a redirect).
+- Do NOT use Blotato built-in templates (Tutorial Carousel, Quote Card, Tweet Card, Whiteboard Infographic, etc.) for face-required images. Those templates are text-to-image only and will generate a generic Asian male that does not look like Edison.
+- If kie.ai fails, retry once with a simplified prompt. If still fails, fall back to the Blotato Instagram Carousel Slideshow template (`53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` AND the face URL as input. If all three fail, log the intended prompt to manual queue and skip that post — do NOT publish a face-required image with no face or a wrong face.
+
+**Face-free images** (infographics, quote cards, numbered tip slides, decorative graphics, threads infographic):
+- Blotato built-in template first (fastest, cheapest).
+- Blotato Carousel Slideshow template second.
+- kie.ai third.
+
+Always log the path used per image in `rotation-state.json` under `image_generation.last_path_used` with enough detail to debug (e.g. `"kie_ai_face_ok"`, `"blotato_template_tutorial_carousel"`, `"kie_ai_retry_after_blotato_credit_fail"`).
+
+No em dashes anywhere. Colors: navy #0A1628 + yellow #FFD700.
 
 Step 5 - Post to all 5 platforms via the Blotato connector.
 
