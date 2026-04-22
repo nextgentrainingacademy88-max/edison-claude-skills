@@ -16,6 +16,15 @@ description: >
   Trigger when Edison says: "post to Threads", "post to X", "post to Twitter",
   "Threads and X post", "social media post Threads X", or any request to create
   content for Threads or Twitter/X.
+
+  TEST MODE triggers (generate a single sample image, no caption, no posting):
+  - "test threads image" or "test threads infographic" → Threads infographic (face-free)
+  - "test X thumbnail" or "test twitter thumbnail" → X MrBeast thumbnail (face-required, 16:9)
+  - "test X image" or "test twitter image" → same as X thumbnail
+  - "sample X thumbnail for [topic]" → X thumbnail with that topic
+  X thumbnail is face-required — MUST use kie.ai with `face_primary.blotato_url`.
+  Threads infographic is face-free — Blotato template first, kie.ai fallback.
+  Read the exact prompt template section before generating.
 ---
 
 ## IMAGE GENERATION PRIORITY RULE
