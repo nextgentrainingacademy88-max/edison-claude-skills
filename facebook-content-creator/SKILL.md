@@ -149,10 +149,33 @@ Bold oversized white/yellow text as the headline. Dark background.
 
 ### Type 5 — Meme + Caption
 **When to use:** Humorous takes on AI trends, relatable AI struggles, industry jokes.
-**Design:** Well-known internet meme (Leonardo DiCaprio thinking, Drake meme, distracted boyfriend, etc.)
-with a short AI-related caption or timeline above it.
+**Design:** Real internet meme with a short AI-related caption or timeline above it.
 **Example trigger:** "AI is getting wild", AI career progression jokes, "2022 student... 2027 farmer"
-**Production:** Find a meme image online (search Google Images or screenshot). No Nano Banana Pro.
+
+**HARD RULES (see carousel-creator skill Meme Rules section for full details):**
+1. **NEVER use a placeholder.** The actual meme image must be sourced and used. If no
+   meme fits, don't publish a Type 5 — pick a different post type.
+2. **Pick the meme that fits THIS topic.** Don't default to a fixed list like Drake or
+   Distracted Boyfriend just because they're common.
+3. **Prefer current trending memes** — check imgflip API / Reddit r/memes top-week /
+   knowyourmeme trending / Giphy meme trending FIRST before falling back to classics.
+4. No romantic memes, no love hearts. Professional and funny only.
+
+**Sourcing:**
+```bash
+# Preferred: imgflip top 100 trending
+curl -s "https://api.imgflip.com/get_memes" | python3 -c "
+import json, sys
+d = json.load(sys.stdin)
+for m in d['data']['memes'][:30]:
+    print(m['name'], '->', m['url'])
+"
+```
+Fallbacks: `https://knowyourmeme.com/memes/trending`,
+`https://www.reddit.com/r/memes/top/.json?t=week`, `https://giphy.com/explore/meme`.
+
+**Production:** Download the chosen meme, pass to Blotato with a text overlay caption OR
+post directly as the media with the caption in the post body. No Nano Banana Pro needed.
 Write a short punchy caption above or below.
 
 ### Type 6 — Person Collage + Bold Headline
