@@ -10,6 +10,13 @@ description: >
   The skill produces ready-to-publish posts with scroll-stopping hooks, numbered insights,
   clean white space formatting, and a CTA modelled on top LinkedIn creators and the
   copywriting frameworks of Dan Kennedy, Alex Hormozi, and Russell Brunson.
+
+  TEST MODE triggers (generate only the caption, no image, no posting):
+  - "test linkedin post" or "test linkedin caption" → sample post in Edison's voice
+  - "test linkedin hook" → generate 3-5 hook options only
+  - "sample linkedin post for [topic]" → full draft with hook, body, CTA
+  This skill is copy-only. For the paired image, pair with `carousel-creator`,
+  `edison-content-image-creator`, or `edison-infographic-creator` as usual.
 ---
 
 # LinkedIn Content Writer — Edison Chua
