@@ -27,7 +27,7 @@ Step 1 - Pull latest skills and state from the GitHub repo nextgentrainingacadem
 - Every file under memory/
 
 Step 2 - Research: WebSearch the latest AI news/updates from the last 24-72 hours. Prioritize in this order:
-(a) NEW AI tool releases or NEW features (Claude updates, ChatGPT new features like GPT-5 image gen, NotebookLM new capabilities, Manus releases, Gemini, Perplexity, Midjourney, Runway, ElevenLabs, Sora, Veo, Kling).
+(a) NEW AI tool releases or NEW features (Claude updates, ChatGPT new features like GPT-5 image gen, NotebookLM new capabilities, Manus releases, Gemini, Perplexity, Midjourney, Runway, ElevenLabs, Sora, Veo, Kling). Frame EVERY angle for BUSINESS OWNERS (solopreneurs, SME founders, agency owners, operators juggling accounting + HR + admin + marketing). NEVER address trainers, training providers, L&D professionals, or employers — see memory/project_target_audience.md.
 (b) If nothing breaking in (a), pivot to a high-engagement practical how-to angle using a recently released tool ("Here's how to use [tool] for [outcome]").
 (c) If neither (a) nor (b) have a fresh angle, pivot to a monetization angle ("How to make money with Claude Code", "AI side-hustle with [tool]").
 Pick ONE top story as the core topic for all 5 platforms. Pick a short KEYWORD tied to the topic (e.g. CLAUDE, PROMPT, AGENT, GUIDE, NOTEBOOK) for the comment-for-link CTA.
