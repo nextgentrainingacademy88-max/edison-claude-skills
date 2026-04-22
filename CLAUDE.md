@@ -5,7 +5,8 @@ Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, 
 
 ## User Profile
 - **Name:** Edison Chua
-- **Role:** HRDC-certified AI educator & corporate trainer, also runs a funnel agency
+- **Role (Edison's background):** HRDC-certified AI educator & corporate trainer, also runs a funnel agency. Note: this is his credential, NOT his audience.
+- **Target audience (who the content speaks TO):** Business owners, solopreneurs, SME founders, agency owners, and operators juggling multiple jobs (accounting / HR / admin / marketing). NEVER address trainers, training providers, L&D professionals, or employers. See `memory/project_target_audience.md` for the full framing guide.
 - **Platforms:** LinkedIn, Facebook, Instagram, Threads, X/Twitter
 - **Email:** nextgentrainingacademy88@gmail.com
 - **Topic Split:** 70% AI/tech (Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity) | 30% funnel/agency
