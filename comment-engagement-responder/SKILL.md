@@ -12,6 +12,14 @@ description: >
   "check DMs", "run the comment bot", or when invoked by the scheduled task
   "social-media-engagement-hourly". Also trigger whenever Edison posts a tips/PDF-bearing
   post and asks to "start the engagement routine" for that post.
+
+  TEST MODE triggers (generate the pin-comment image only, no comment polling):
+  - "test pin comment image" → 1:1 Edison-pointing-down-at-yellow-arrow image
+  - "test engagement pin" → same as above
+  - "sample pin comment for [topic]" → pin-comment image with topic-specific CTA headline
+  Pin-comment image is face-required — MUST use kie.ai with `face_primary.blotato_url`
+  from assets-manifest.json. Read the Pin Comment Protocol section in
+  `facebook-content-creator/SKILL.md` for the exact prompt template.
 ---
 
 # Comment Engagement Responder
