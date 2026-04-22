@@ -13,8 +13,18 @@ description: >
   "Facebook content about [topic]", or any request to produce Facebook content — even if
   Edison just says "Facebook post" or "post this".
 
-  Always trigger for Facebook content requests. This skill decides which of the 7 post types
-  fits best, generates the image if needed, writes the copy, and posts via Blotato.
+  TEST MODE triggers (generate a single image, no post, no Blotato posting):
+  - "test facebook post" or "test facebook image" → default to Type 8 Kanji-style
+  - "test type 8" or "test kanji" or "test kanji post" → Type 8 Kanji-style specifically
+  - "test facebook type [N]" → specific post type
+  - "test pin comment" → generate the 1:1 Edison-pointing-down pin-comment image
+  - "sample facebook cover" → Type 8 Kanji cover with placeholder topic
+  Follow the exact prompt template in this file for the chosen type — read the Type section
+  verbatim before generating.
+
+  Always trigger for Facebook content requests. This skill decides which of the 8 post types
+  fits best (Type 8 Kanji-style is the preferred default for AI tool/tip posts), generates
+  the image if needed, writes the copy, and posts via Blotato.
 ---
 
 ## IMAGE GENERATION PRIORITY RULE
