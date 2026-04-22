@@ -11,6 +11,15 @@ Automate Edison Chua's daily social media posting across 5 platforms (LinkedIn, 
 - **Topic Split:** 70% AI/tech (Claude, ChatGPT, NotebookLM, Manus, Gemini, Perplexity) | 30% funnel/agency
 - **Content Split:** 80% value | 20% humor/entertainment
 
+### Content Focus (see memory/project_content_topic_strategy.md)
+Every post falls into one of three buckets:
+1. **Latest AI news / tool updates / new feature releases** (last 24-72 hrs only) — Claude updates, ChatGPT new features (e.g. GPT-5 image gen), NotebookLM, Manus, Gemini, Perplexity, Midjourney, Runway, ElevenLabs, Sora, Veo.
+2. **Practical how-to tips** — "Here's how to use [tool] for [outcome]". Copy-paste prompts, workflow chains (Claude+NotebookLM, ChatGPT+Manus).
+3. **How to make money with AI tools** — "How to make $1K/month with Claude Code", "The AI side-hustle stack", case studies.
+
+### Comment-for-Link CTA Pattern
+Every post promising a resource ends with: *"Comment [KEYWORD] and I'll DM you the [link/guide/PDF]."* Examples: `Comment CLAUDE` (GitHub repo), `Comment PROMPT` (prompt pack), `Comment GUIDE` (PDF), `Comment AGENT` (agent template). Keyword + Drive/GitHub link stored in `rotation-state.json` under `{platform}_pdf_links[topic_slug]` so the hourly engagement responder auto-delivers it.
+
 ---
 
 ## Connected Services
