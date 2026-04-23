@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-22",
+  "last_updated": "2026-04-23T00:00:00Z",
   "last_topic_morning": "notebooklm_interactive_audio_studio_slides_classroom",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
   "last_run_slot": "morning",
@@ -16,7 +16,9 @@
     "carousel_style": "branded_standard_notebooklm_april26"
   },
   "threads": {
-    "infographic_style": "carousel_intro_reuse"
+    "last_kanji_hero": null,
+    "last_topic_slug": null,
+    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. Previous infographic_style field deprecated 2026-04-23 when Threads switched to Kanji-style Type 8 image."
   },
   "x": {
     "thumbnail_style": "carousel_intro_reuse"
@@ -39,5 +41,6 @@
   "linkedin_pdf_links": {},
   "facebook_pdf_links": {},
   "instagram_pdf_links": {},
-  "x_pdf_links": {}
+  "x_pdf_links": {},
+  "threads_pdf_links": {}
 }
