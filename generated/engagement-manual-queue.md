@@ -1,23 +1,25 @@
-# Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+# Engagement Manual Queue — 2026-04-23 Hourly Run
 
----
+**Mode:** Infrastructure setup (comment data source unavailable)
 
-## Infrastructure Status
+## Status
 
-✅ **Engagement logging system online**
-- Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter
-- Manual queue ready for DM packages
-- Engagement log: `engagement-log.jsonl`
+- **X/Twitter:** Blotato MCP does not expose `list_posts` or `list_replies` endpoints
+- **Facebook / Instagram / LinkedIn:** Claude-in-Chrome MCP not available in this environment
+- **Data source:** Required to fetch Edison's recent posts and their comments/replies
 
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
+## Next Steps
 
-## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+When Blotato's full API becomes available via MCP, the engagement routine will:
+1. Fetch X posts from last 48h via `blotato_list_posts` (or equivalent endpoint)
+2. Fetch replies via `blotato_list_replies` 
+3. Auto-reply with the classification logic and templates defined in `comment-engagement-responder/SKILL.md`
+4. Generate PDFs on-the-fly for resource requests without existing Drive links
+
+**Infrastructure readiness:** ✅ Complete
+- Rotation state tracking: ready
+- PDF generation templates: ready  
+- Engagement log de-duplication: ready
+- Manual DM package format: ready
 
 ---
