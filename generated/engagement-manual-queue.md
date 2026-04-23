@@ -1,23 +1,30 @@
 # Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+**Generated:** 2026-04-23 UTC
+**Run ID:** hourly-engagement-routine-2026-04-23T15:38:04Z
+**Mode:** Awaiting comment data
 
 ---
 
 ## Infrastructure Status
 
-✅ **Engagement logging system online**
-- Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter
-- Manual queue ready for DM packages
+✅ **Engagement system online**
+- Blotato MCP: active (subscription verified)
+- Connected accounts: Facebook (1 page), Instagram (2), LinkedIn (1), Threads, X/Twitter
 - Engagement log: `engagement-log.jsonl`
+- State manager: `rotation-state.json` updated
 
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
+⚠️ **Blocking Issue**
+Blotato MCP does not expose `list-posts` or `list-comments` endpoints. The routine cannot proceed without:
+1. **Option A:** Direct API credentials (Graph API tokens for FB/IG, LinkedIn API v2, Twitter API v2 Bearer token)
+2. **Option B:** Manual comment feed (CSV/JSON with format: `{platform, post_id, commenter_name, comment_text, timestamp}`)
+3. **Option C:** Claude-in-Chrome MCP (not currently available in this runtime) for browser-based scraping when PC awake
+
+**Next steps:**
+- Provide API credentials in `.env` file, OR
+- Upload a CSV comment feed to `./generated/comment-feed.csv`, OR
+- Enable Claude-in-Chrome MCP in the system
 
 ## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+*Waiting for comment data feed.*
 
 ---
