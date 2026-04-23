@@ -1,0 +1,2 @@
+# Engagement log — one JSON line per sent reply
+# Format: {"timestamp":"2026-04-23T...", "platform":"x|fb|ig|li", "commenter_handle":"...", "reply_id":"...", "comment_id":"...", "classification":"resource_request|question|compliment|negative|unclear"}
