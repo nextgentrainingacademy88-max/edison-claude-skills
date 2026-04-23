@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-23T09:31:57Z","type":"engagement_run","mode":"infrastructure_ready_no_data","x_replies":0,"fb_replies":0,"ig_replies":0,"li_replies":0,"manual_queue_items":0,"note":"Blotato API endpoints available: accounts verified, but list-posts and list-comments not exposed. No comment data available this run."}
