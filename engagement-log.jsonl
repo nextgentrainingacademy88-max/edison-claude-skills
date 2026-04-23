@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-23T10:30:00Z","type":"run_attempt","run_id":"hourly-engagement-routine-2026-04-23-10-30","status":"blocked","reason":"Blotato lacks list_posts/get_replies endpoints; Claude-in-Chrome MCP unavailable","platforms_blocked":["x","facebook","instagram","linkedin"],"note":"Cannot fetch comment data from any platform"}
