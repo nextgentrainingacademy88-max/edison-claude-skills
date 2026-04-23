@@ -27,16 +27,17 @@
     "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-23T04:00:00Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
       "manual_queue_items": 0,
-      "note": "Infrastructure setup complete - awaiting comment data source"
+      "note": "Hourly run executed. No comments available - Blotato MCP lacks list-posts/list-comments API."
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "hourly_run_no_data",
+    "integration_status": "Waiting for: Twitter API v2, Facebook Graph API, LinkedIn API, or Claude-in-Chrome browser scraping"
   },
   "linkedin_pdf_links": {},
   "facebook_pdf_links": {},
