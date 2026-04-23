@@ -91,8 +91,9 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 - Pin-comment on Type 8 / Strategy A posts is always manual (platforms don't expose programmatic pin).
 
 ### Threads
-- Uses same infographic style as LinkedIn (whiteboard / analogy / manga rotation)
-- Same topic as X/Twitter, adapted for each platform's format
+- Uses the **Kanji-style branded image** (same visual family as Facebook Type 8) — Edison holding or standing beside a glowing 3D tool logo, verified author badge ("Edison Chua | AI Marketing Strategist"), bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE" footer. Aspect ratio **4:5 portrait**, face-required (kie.ai Nano Banana Pro with permanent face URL).
+- Hero-scene rotation: `logo_palm` → `two_logos` → `holo_panels` (tracked in `rotation-state.json` → `threads.last_kanji_hero`).
+- Same topic as X/Twitter, adapted for each platform's format.
 
 ### X/Twitter
 - Rotates: text-on-black, news photo overlay, YouTube thumbnail
@@ -158,6 +159,6 @@ Example structure documented in skills.
 
 - **No em dashes** in any generated content (Edison's rule across all skills)
 - **Hashtags:** LinkedIn 3-5, Facebook 5 max, Instagram 10-15, Threads 0, X 1-2 max
-- **Image aspect ratios:** LinkedIn 4:5, Facebook 1:1 or 4:5, Instagram 4:5, Threads 1:1 or 4:5, X 1:1 or 16:9
+- **Image aspect ratios:** LinkedIn 4:5, Facebook 1:1 or 4:5, Instagram 4:5, Threads **4:5 (Kanji-style)**, X 1:1 or 16:9
 - **Edison's face appearance:** Young Asian man, black hair, slim build, casual outfits (no suits), warm confident smile — must remain identical across all AI-generated images
 - **Branding colors:** Deep dark navy `#0A1628` + bold yellow `#FFD700` + white body text
