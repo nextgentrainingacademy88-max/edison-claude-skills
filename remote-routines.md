@@ -19,6 +19,55 @@ These routines run on Anthropic's servers via Claude's native "Remote Routines" 
 ```
 You are running Edison Chua's morning social media automation. Execute the full posting pipeline.
 
+**CRITICAL ENV FOR THIS RUN (use these exact values — the remote sandbox has no .env):**
+- KIE_API_KEY = `6a2b2e230329d9a5ef971f5cc266b3ea`
+- KIE_BASE_URL = `https://api.kie.ai`
+- KIE_MODEL = `nano-banana-pro`
+- GITHUB_TOKEN = (use the GitHub connector, not an env var)
+
+Wherever a skill references `${KIE_API_KEY}` or says "use the key from .env", substitute
+the value above. kie.ai calls MUST include this key in the `Authorization: Bearer ...` header.
+
+**STEP 0 — PREFLIGHT (do this BEFORE Step 1):**
+Make a 1-call test to kie.ai:
+```
+curl -s -X POST https://api.kie.ai/api/v1/jobs/createTask \
+  -H "Authorization: Bearer 6a2b2e230329d9a5ef971f5cc266b3ea" \
+  -H "Content-Type: application/json" \
+  -d '{"model":"nano-banana-pro","input":{"prompt":"test","image_input":[],"aspect_ratio":"1:1","resolution":"2K"}}'
+```
+If the response is NOT `200` with a `data.taskId`, ABORT the whole run. Commit a manual-queue
+entry to the GitHub repo at `generated/routine-aborts/YYYY-MM-DD-morning.md` explaining
+kie.ai is down, and stop. Do NOT publish any post with a fallback image.
+
+**BLACKLIST — these Blotato visual templates are FORBIDDEN for this routine (they produce
+face-less text-on-color slides and have been posted to LinkedIn/FB/Threads by accident):**
+- `/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1` (Tutorial Carousel Monocolor)
+- `/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1` (Tutorial Carousel Flat)
+- `/base/v2/quote-card/f941e306-76f7-45da-b3d9-7463af630e91/v1` (Quote Card Paper)
+- `/base/v2/quote-card/77f65d2b-48cc-4adb-bfbb-5bc86f8c01bd/v1` (Quote Card Monocolor)
+- `/base/v2/tweet-card/ba413be6-a840-4e60-8fd6-0066d3b427df/v1` (Tweet Card Minimal)
+- `/base/v2/tweet-card/9714ae5c-7e6b-4878-be4a-4b1ba5d0cd66/v1` (Tweet Card Photo)
+- `9f4e66cd-b784-4c02-b2ce-e6d0765fd4c0` (Single Centered Text Quote)
+These ONLY generate a text slide on a colored background — no face, no logo, no branding —
+exactly the ugly default that went out this morning. NEVER use them.
+
+**FALLBACK RULE FOR FACE-REQUIRED IMAGES (override any skill-level fallback chain):**
+If the kie.ai call for a face-required slide fails after 2 retries (one with the full
+prompt, one with a simplified prompt), DO NOT post a fallback image to that platform.
+Instead:
+1. Write the intended prompt + topic + platform to `generated/engagement-manual-queue.md`
+   (commit to GitHub).
+2. SKIP that platform's post for this run.
+3. Continue with the other platforms.
+Posting is better than silence ONLY when the image has Edison's face. Posting a text-on-
+navy template with no face is NEVER acceptable.
+
+**PER-PLATFORM ISOLATION:** Generate each platform's image with its own kie.ai call using
+its own prompt and aspect ratio. Never reuse one platform's image on another platform.
+If LinkedIn's image succeeded but Facebook's failed, LinkedIn still posts and Facebook
+goes to manual queue — they do NOT share an image.
+
 Step 1 - Pull latest skills and state from the GitHub repo nextgentrainingacademy88-max/edison-claude-skills:
 - CLAUDE.md
 - rotation-state.json
@@ -46,16 +95,15 @@ Step 3 - Generate content for all 5 platforms following the skills. BEFORE writi
 
 Step 4 - Generate images using the CORRECT path per image type:
 
-**Face-required images** (LinkedIn Type 8, Facebook Type 2/7/8, carousel cover, carousel CTA slide, X/Twitter MrBeast thumbnail, pin-comment image, any image where Edison must appear):
-- ALWAYS call kie.ai Nano Banana Pro FIRST with `image_input: ["<face_primary.blotato_url from assets-manifest.json>"]`.
+**Face-required images** (LinkedIn Type 8, Facebook Type 2/7/8, carousel cover, carousel CTA slide, Threads Kanji-style, X/Twitter MrBeast thumbnail, pin-comment image, any image where Edison must appear):
+- ALWAYS call kie.ai Nano Banana Pro with `Authorization: Bearer 6a2b2e230329d9a5ef971f5cc266b3ea` and `image_input: ["<face_primary.blotato_url from assets-manifest.json>"]`.
 - The canonical URL is `face_primary.blotato_url` in assets-manifest.json (NOT `drive_url` — the Drive URL sometimes returns a redirect).
-- Do NOT use Blotato built-in templates (Tutorial Carousel, Quote Card, Tweet Card, Whiteboard Infographic, etc.) for face-required images. Those templates are text-to-image only and will generate a generic Asian male that does not look like Edison.
-- If kie.ai fails, retry once with a simplified prompt. If still fails, fall back to the Blotato Instagram Carousel Slideshow template (`53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` AND the face URL as input. If all three fail, log the intended prompt to manual queue and skip that post — do NOT publish a face-required image with no face or a wrong face.
+- **kie.ai is the ONLY path.** Do NOT use ANY Blotato built-in template as a fallback — not Tutorial Carousel, not Quote Card, not Tweet Card, not Instagram Carousel Slideshow, not Whiteboard Infographic, not anything else. Those templates either produce text-on-color slides with no face, or generate a generic Asian male that does not look like Edison.
+- Retry kie.ai exactly twice: first with the full prompt, second with a simplified prompt. If both fail, write the intended prompt + platform to `generated/engagement-manual-queue.md` (commit to GitHub), SKIP that platform's post, and move on. **Do NOT publish a face-required image with no face, a wrong face, or a Blotato-template fallback. Skipping a post is ALWAYS preferred over publishing a face-less slide.**
 
-**Face-free images** (infographics, quote cards, numbered tip slides, decorative graphics, threads infographic):
-- Blotato built-in template first (fastest, cheapest).
-- Blotato Carousel Slideshow template second.
-- kie.ai third.
+**Face-free images** (true infographics without Edison — whiteboard/chalkboard/manga explainers, etc. — NOT carousels, NOT Threads Kanji, NOT Facebook Type 8, NOT LinkedIn covers):
+- kie.ai Nano Banana Pro with empty `image_input` array. 4:5 aspect ratio.
+- No Blotato built-in template fallback here either — the ones that DO produce decent infographics (Whiteboard, Chalkboard, Manga Panel, Newspaper, etc.) still enforce a generic "Follow me for more helpful content | Repost" footer and lock the style/layout. Stick to kie.ai so the output matches Edison's brand.
 
 Always log the path used per image in `rotation-state.json` under `image_generation.last_path_used` with enough detail to debug (e.g. `"kie_ai_face_ok"`, `"blotato_template_tutorial_carousel"`, `"kie_ai_retry_after_blotato_credit_fail"`).
 
