@@ -1,0 +1,43 @@
+{
+  "last_updated": "2026-04-23",
+  "last_topic_morning": "notebooklm_interactive_audio_studio_slides_classroom",
+  "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
+  "last_run_slot": "morning",
+  "linkedin": {
+    "image_skill": "edison-infographic-creator",
+    "content_image_subtype": "none",
+    "carousel_last_used": "branded_standard_cobalt_opus47",
+    "infographic_style": "analogy_notebooklm_april26"
+  },
+  "facebook": {
+    "post_type": "type_1_standard_ai_tip"
+  },
+  "instagram": {
+    "carousel_style": "branded_standard_notebooklm_april26"
+  },
+  "threads": {
+    "infographic_style": "carousel_intro_reuse"
+  },
+  "x": {
+    "thumbnail_style": "carousel_intro_reuse"
+  },
+  "image_generation": {
+    "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
+  },
+  "engagement": {
+    "last_engagement_run_utc": "2026-04-23T00:46:57Z",
+    "engagement_stats": {
+      "x_replies": 0,
+      "fb_auto_replies": 0,
+      "ig_auto_replies": 0,
+      "li_auto_replies": 0,
+      "manual_queue_items": 0,
+      "note": "Infrastructure ready - awaiting X post data sources via API or manual input"
+    },
+    "last_mode": "infrastructure_ready"
+  },
+  "linkedin_pdf_links": {},
+  "facebook_pdf_links": {},
+  "instagram_pdf_links": {},
+  "x_pdf_links": {}
+}
