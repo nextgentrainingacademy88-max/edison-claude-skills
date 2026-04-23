@@ -1,6 +1,6 @@
 # Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+**Run:** 2026-04-23 07:34:15 UTC
+**Run ID:** hourly-engagement-routine-2026-04-23T07:34:15Z
 
 ---
 
@@ -11,13 +11,19 @@
 - Manual queue ready for DM packages
 - Engagement log: `engagement-log.jsonl`
 
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
+❌ **Blocking Issue: No Comment Data Source**
+
+Blotato MCP does not expose `list-posts` or `list-comments` endpoints. The engagement routine cannot proceed without access to:
+1. Edison's recent posts (X, FB, IG, LinkedIn)
+2. Comments/replies on those posts
+3. Comment metadata (author, timestamp, text)
+
+**To unblock:** Implement one of:
+- **Option A:** Direct API integration (Twitter API v2, Facebook Graph API, LinkedIn API v2, Instagram Graph API)
+- **Option B:** Manual feed — CSV/JSON file uploaded with recent comments
+- **Option C:** Claude-in-Chrome MCP for browser-based scraping (Edison's logged-in browser when PC awake)
 
 ## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+*None — no comments fetched this run.*
 
 ---
