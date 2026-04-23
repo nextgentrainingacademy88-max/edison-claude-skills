@@ -35,16 +35,29 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Route by slide requirement. Face-required slides bypass Blotato built-in templates.**
+**kie.ai Nano Banana Pro is the ONLY path for every slide in a carousel. Zero Blotato
+template fallbacks.**
+
+### BLACKLIST — These Blotato templates have posted face-less text-on-navy slides to
+Edison's LinkedIn/Facebook/Threads and are BANNED from this skill:
+- `/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1` (Tutorial Carousel Monocolor — the culprit)
+- `/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1` (Tutorial Carousel Flat)
+- `/base/v2/quote-card/*` (Quote Card carousels)
+- `/base/v2/tweet-card/*` (Tweet Card carousels)
+- `9f4e66cd-b784-4c02-b2ce-e6d0765fd4c0` (Single Centered Text Quote)
+- `/base/v2/image-slideshow/*`, `/base/v2/images-with-text/*` (slideshow templates)
 
 ### Rule A — Face-required slides (Cover, CTA, any slide with Edison)
 
-**MUST use kie.ai Nano Banana Pro FIRST as the primary path.** Do NOT use Blotato built-in
-templates (Tutorial Carousel, Quote Card, etc.) for these slides — those templates are
-text-to-image only and will produce a generic Asian male that does not look like Edison.
+**kie.ai Nano Banana Pro is the ONLY path.** If kie.ai fails, skip the post — do NOT
+fall back to any Blotato template.
 
 ```
 POST https://api.kie.ai/api/v1/jobs/createTask
+Headers:
+  Authorization: Bearer 6a2b2e230329d9a5ef971f5cc266b3ea
+  Content-Type: application/json
+
 {
   "model": "nano-banana-pro",
   "input": {
@@ -56,19 +69,21 @@ POST https://api.kie.ai/api/v1/jobs/createTask
 }
 ```
 
-Always pull `face_primary.blotato_url` from assets-manifest.json — NOT the Google Drive URL
-(some fetchers hit a redirect on Drive). If kie.ai fails, retry once with a simplified
-prompt; if still fails, fall back to Blotato Instagram Carousel Slideshow template (#2
-below) with the face URL passed as an image input. If all three fail, log to the manual
-queue with the intended prompt so Edison can regenerate manually — do NOT post a carousel
-with missing or wrong-face slides.
+The `${KIE_API_KEY}` value is `6a2b2e230329d9a5ef971f5cc266b3ea` — substitute it inline
+when running from an environment where .env does not load (e.g. Anthropic remote routines).
 
-### Rule B — Face-free slides (numbered points, checklists, quote cards, decorative graphics)
+Always pull `face_primary.blotato_url` from assets-manifest.json — NOT the Google Drive
+URL (some fetchers hit a redirect on Drive). Retry kie.ai exactly twice (full prompt, then
+simplified prompt). If both fail: write the intended prompt to `generated/engagement-manual-queue.md`,
+SKIP that platform's post, move on. **NEVER publish a carousel with a face-less slide
+or a Blotato-template fallback.**
 
-Priority order for these:
-1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
-2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — fall back if Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error. Use `${KIE_API_KEY}` from env.
+### Rule B — Face-free decorative slides (numbered points, checklists, graphics without Edison)
+
+Also kie.ai only — empty `image_input: []`. Blotato built-in infographic templates
+(Whiteboard, Chalkboard, Manga Panel, Newspaper, etc.) are tempting but lock in a
+generic "Follow me | Repost" footer and rigid layout that does NOT match Edison's
+navy-yellow branding. Stick with kie.ai so every slide matches the cover's vibe.
 
 ### Logging
 
