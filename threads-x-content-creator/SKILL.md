@@ -35,27 +35,38 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Both Threads and X images are face-required → ALWAYS kie.ai Nano Banana Pro first.**
+**kie.ai Nano Banana Pro is the ONLY path for BOTH Threads and X images. Zero Blotato
+template fallbacks.**
 
-Do NOT use Blotato built-in templates (Tutorial Carousel, Quote Card, Whiteboard
-Infographic, etc.) for either platform — those are text-to-image only and will
-generate a generic Asian male that does not look like Edison.
+### BLACKLIST — These Blotato templates are BANNED from this skill (they produced
+the plain-navy text slide that got posted to Edison's Threads on 2026-04-23):
+- `/base/v2/tutorial-carousel/e095104b-e6c5-4a81-a89d-b0df3d7c5baf/v1` (Tutorial Carousel Monocolor)
+- `/base/v2/tutorial-carousel/2491f97b-1b47-4efa-8b96-8c651fa7b3d5/v1` (Tutorial Carousel Flat)
+- `/base/v2/quote-card/*` (Quote Card carousels)
+- `/base/v2/tweet-card/*` (Tweet Card carousels)
+- `9f4e66cd-b784-4c02-b2ce-e6d0765fd4c0` (Single Centered Text Quote)
+- `/base/v2/image-slideshow/*`, `/base/v2/images-with-text/*` (slideshow templates)
+- `53cfec04-2500-41cf-8cc1-ba670d2c341a` (Instagram Carousel Slideshow — ignores face URL)
+
+### KIE_API_KEY (inline for remote routines where .env does not load)
+
+`6a2b2e230329d9a5ef971f5cc266b3ea` — use as `Authorization: Bearer ...` header.
 
 ### X / Twitter thumbnail (face-required, 16:9)
 
-Use kie.ai Nano Banana Pro with `image_input: [face_primary.blotato_url]`
-from `assets-manifest.json`.
+kie.ai with `image_input: [face_primary.blotato_url]` from `assets-manifest.json`.
 
 ### Threads Kanji-style branded image (face-required, 4:5)
 
-Use kie.ai Nano Banana Pro with `image_input: [face_primary.blotato_url]`
-from `assets-manifest.json`. Same visual family as Facebook Type 8 Kanji-style,
-different aspect ratio (Threads = 4:5 portrait).
+kie.ai with `image_input: [face_primary.blotato_url]` from `assets-manifest.json`.
+Same visual family as Facebook Type 8 Kanji-style, different aspect ratio (Threads = 4:5).
 
-### Fallback chain (both images) if kie.ai fails:
-1. Retry kie.ai once with simplified prompt.
-2. Manual queue log — do NOT post without Edison's real face. Write to
-   `./generated/engagement-manual-queue.md` and skip that platform for the run.
+### On kie.ai failure (both images):
+Retry exactly twice (full prompt, then simplified prompt). If both fail:
+1. Write the intended prompt + topic to `./generated/engagement-manual-queue.md`.
+2. SKIP that platform's post for this run.
+3. Do NOT fall back to any Blotato template — the text-on-color slides those produce
+   were exactly what shipped to Threads this morning and are never acceptable.
 
 Log the actual path used per image in `rotation-state.json` →
 `image_generation.last_path_used`.
