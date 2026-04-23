@@ -1,28 +1,28 @@
 {
-  "last_updated": "2026-04-22",
-  "last_topic_morning": "notebooklm_interactive_audio_studio_slides_classroom",
+  "last_updated": "2026-04-23",
+  "last_topic_morning": "chatgpt_workspace_agents_april26",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
   "last_run_slot": "morning",
   "linkedin": {
-    "image_skill": "edison-infographic-creator",
-    "content_image_subtype": "none",
+    "image_skill": "edison-content-image-creator",
+    "content_image_subtype": "style_b_concept_fallback_branded_tutorial_intro",
     "carousel_last_used": "branded_standard_cobalt_opus47",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
-    "post_type": "type_1_standard_ai_tip"
+    "post_type": "type_8_kanji_intended_fallback_text_list_face_free_hero"
   },
   "instagram": {
-    "carousel_style": "branded_standard_notebooklm_april26"
+    "carousel_style": "branded_tutorial_navy_yellow_chatgpt_agents_april26"
   },
   "threads": {
-    "infographic_style": "carousel_intro_reuse"
+    "infographic_style": "shared_branded_tutorial_intro"
   },
   "x": {
-    "thumbnail_style": "carousel_intro_reuse"
+    "thumbnail_style": "shared_branded_tutorial_intro_threadx5"
   },
   "image_generation": {
-    "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
+    "last_path_used": "blotato_tutorial_carousel_e095104b_only_succeeded_kie_ai_key_unavailable_face_required_logged_to_manual_queue"
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
@@ -31,13 +31,34 @@
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 0,
-      "note": "Infrastructure setup complete - awaiting comment data source"
+      "manual_queue_items": 6,
+      "note": "Awaiting comment data source - see generated/engagement-manual-queue.md"
     },
     "last_mode": "infrastructure_setup"
   },
-  "linkedin_pdf_links": {},
-  "facebook_pdf_links": {},
-  "instagram_pdf_links": {},
-  "x_pdf_links": {}
+  "linkedin_pdf_links": {
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+  },
+  "facebook_pdf_links": {
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+  },
+  "instagram_pdf_links": {
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+  },
+  "x_pdf_links": {
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+  },
+  "threads_pdf_links": {
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+  },
+  "keyword_per_topic": {
+    "chatgpt_workspace_agents_april26": "AGENT"
+  },
+  "published_post_urls_morning_april23": {
+    "linkedin": "https://linkedin.com/feed/update/urn:li:share:7452889662685175809",
+    "facebook": "https://facebook.com/726492947207808_122173498700887913",
+    "instagram": "https://www.instagram.com/p/DXdKTTvIMCF/",
+    "threads": "https://www.threads.com/@edisonchuaofficial/post/DXdKG0JEU4b",
+    "twitter": "https://x.com/aiwithedison/status/2047124153648521315"
+  }
 }
