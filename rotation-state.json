@@ -37,19 +37,19 @@
     "last_mode": "infrastructure_setup"
   },
   "linkedin_pdf_links": {
-    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/claude/intelligent-mayer-EmOIC/pdfs/chatgpt-workspace-agents-recipes.md"
   },
   "facebook_pdf_links": {
-    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/claude/intelligent-mayer-EmOIC/pdfs/chatgpt-workspace-agents-recipes.md"
   },
   "instagram_pdf_links": {
-    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/claude/intelligent-mayer-EmOIC/pdfs/chatgpt-workspace-agents-recipes.md"
   },
   "x_pdf_links": {
-    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/claude/intelligent-mayer-EmOIC/pdfs/chatgpt-workspace-agents-recipes.md"
   },
   "threads_pdf_links": {
-    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/pdfs/chatgpt-workspace-agents-recipes.md"
+    "chatgpt_workspace_agents_april26": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/claude/intelligent-mayer-EmOIC/pdfs/chatgpt-workspace-agents-recipes.md"
   },
   "keyword_per_topic": {
     "chatgpt_workspace_agents_april26": "AGENT"
@@ -60,5 +60,6 @@
     "instagram": "https://www.instagram.com/p/DXdKTTvIMCF/",
     "threads": "https://www.threads.com/@edisonchuaofficial/post/DXdKG0JEU4b",
     "twitter": "https://x.com/aiwithedison/status/2047124153648521315"
-  }
+  },
+  "next_action_required": "Merge claude/intelligent-mayer-EmOIC to main so the PDF guide URL resolves at /blob/main/, then update all *_pdf_links to /blob/main/ for permanence."
 }
