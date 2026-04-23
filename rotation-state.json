@@ -25,16 +25,16 @@
     "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-23T01:37:00Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
       "manual_queue_items": 0,
-      "note": "Infrastructure setup complete - awaiting comment data source"
+      "note": "Manual fallback mode - Blotato list_posts/list_replies and Claude-in-Chrome MCP unavailable"
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "manual_fallback"
   },
   "linkedin_pdf_links": {},
   "facebook_pdf_links": {},
