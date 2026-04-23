@@ -27,16 +27,21 @@
     "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-23T05:35:00Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
       "manual_queue_items": 0,
-      "note": "Infrastructure setup complete - awaiting comment data source"
+      "note": "Blotato MCP missing list_posts/list_replies endpoints; Claude-in-Chrome unavailable"
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "manual_fallback",
+    "api_limitations": {
+      "blotato": "No list_posts, list_replies, or get_post_comments endpoints exposed",
+      "claude_in_chrome": "Not available in this environment",
+      "result": "No active comments can be fetched; manual queue path not applicable"
+    }
   },
   "linkedin_pdf_links": {},
   "facebook_pdf_links": {},
