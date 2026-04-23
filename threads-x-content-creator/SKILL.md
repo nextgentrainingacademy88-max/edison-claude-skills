@@ -5,8 +5,11 @@ description: >
   Researches a trending AI topic, writes platform-native captions, generates
   platform-appropriate images, and schedules both posts via Blotato.
 
-  Threads: conversational caption (150-300 chars), no hashtags, infographic image
-  (whiteboard/chalkboard/manga rotation, same as LinkedIn).
+  Threads: conversational caption (150-300 chars), no hashtags, Kanji-style
+  branded image (Edison holding/beside a glowing 3D tool logo, verified badge,
+  bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE"
+  footer). Same visual family as Facebook Type 8 — adapted to 4:5 portrait for
+  Threads feed.
 
   X (Twitter): punchy tweet thread (tweet 1 hook + 3-4 follow-up tweets), bold
   thumbnail image (face + text overlay, MrBeast/YouTube thumbnail style).
@@ -18,40 +21,44 @@ description: >
   content for Threads or Twitter/X.
 
   TEST MODE triggers (generate a single sample image, no caption, no posting):
-  - "test threads image" or "test threads infographic" → Threads infographic (face-free)
-  - "test X thumbnail" or "test twitter thumbnail" → X MrBeast thumbnail (face-required, 16:9)
+  - "test threads image" or "test threads kanji" → Threads Kanji-style branded
+    (face-required, 4:5)
+  - "test X thumbnail" or "test twitter thumbnail" → X MrBeast thumbnail
+    (face-required, 16:9)
   - "test X image" or "test twitter image" → same as X thumbnail
   - "sample X thumbnail for [topic]" → X thumbnail with that topic
-  X thumbnail is face-required — MUST use kie.ai with `face_primary.blotato_url`.
-  Threads infographic is face-free — Blotato template first, kie.ai fallback.
-  Read the exact prompt template section before generating.
+  - "sample threads kanji for [topic]" → Threads Kanji with that topic
+  Both Threads Kanji and X thumbnail are face-required — MUST use kie.ai with
+  `face_primary.blotato_url`. Read the exact prompt template section before
+  generating.
 ---
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**Route by platform. X thumbnail is face-required → kie.ai first. Threads infographic is face-free → Blotato first.**
+**Both Threads and X images are face-required → ALWAYS kie.ai Nano Banana Pro first.**
 
-### X / Twitter thumbnail (face-required)
+Do NOT use Blotato built-in templates (Tutorial Carousel, Quote Card, Whiteboard
+Infographic, etc.) for either platform — those are text-to-image only and will
+generate a generic Asian male that does not look like Edison.
 
-ALWAYS use kie.ai Nano Banana Pro FIRST with `image_input: [face_primary.blotato_url]`
-from `assets-manifest.json`. Do NOT use Blotato built-in templates (Tutorial Carousel,
-Quote Card, etc.) — those are text-to-image only and will generate a generic Asian male
-that does not look like Edison.
+### X / Twitter thumbnail (face-required, 16:9)
 
-Fallback chain if kie.ai fails:
+Use kie.ai Nano Banana Pro with `image_input: [face_primary.blotato_url]`
+from `assets-manifest.json`.
+
+### Threads Kanji-style branded image (face-required, 4:5)
+
+Use kie.ai Nano Banana Pro with `image_input: [face_primary.blotato_url]`
+from `assets-manifest.json`. Same visual family as Facebook Type 8 Kanji-style,
+different aspect ratio (Threads = 4:5 portrait).
+
+### Fallback chain (both images) if kie.ai fails:
 1. Retry kie.ai once with simplified prompt.
-2. Blotato Instagram Carousel Slideshow template (`53cfec04-2500-41cf-8cc1-ba670d2c341a`)
-   with `model: "nano-banana-pro"` AND face URL passed as input.
-3. Manual queue log — do NOT post the X thumbnail without Edison's real face.
+2. Manual queue log — do NOT post without Edison's real face. Write to
+   `./generated/engagement-manual-queue.md` and skip that platform for the run.
 
-### Threads infographic (face-free, concept-only)
-
-Priority order:
-1. **Blotato built-in template** — if a matching one exists (Whiteboard Infographic, Chalkboard Infographic, Classroom Chalkboard, Newspaper, Breaking News, Manga Panel, Billboard, Book Page, Futuristic Flyer, TV Wall, Trail Marker, Constellation, Steampunk, Cave Painting, Graffiti Mural, T-Shirt, Top Secret, Bus Ad, Movie Theater, Egyptian Hieroglyph, Tweet Card, Tutorial Carousel, Quote Card). Use `blotato_create_visual` with the template ID and a text `prompt`. One-shot. Uses Blotato credits.
-2. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`) with `model: "nano-banana-pro"` — for custom prompts when no matching built-in template exists. Still uses Blotato credits.
-3. **kie.ai Nano Banana Pro direct** — fall back if Blotato returns `creation-from-template-failed` / `insufficient-credits` / other error. Use `${KIE_API_KEY}` from env.
-
-Log the actual path used per image in `rotation-state.json` → `image_generation.last_path_used`.
+Log the actual path used per image in `rotation-state.json` →
+`image_generation.last_path_used`.
 
 ---
 
@@ -63,7 +70,8 @@ Log the actual path used per image in `rotation-state.json` → `image_generatio
 This skill handles the full pipeline for Threads and X (Twitter):
 1. Research a trending AI topic
 2. Write platform-native captions (Threads = conversational, X = tweet thread)
-3. Generate platform-appropriate images
+3. Generate platform-appropriate images (both face-required, Kanji-style for
+   Threads, MrBeast thumbnail for X)
 4. Schedule via Blotato
 
 Both platforms get the same topic on the same day, adapted for each platform's
@@ -79,8 +87,9 @@ format and audience behavior.
 | Hashtags | None (Threads penalizes reach) | 1-2 max, at end of last tweet only |
 | Tone | Casual, conversational, human | Punchy, direct, slightly edgy |
 | CTA style | Soft question ("what do you think?") | Strong CTA or retweet ask |
-| Image style | Infographic (whiteboard/chalkboard/manga) | Bold thumbnail (face + text overlay) |
-| Aspect ratio | 1:1 square | 16:9 landscape |
+| Image style | Kanji-style branded (Edison + tool logo + navy block headline) | Bold MrBeast thumbnail (face + text overlay) |
+| Aspect ratio | 4:5 portrait | 16:9 landscape |
+| Face required | YES (kie.ai) | YES (kie.ai) |
 
 ---
 
@@ -109,6 +118,8 @@ Always translate technical topics into plain business language:
 - NO hashtags (they hurt Threads reach)
 - Casual, conversational tone — like texting a friend who is also curious about AI
 - End with a soft open question to spark replies
+- When the post promises a resource, end with `Comment [KEYWORD] and I'll DM you
+  the [guide/PDF/template].` — matches the "COMMENT FOR MORE" visual CTA
 - No formal structure, no numbered lists
 - Short sentences. White space friendly.
 
@@ -118,7 +129,7 @@ Always translate technical topics into plain business language:
 
 [The practical implication for their work — 1-2 sentences]
 
-[Soft question to invite replies]
+[Soft question to invite replies OR Comment-for-link CTA]
 ```
 
 **Example (topic: AI agents doing your VA tasks):**
@@ -190,22 +201,88 @@ TWEET 5 (CTA):
 
 ---
 
-## Step 3A: Generate Threads Image (Infographic)
+## Step 3A: Generate Threads Image (Kanji-Style Branded, 4:5)
 
-Threads gets the same infographic style as LinkedIn.
+Threads now uses the same Kanji-style branded format as Facebook Type 8 — the
+PREFERRED default Edison style. This replaces the previous infographic style
+(which produced weak plain-navy carousel covers).
 
-**Style rotation (check memory for last used, never repeat same style twice):**
-- Whiteboard: how-to / numbered tips / step-by-step
-- Chalkboard: concept explainer / AI news / "what is X"
-- Manga: story / before-after / relatable scenario
+**Design (locked structure — follow exactly):**
+- **Aspect ratio:** 4:5 portrait
+- **Top 60% of frame:** cinematic hero scene. Edison holding or standing beside
+  a large glowing 3D brand logo of the featured tool (Claude, NotebookLM, Gemini,
+  ChatGPT, Manus, Perplexity, Sora, Veo, Midjourney, Runway, ElevenLabs, etc.),
+  OR the two tool logos connected with a glowing energy line (for "X + Y" posts),
+  OR Edison looking at floating UI panels representing the topic. Warm cinematic
+  lighting, slight lens flare, orange/gold accent light. The brand logo must be
+  big, crisp, and readable.
+- **Middle strip:** thin horizontal divider line.
+- **Author badge (just below divider):** small circular headshot of Edison on
+  the LEFT, then the name "Edison Chua" with a small blue verified tick next to
+  it, and directly under the name in smaller grey text the tagline
+  "AI Marketing Strategist" (or "HRDC Certified AI Trainer" when the post is
+  about corporate training).
+- **Bottom 30% of frame:** solid dark navy (#0A1628) block. Bold oversized
+  headline text in 2 to 3 stacked lines. Use WHITE for most words and YELLOW
+  (#FFD700) for the key/emphasized words. Keep it under 14 words total.
+  Examples:
+  - "CHATGPT WORKSPACE AGENTS JUST KILLED CUSTOM GPTS"
+  - "HOW TO MASTER CLAUDE COWORK A COMPLETE GUIDE"
+  - "CLAUDE CAN NOW THINK LIKE A $100M FOUNDER — USE THESE 8 PROMPTS"
+- **Very bottom center:** the text "COMMENT FOR MORE" in small clean white
+  uppercase.
 
-**Aspect ratio for Threads:** `1:1` (square)
+**Headline hook styles (match caption energy):**
+- "BREAKING: [TOOL] JUST [action]"
+- "HOW TO MASTER [TOOL] — A COMPLETE GUIDE"
+- "[TOOL] CAN NOW [surprising new capability]. USE THESE [X] PROMPTS."
+- "[TOOL A] + [TOOL B] — HOW TO CONNECT THESE POWERFUL TOOLS FOR FREE."
+- "USE [TOOL] TO [OUTCOME] 100X FASTER"
 
-Follow the infographic prompt patterns from `edison-infographic-creator` SKILL.md.
-Use the same style selected for the LinkedIn post that day (same topic, same visual
-family — but regenerate so it is a fresh asset).
+**Hero scene rotation (check `rotation-state.json` → `threads.last_kanji_hero`):**
+1. `logo_palm` — Edison holding one glowing 3D tool logo floating above his
+   open palm. Use for single-tool spotlights, new feature launches.
+2. `two_logos` — Edison standing between two glowing 3D logos (Tool A on left,
+   Tool B on right) with a curved glowing energy line connecting them. Use for
+   stack combos ("Claude + NotebookLM", "ChatGPT + Manus").
+3. `holo_panels` — Edison looking up at floating holographic UI panels showing
+   the topic (dashboards, prompts, chat windows). Use for workflow posts,
+   "how to build X", process explainers.
 
-Generate via kie.ai Nano Banana Pro:
+Rotate `logo_palm → two_logos → holo_panels → logo_palm...` — never repeat the
+same hero variant twice in a row.
+
+**Nano Banana Pro prompt template for Threads Kanji-style:**
+```
+Use the face from the uploaded reference photo exactly. Preserve exact likeness,
+skin tone, hair, facial features. Young Asian man, black hair, slim build, warm
+confident smile, wearing a clean modern outfit (dark blazer over white shirt,
+or smart casual shirt depending on topic).
+
+Scene: Edison is [holding a large glowing 3D [TOOL] logo floating above his
+open palm / standing between two large glowing 3D logos ([TOOL A] on left,
+[TOOL B] on right) with a curved glowing energy line connecting them / looking
+up at floating holographic UI panels showing [topic]]. Warm cinematic lighting
+with orange and gold accent glow from the logo, clean studio-style background
+with soft light rays, slight lens flare. The logo must be crisp, high-resolution,
+immediately recognizable.
+
+Composition: subject occupies the TOP 60 percent of frame. BOTTOM 30 percent
+is a solid dark navy block (#0A1628) containing bold oversized stacked headline
+text: line 1 "[HEADLINE WORDS]" and line 2 "[HEADLINE WORDS]", with key words
+in bright yellow (#FFD700) and the rest in white, clean sans-serif font. Above
+the navy block, a thin horizontal divider, and immediately under the divider a
+small circular headshot of Edison on the left, the name "Edison Chua" with a
+small blue verified tick beside it, and beneath the name the smaller grey
+tagline "AI Marketing Strategist". Centered at the very bottom inside the navy
+block, small clean white uppercase text reading "COMMENT FOR MORE".
+
+Aspect ratio 4:5. Ultra realistic, photorealistic, 8K, cinematic lighting,
+sharp, high contrast. Preserve exact facial features from reference photo.
+No em dashes in any text.
+```
+
+**Generate via kie.ai Nano Banana Pro (use permanent face URL directly):**
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
@@ -213,9 +290,9 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -d '{
     "model": "nano-banana-pro",
     "input": {
-      "prompt": "[crafted infographic prompt]",
-      "image_input": [],
-      "aspect_ratio": "1:1",
+      "prompt": "[crafted Kanji-style prompt]",
+      "image_input": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
+      "aspect_ratio": "4:5",
       "resolution": "2K"
     }
   }'
@@ -226,7 +303,7 @@ Get URL from `data.resultJson.resultUrls[0]`.
 
 Save to:
 ```
-/sessions/[session]/mnt/Social Media Marketing/threads_infographic_[topic_slug].jpg
+./generated/threads_kanji_[topic_slug]_[date].jpg
 ```
 
 ---
@@ -288,14 +365,14 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
 
 Save to:
 ```
-/sessions/[session]/mnt/Social Media Marketing/x_thumbnail_[topic_slug].jpg
+./generated/x_thumbnail_[topic_slug].jpg
 ```
 
 ---
 
 ## Step 4: Upload Images to Blotato
 
-For each image (Threads infographic + X thumbnail):
+For each image (Threads Kanji-style + X thumbnail):
 
 ```bash
 # Step 4a: Get presigned upload URL from Blotato
@@ -322,7 +399,7 @@ curl -s -X PUT "[presigned_url]" \
 Platform: threads
 Account ID: 5937
 Content: [Threads caption — 150-300 chars, no hashtags]
-Visual: [Threads infographic visual ID]
+Visual: [Threads Kanji-style visual ID]
 Schedule: 09:00 MYT = 01:00 UTC
 ```
 
@@ -337,20 +414,21 @@ Schedule: 09:00 MYT = 01:00 UTC
 ```
 
 ### Evening slot (1pm MYT = 05:00 UTC)
-Same flow, different topic angle. Use the topic angle rotation from memory
-(check project_linkedin_automation.md for the day's 7pm angle).
+Same flow, different topic angle.
 
 ---
 
-## Step 6: Save Infographic Style to Memory
+## Step 6: Save State to Memory
 
-After each run, update memory file `project_linkedin_automation.md`:
-- Record which infographic style was used (Whiteboard / Chalkboard / Manga)
-- Record the date and slot (10am or 7pm)
-- Update "Next post should use" to the next style in rotation
+After each run, update `rotation-state.json` → `threads` block:
+- `last_kanji_hero`: which hero variant was used (`logo_palm`, `two_logos`, `holo_panels`)
+- `last_topic_slug`: the topic just used (prevents same-topic repeat within 48h)
 
-Rotation order: Whiteboard -> Chalkboard -> Manga -> Whiteboard...
-Never use the same style twice in a row across any platform.
+Hero rotation order: `logo_palm → two_logos → holo_panels → logo_palm...` —
+never use the same hero variant twice in a row.
+
+Also update `threads_pdf_links[topic_slug]` if the post promised a resource —
+the hourly engagement responder needs the Drive/GitHub link to auto-deliver.
 
 ---
 
@@ -360,8 +438,8 @@ Never use the same style twice in a row across any platform.
 |---|---|
 | Threads account ID | 5937 |
 | X account ID | 16254 |
-| Threads image style | Infographic (1:1 square) |
-| X image style | Bold thumbnail (16:9 landscape) |
+| Threads image style | Kanji-style branded (4:5 portrait, face-required) |
+| X image style | Bold thumbnail (16:9 landscape, face-required) |
 | 9am MYT | 01:00 UTC |
 | 1pm MYT | 05:00 UTC |
 | kie.ai API key | ${KIE_API_KEY} |
@@ -373,18 +451,23 @@ Never use the same style twice in a row across any platform.
 ## Platform Voice Summary
 
 **Threads voice:** Casual, curious, warm. Like Edison texting a colleague.
-No jargon, no hype. End with a question.
+No jargon, no hype. End with a question OR a Comment-for-link CTA when a
+resource is promised.
 
 **X voice:** Direct, punchy, slightly provocative. Edison knows something
 most people don't. Thread structure delivers value fast.
 
 ---
 
-## Engagement Routine (X/Twitter)
+## Engagement Routine (Threads + X)
 
-Replies to Edison's tweets are handled hourly by the shared `comment-engagement-responder`
-skill. When an X post promises a resource or thread continuation, store the Drive link in
-`rotation-state.json` under `x_pdf_links[topic_slug]` before posting. The responder replies
-to every tweet-reply with either the Drive link (on resource requests), a short helpful
-answer (on questions), or a warm thanks (on compliments). Threads replies are also covered
-if the Threads API comments endpoint is available; otherwise flagged for manual review.
+Replies are handled hourly by the shared `comment-engagement-responder` skill.
+
+**X/Twitter:** automated via Blotato API regardless of PC state.
+**Threads:** automated via Claude-in-Chrome MCP when Edison's PC is awake.
+When a post promises a resource, store the Drive link in `rotation-state.json`
+under `threads_pdf_links[topic_slug]` or `x_pdf_links[topic_slug]` BEFORE
+posting. The responder auto-delivers the link to every comment-for-link reply,
+answers questions, and thanks compliments. If Claude-in-Chrome can't reach
+Threads (PC asleep or login wall), the DM package falls through to
+`./generated/engagement-manual-queue.md` for Edison to handle on mobile.
