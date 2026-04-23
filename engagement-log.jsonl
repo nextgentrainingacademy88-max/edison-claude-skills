@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-23T23:36:04Z","type":"engagement_run","run_id":"hourly-2026-04-23T23:36:04Z","mode":"comment_source_unavailable","status":"no_comments_processed","reason":"Blotato comment API not available, Claude-in-Chrome MCP not available","stats":{"x_replies":0,"fb_manual_packages":0,"ig_manual_packages":0,"li_manual_packages":0}}
