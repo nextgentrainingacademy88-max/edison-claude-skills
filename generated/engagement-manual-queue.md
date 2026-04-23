@@ -1,23 +1,30 @@
-# Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+# Manual Engagement Queue — 2026-04-23 (Hourly Run)
+
+## Status
+**Mode:** Manual fallback (Claude-in-Chrome unavailable)  
+**Run Time:** 2026-04-23T00:00:00Z  
+**Last engagement run:** 2026-04-22T21:28:48Z
 
 ---
 
 ## Infrastructure Status
-
-✅ **Engagement logging system online**
-- Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter
-- Manual queue ready for DM packages
-- Engagement log: `engagement-log.jsonl`
-
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
-
-## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+✅ **X/Twitter account detected:** aiwithedison  
+✅ **Blotato API responsive**  
+✅ **Engagement-log.jsonl initialized**  
+⏳ **Awaiting comment data source:** Blotato MCP lacks post/reply listing; manual post review required
 
 ---
+
+## Summary
+No live comments available to process this run. **Action required:** 
+1. Manually review Edison's recent posts on X, Facebook, Instagram, LinkedIn
+2. Identify new comments (since last run: 2026-04-22T21:28:48Z)
+3. Copy comment details + reply text into this file
+4. Paste replies or DM packages as needed
+
+---
+
+## Next Steps
+- [ ] Wire up X post/reply listing (Blotato API enhancement or Twitter API direct integration)
+- [ ] Implement Claude-in-Chrome browser automation for FB/IG/LinkedIn when PC is awake
+- [ ] Auto-generate PDF resources when commenter requests unavailable guides
