@@ -73,5 +73,25 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-24 Hourly Engagement Run
+
+**Timestamp:** 2026-04-24T[HH:MM:SS]Z  
+**Mode:** Manual fallback (comment data unavailable)
+
+### Status by platform
+
+| Platform | Status | Notes |
+|----------|--------|-------|
+| X/Twitter | No data | Blotato API lacks `list_replies` / `list_posts` endpoints |
+| Facebook | No data | Claude-in-Chrome MCP unavailable; Blotato lacks `list_comments` |
+| Instagram | No data | Claude-in-Chrome MCP unavailable; Blotato lacks `list_comments` |
+| LinkedIn | No data | Claude-in-Chrome MCP unavailable; Blotato lacks `list_comments` |
+
+### Result
+
+**Comment data could not be fetched.** This engagement run executed cleanly but found no comments to process. The infrastructure (dedup log, state tracking, manual queue) is ready. When comment data becomes available (via X API, Meta Graph API, LinkedIn API, or Claude-in-Chrome integration), replies will activate automatically on the next hourly run.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*

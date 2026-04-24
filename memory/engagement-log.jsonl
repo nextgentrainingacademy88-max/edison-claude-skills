@@ -1,0 +1,3 @@
+# Engagement Log — deduplication baseline
+# Each line is a JSON object: { "comment_id", "platform", "timestamp", "action" }
+# Used to prevent duplicate replies to the same comment across runs
