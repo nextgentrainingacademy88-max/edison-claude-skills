@@ -73,5 +73,27 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-24 13:00 UTC hourly run — infrastructure audit
+
+**Mode:** Manual Fallback (PC asleep / Claude-in-Chrome unavailable)
+**Data sources checked:**
+- ✗ Blotato `list_posts` endpoint — not in MCP SDK
+- ✗ Blotato `list_comments` endpoint — not in MCP SDK
+- ✗ Claude-in-Chrome MCP — not available in this environment
+- ✗ Facebook Graph API direct — not wired up
+- ✗ LinkedIn API direct — not wired up
+- ✗ X API direct — not wired up
+
+**Result:** No comments to reply to. Comment data pipeline is not yet active.
+
+**Next steps:**
+1. Expose Blotato comment/post endpoints in MCP SDK (or wire direct Graph/LinkedIn/X API).
+2. Activate Claude-in-Chrome MCP for browser-based scraping when needed.
+3. Edison can manually feed comment data via a CSV or JSON input to this routine.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
