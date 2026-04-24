@@ -1,39 +1,44 @@
 {
-  "last_updated": "2026-04-24T02:45:00Z",
-  "last_topic_morning": "chatgpt_images_20_business_owner_playbook",
+  "last_updated": "2026-04-24T19:40:00Z",
+  "last_topic_morning": "f1_driver_pop_culture_prompt_showcase",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
   "last_run_slot": "morning",
-  "last_keyword_morning": "IMAGES",
+  "last_keyword_morning": "F1",
+  "pop_culture": {
+    "last_angle": "F1",
+    "last_subvariant": "Monaco_sunset",
+    "next_angle": "ANIME"
+  },
   "linkedin": {
-    "image_skill": "carousel-creator",
-    "content_image_subtype": "none",
-    "carousel_last_used": "attempted_branded_cover_kie_ai_host_blocked_fallback_face_photo",
+    "image_skill": "edison-content-image-creator",
+    "content_image_subtype": "path_C_face_photo_fallback_f1_angle",
+    "carousel_last_used": null,
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
-    "post_type": "type_8_kanji_attempted_kie_ai_host_blocked_fallback_face_photo",
+    "post_type": "pop_culture_f1_poster_path_C_face_photo_fallback",
     "last_type8_subvariant": null
   },
   "instagram": {
-    "carousel_style": "attempted_branded_standard_images_20_kie_ai_host_blocked_fallback_face_photo",
+    "carousel_style": "pop_culture_f1_single_hero_path_C_face_photo_fallback",
     "last_type8_subvariant": null
   },
   "threads": {
-    "last_kanji_hero": "logo_palm_attempted_kie_ai_host_blocked_fallback_face_photo",
-    "last_topic_slug": "chatgpt_images_20_business_owner_playbook",
-    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-24 morning run attempted logo_palm hero but kie.ai host was blocked in sandbox; fell back to posting Edison's permanent face photo as media so nothing published with a wrong generated face. See generated/engagement-manual-queue.md for the intended Kanji prompt to regenerate in Chrome."
+    "last_kanji_hero": "f1_driver_monaco_path_C_face_photo_fallback",
+    "last_topic_slug": "f1_driver_pop_culture_prompt_showcase",
+    "_note": "2026-04-24 morning run: pop-culture bucket / F1 angle. kie.ai host still blocked in sandbox (Path A); Blotato visuals out of credits (Path B returned insufficient-credits); fell through to Path C (permanent face photo). Next run needs either kie.ai allowlisted or Blotato credits topped up at https://my.blotato.com/settings/billing."
   },
   "x": {
-    "thumbnail_style": "mrbeast_attempted_kie_ai_host_blocked_fallback_face_photo"
+    "thumbnail_style": "mrbeast_f1_path_C_face_photo_fallback"
   },
   "image_generation": {
-    "last_path_used": "kie_ai_host_not_in_allowlist_sandbox_blocked_fallback_face_primary_blotato_url_all_platforms",
-    "last_run_manual_queue_entries": 2,
-    "_note": "2026-04-24 morning run: kie.ai host was not in the sandbox allowlist so neither the Kanji-style (FB/Threads) nor the MrBeast-style (X) face-required image could be generated. Per feedback_face_required_kie_ai_first.md we did NOT fall back to Blotato templates; instead we used face_primary.blotato_url directly (Edison's real photo) as the media. Intended prompts logged to generated/engagement-manual-queue.md for Edison to regenerate in Chrome + repost or swap in via Blotato library.",
-    "last_outfit": null,
+    "last_path_used": "path_C_face_primary_blotato_url_ALL_platforms",
+    "last_run_manual_queue_entries": 3,
+    "_note": "2026-04-24 morning run: Path A kie.ai returned 'Host not in allowlist' (sandbox firewall), Path B Blotato MCP create_visual returned 'insufficient-credits' on both 4:5 poster and 16:9 thumb. Path C fallback used Edison's permanent face photo so nothing shipped with a wrong AI-generated face. ACTION REQUIRED: top up Blotato credits at https://my.blotato.com/settings/billing OR whitelist api.kie.ai in the sandbox outbound allowlist.",
+    "last_outfit": "yellow_navy_racing_suit_INTENDED_not_generated",
     "model": "gpt-image-2-image-to-image",
     "provider": "kie.ai",
-    "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in image_urls array."
+    "note": "ChatGPT Images 2.0 is the only approved model. Face reference via image_urls array."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
@@ -42,34 +47,40 @@
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 2,
-      "note": "2 manual queue entries from 2026-04-24 morning (kie.ai host blocked). Awaiting first real comment data."
+      "manual_queue_items": 3,
+      "note": "3 manual queue entries cumulative across 2026-04-24 morning runs (2 from first failed attempt, 1 from this run). Awaiting first real comment data."
     },
     "last_mode": "infrastructure_setup"
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "f1_driver_pop_culture_prompt_showcase": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "facebook_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "f1_driver_pop_culture_prompt_showcase": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "instagram_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "f1_driver_pop_culture_prompt_showcase": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "x_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "f1_driver_pop_culture_prompt_showcase": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "threads_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "f1_driver_pop_culture_prompt_showcase": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "keyword_links": {
     "CLAUDE": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "IMAGES": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "PROMPT": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "PROMPT": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "F1": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#1-f1-driver-movie-poster-keyword-f1--face-required"
   }
 }
