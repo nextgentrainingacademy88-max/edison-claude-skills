@@ -4,7 +4,7 @@ description: >
   Edison Chua's complete Facebook content creation system. Handles all 7 Facebook post types:
   plain text on black, YouTube thumbnail style (face + tool icons + bold text), celebrity/news
   photo + text overlay, text list posts, meme + caption, person collage + headline, and face +
-  flow diagram posts. Generates images with Nano Banana Pro where needed, writes post copy, and
+  flow diagram posts. Generates images with ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) where needed, writes post copy, and
   schedules to Facebook via Blotato.
 
   Trigger when Edison says: "create a Facebook post", "make a Facebook image", "post this to
@@ -29,7 +29,7 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**kie.ai Nano Banana Pro is the ONLY path for every face-required Facebook post type.
+**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path for every face-required Facebook post type.
 Zero Blotato template fallbacks.**
 
 ### BLACKLIST — These Blotato templates are BANNED from this skill (they produced
@@ -58,10 +58,10 @@ Headers:
   Content-Type: application/json
 
 {
-  "model": "nano-banana-pro",
+  "model": "gpt-image-2-image-to-image",
   "input": {
     "prompt": "[full prompt]",
-    "image_input": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "image_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "4:5",
     "resolution": "2K"
   }
@@ -86,7 +86,7 @@ face-less or wrong-face image. Skipping is always preferred over publishing tras
 - Type 6 (Person collage) — sourced photos
 
 For Type 1 / Type 4 / any branded-graphic-only need, use kie.ai direct with
-`image_input: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
+`image_urls: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
 lock in a generic "Follow me for more | Repost" footer that doesn't match Edison's
 branding — avoid them.
 
@@ -94,6 +94,40 @@ Log the path used per image in `rotation-state.json` → `image_generation.last_
 
 ---
 
+
+
+
+## OUTFIT VARIETY RULE (read before writing any image prompt)
+
+Edison is DONE with the "dark navy blazer + white tee" default. Rotate outfits aggressively so he
+looks like a real person with a wardrobe, not a corporate stock photo. Pick based on the scene
+vibe and topic:
+
+| # | Outfit | When to use |
+|---|--------|-------------|
+| 1 | Oversized black hoodie + simple chain | AI/tech tool news, late-night hacker vibe |
+| 2 | Bright yellow bomber jacket + white tee | High-energy MrBeast thumbnail, shocked/excited poses |
+| 3 | Denim jacket over black graphic tee | Instagram carousel, casual confident |
+| 4 | Cream oversized crewneck + baseball cap | Chill tip/tutorial posts, "texting a friend" vibe |
+| 5 | Olive utility jacket + olive cargo + white sneaker | Streetwear fashion-forward, pop culture posts |
+| 6 | Washed indigo denim shirt (open) over plain tee | Warm "behind the scenes" / founder story |
+| 7 | Techwear black zip-up + minimal cargo | Cyberpunk / agentic-AI themes |
+| 8 | Heather-grey zip hoodie + black tee | Productivity, "how to" list posts |
+| 9 | Retro color-block track jacket (navy+orange+cream) | Fun high-contrast pop culture / meme moments |
+| 10 | Smart casual: navy blazer over a color tee with jeans | Only for "BREAKING / big announcement" posts — use sparingly, max 15% of runs |
+
+**Hard rules:**
+- NEVER a full suit, NEVER a tie, NEVER a dress shirt tucked in with slacks.
+- The blazer-on-tee combo (#10) is a premium variant, not the default. Use at most 1 in every 7 posts.
+- Rotate — never repeat the same outfit two posts in a row. Track `rotation-state.json` → `image_generation.last_outfit` across runs.
+- Topic-match wins over strict rotation: a techwear topic uses #7 regardless of rotation.
+- Keep his face, skin, and hair consistent (young Asian man, black hair, slim build, warm smile) — only the clothes change.
+
+Substitute the outfit from this table verbatim into any skill template that says
+"wearing a clean modern outfit" or "dark blazer over white tee". Do NOT paste the table
+into the image prompt — paste only the chosen outfit line.
+
+---
 
 # Edison's Facebook Content Creator
 
@@ -176,14 +210,14 @@ Pick based on topic. Here are the 7 types:
 **When to use:** AI tool comparisons, "X + Y = Result" posts, tool stack reveals, high-energy how-to.
 **Design:** Edison's face on the left in dramatic lighting. Tool logos/icons arranged right or bottom.
 Bold oversized white/yellow text as the headline. Dark background.
-**Example trigger:** "NotebookLM + Gemini hack", "OpenClaw + Nano Banana = $20,000 websites"
-**Production:** Requires Nano Banana Pro. Uses Edison's face photo. See Part 2.
+**Example trigger:** "NotebookLM + Gemini hack", "OpenClaw + ChatGPT Images 2.0 = $20,000 websites"
+**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image). Uses Edison's face photo. See Part 2.
 
 ### Type 3 — News Photo + Bold Text Overlay
 **When to use:** Celebrity or public figure news stories, viral internet moments, trending real-world events.
 **Design:** Real news photo or public figure image. Bold yellow/white text overlaid at the bottom.
 **Example trigger:** Khaby Lame story, Elon Musk news, tech CEO announcement
-**Production:** Source a real photo (search online or screenshot from news). Add text overlay in the prompt OR describe as a captioned image. No Nano Banana Pro needed.
+**Production:** Source a real photo (search online or screenshot from news). Add text overlay in the prompt OR describe as a captioned image. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) needed.
 
 ### Type 4 — Text List Post
 **When to use:** Comparison lists, free alternatives, tool swaps, tips lists. Goes viral from pure usefulness.
@@ -219,14 +253,14 @@ Fallbacks: `https://knowyourmeme.com/memes/trending`,
 `https://www.reddit.com/r/memes/top/.json?t=week`, `https://giphy.com/explore/meme`.
 
 **Production:** Download the chosen meme, pass to Blotato with a text overlay caption OR
-post directly as the media with the caption in the post body. No Nano Banana Pro needed.
+post directly as the media with the caption in the post body. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) needed.
 Write a short punchy caption above or below.
 
 ### Type 6 — Person Collage + Bold Headline
 **When to use:** "Top X people/creators/tools" listicles, story-driven posts about multiple figures.
 **Design:** Multiple real photos of people arranged together. Big bold headline text at bottom.
 **Example trigger:** "5 AI creators who went from broke to millionaires", "These 3 CEOs changed AI forever"
-**Production:** Screenshot or collage of real photos sourced online. Bold text overlay. No Nano Banana Pro.
+**Production:** Screenshot or collage of real photos sourced online. Bold text overlay. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image).
 
 ### Type 8 — Kanji-Style Branded Post (PREFERRED DEFAULT)
 **When to use:** AI tool spotlights, "how to master [tool]" guides, tip lists, product announcements,
@@ -261,15 +295,14 @@ viral Facebook format.
 - "USE [TOOL] TO [OUTCOME] 100X FASTER. THE ONLY [X] PROMPTS YOU NEED."
 
 **Example trigger:** "How to use NotebookLM", "Claude Opus 4.7 just shipped", "5 Gemini prompts"
-**Production:** Requires Nano Banana Pro with Edison's face. Use the prompt template below.
+**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with Edison's face. Use the prompt template below.
 **Post-posting:** ALWAYS pair with Strategy A comment thread (full tips in comments) AND pin the
 first comment (see Pin Comment Protocol below).
 
-**Nano Banana Pro prompt template for Type 8:**
+**ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt template for Type 8:**
 ```
 Use the face from the uploaded reference photo exactly. Preserve exact likeness, skin tone,
-hair, facial features. Young Asian man, black hair, slim build, warm confident smile, wearing
-a clean modern outfit (dark blazer over white shirt, or smart casual shirt depending on topic).
+hair, facial features. Young Asian man, black hair, slim build, warm confident smile, wearing [OUTFIT FROM OUTFIT VARIETY TABLE — pick the one that matches the topic vibe, rotate across runs].
 
 Scene: Edison is [holding a large glowing 3D [TOOL] logo floating above his open palm / standing
 between two large glowing 3D logos ([TOOL A] on left, [TOOL B] on right) with a curved glowing
@@ -300,7 +333,7 @@ Preserve exact facial features from reference photo. No em dashes in any text.
 **Design:** Edison's face on one side. A visual curve or flow diagram with labeled steps on the other.
 Bold title text at bottom.
 **Example trigger:** Affiliate marketing steps, funnel stages, AI learning journey
-**Production:** Requires Nano Banana Pro. Uses Edison's face photo. See Part 2.
+**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image). Uses Edison's face photo. See Part 2.
 
 ---
 
@@ -323,18 +356,18 @@ Bold title text at bottom.
 
 Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `image_input`.
 
-### Search Nano Banana Pro Prompt Library
+### Search ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) Prompt Library
 
 For Type 2 (YouTube Thumbnail style), search the library first:
 
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/manifest.json"
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/manifest.json"
 ```
 
 Then fetch relevant category file (youtube-thumbnail.json for Type 2):
 
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
   -o /tmp/yt_thumbnails.json
 
 python3 -c "
@@ -390,17 +423,17 @@ curl -X PUT "[presignedUrl]" \
 ```
 Then save the new `publicUrl` into the table above for permanent reuse.
 
-### Generate with kie.ai Nano Banana Pro
+### Generate with kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
 
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "nano-banana-pro",
+    "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[structured prompt from above]",
-      "image_input": ["[publicUrl from Blotato upload]"],
+      "image_urls": ["[publicUrl from Blotato upload]"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
@@ -583,13 +616,147 @@ the actual article or tool page before writing the comment.
 
 ---
 
+
+
+---
+
+## Type 8 Sub-Variants — Kanji-Style Single-Image Format (FACE-FREE options allowed)
+
+Edison also wants to post Kanji-style single images that are NOT always a portrait of him.
+Reference examples (real Kanji Low posts that went viral): a person at a laptop with money
+flying out + 3D Claude logo, a 3D tool logo inside a vault with floating icons, a phone
+mockup showing a tool's usage-limit meter with a 3D character smashing it, a NotebookLM
+tutorial screenshot with bold yellow overlay text, and 4-panel AI-confusion memes.
+
+Rotate these sub-variants alongside the original face-hero Type 8 (Edison holding the logo).
+Roughly **45% face-hero / 55% face-free across Facebook + Instagram Kanji single-image posts.**
+
+All sub-variants share the same bottom treatment:
+- Thin horizontal divider
+- Tiny Edison headshot + "Edison Chua ✓ / AI Marketing Strategist" byline (OR omit entirely for meme variant)
+- Bottom navy block `#0A1628` with oversized stacked headline (key words in yellow `#FFD700`)
+- "COMMENT FOR MORE" footer
+
+### 8a — Scene Hero (face optional)
+Person sits at a laptop, warm window light, steam from a coffee cup. Money (or icons, or
+glowing papers) fly out of the laptop screen. A large 3D brand logo floats beside the laptop.
+Style: cinematic stock-photo energy, shallow depth of field, warm orange highlights. Edison
+can appear from the side (hand + cuff of hoodie, shoulder + jawline) — face is optional but
+brand consistency improves if his face is partially visible.
+
+**Prompt template (kie.ai gpt-image-2-image-to-image):**
+```
+A young Asian man ([outfit from OUTFIT VARIETY TABLE]) sits at a wooden cafe table in front
+of an open laptop. Warm side-window light, visible coffee cup with steam. A burst of floating
+US dollar bills and a large glowing 3D [TOOL] logo erupts out of the laptop screen, with
+orange and gold sparkle particles. Shallow depth of field, cinematic photograph, shot at 50mm.
+Only the top half of his face is visible (we see his smile and the coffee cup he's holding).
+
+Composition: the scene fills the TOP 65 percent of the frame. BOTTOM 30 percent is a solid
+dark navy block #0A1628. Above the block a thin horizontal divider, then the Edison Chua
+verified byline + "AI Marketing Strategist". Inside the navy block, bold stacked headline
+text: [HEADLINE LINE 1 with KEY WORDS in yellow #FFD700, rest in white], [HEADLINE LINE 2].
+Centered at the bottom, "COMMENT FOR MORE" in small uppercase white.
+
+Aspect ratio 4:5 portrait. Photorealistic, 8K, sharp, cinematic lighting. No em dashes.
+```
+
+### 8b — Iconographic (no face)
+No human. Just a 3D tool logo as the hero, elevated on a product-launch podium or floating
+inside a glowing vault, with 6-10 smaller floating icons (code brackets, lightbulb, chart,
+document, gear, magic wand, etc.) arranged around it like a product showcase.
+
+**Prompt template:**
+```
+A large 3D brand logo of [TOOL] (specify logo shape: e.g. the orange Claude asterisk, the
+black ChatGPT spiral, the blue Gemini gem, the NotebookLM arc) sits centered on a glowing
+round product-podium. Around it floats a halo of 6 to 10 smaller 3D pastel icons representing
+the use cases (code brackets, lightbulb, bar chart, document, gear, magic wand, chat bubble,
+shield, rocket, pencil). Soft studio lighting with slight orange rim light, clean pale
+neutral background, subtle floor shadow. Showroom/product-reveal aesthetic.
+
+Composition: scene fills TOP 60 percent. Edison Chua verified byline band over the lower
+boundary. BOTTOM 30 percent navy block #0A1628 with stacked headline [LINE 1 / LINE 2],
+key words yellow, rest white. "COMMENT FOR MORE" small uppercase centered footer.
+
+Aspect ratio 4:5. Ultra sharp, photorealistic 3D render, premium product-launch style. No em dashes.
+```
+
+### 8c — Meme (no face, no byline, no headline block)
+Pure meme. Use a known template (4-panel wholesome/frustration meme, Distracted Boyfriend,
+Expanding Brain, "Is this X?" conversational meme, etc.) adapted to the day's AI-topic joke.
+No byline, no navy block. Keep it as a native meme so it reads as organic humor.
+
+**Prompt template:**
+```
+Recreate the [SPECIFIC MEME FORMAT] meme format. [Scene description with dialogue/captions
+appropriate to today's AI topic]. Classic meme aesthetic, flat cartoon style OR clean
+photorealistic style depending on the chosen template. Square 1:1 or 4:5 portrait.
+
+No em dashes. No Edison Chua byline. No navy block. No COMMENT FOR MORE text. Just the meme.
+```
+
+Never fabricate captions that misrepresent a tool (no "Claude killed my grandma" etc.).
+Keep it warm, self-aware, and safe-for-work.
+
+### 8d — Phone / Product Mockup (no face)
+A 3D-rendered phone or laptop shows the tool's real interface (or a realistic mockup).
+A small 3D character, floating object, or dramatic effect interacts with the screen to
+dramatize a problem or capability — e.g. a tiny hammer smashing a "usage limit" progress
+bar, a 3D arrow shooting out of a chart, a floating character holding up a tool icon.
+
+**Prompt template:**
+```
+A realistic 3D render of a modern smartphone (or open laptop) on a clean neutral surface.
+The screen shows a realistic mockup of [TOOL] interface: [DESCRIBE THE SPECIFIC UI — e.g.
+Claude usage limit progress bar at 98 percent, ChatGPT main chat window, NotebookLM library
+sidebar]. Beside or on top of the phone, a small charming 3D character in matching brand
+colors interacts with the screen: [DESCRIBE THE ACTION — e.g. swinging a hammer to smash
+the progress bar, holding up a magnifying glass, lifting a glowing document]. Soft studio
+lighting, product-photography aesthetic, subtle floor reflection.
+
+Composition: scene TOP 65 percent. Edison Chua verified byline band. BOTTOM 30 percent
+navy block #0A1628 with stacked headline, key words yellow. "COMMENT FOR MORE" footer.
+
+Aspect ratio 4:5. Photorealistic 3D render, 8K, sharp. No em dashes.
+```
+
+### 8e — Tutorial Screenshot Overlay (no face)
+Layer a real (or mocked) screenshot of the tool's interface with bold yellow+white overlay
+text + a small tool logo badge. Think MrBeast-tutorial energy but for AI tools. Great for
+"here's what NotebookLM just shipped" announcements.
+
+**Prompt template:**
+```
+A photorealistic mockup of the [TOOL] app or web interface as it would appear on a laptop
+screen or full-screen monitor (fill approximately the top 65 percent of the frame). The
+interface shows [SPECIFIC FEATURE OR SCREEN]. Slight glow / light leak from one edge, soft
+drop shadow under the monitor.
+
+Over the interface, a large semi-transparent dark navy overlay on the BOTTOM half of the
+screenshot with bold overlay text: [HEADLINE LINE 1], with key words in bright yellow #FFD700
+and rest in bold white. A small 3D rounded-square badge of the [TOOL] logo in the top-left
+corner. Edison Chua verified byline band. "COMMENT FOR MORE" footer.
+
+Aspect ratio 4:5. Photorealistic, 8K, sharp. No em dashes.
+```
+
+### Rotation
+Track in `rotation-state.json` → `facebook.last_type8_subvariant` and `instagram.last_type8_subvariant`.
+Default rotation order across a 7-post Kanji-single-image block:
+`8-face-hero → 8a-scene → 8b-icono → 8d-phone → 8-face-hero → 8e-screenshot → 8c-meme`
+
+Memes (8c) are sparse by design (every ~7 posts). Never back-to-back memes.
+
+---
+
 ### Pin Comment Protocol (MANDATORY for Type 8 and all Strategy A posts)
 
 Every Type 8 post AND every Strategy A tips post MUST have its first comment pinned. The pinned
 comment is a second branded image + a CTA block that carries the reader from the post into the
 value drop (the full tip comments) or into a PDF/resource link.
 
-**Step 1 — Generate the pin-comment image with Nano Banana Pro** (use Edison's face, 1:1 square):
+**Step 1 — Generate the pin-comment image with ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)** (use Edison's face, 1:1 square):
 
 Prompt template:
 ```
@@ -649,7 +816,7 @@ a PDF and share it via Google Drive. This is what the pin comment promises ("Gra
    ```
 
 **Posting flow:**
-- First pinned comment: the Nano Banana pin image + "PDF link in my reply below 👇".
+- First pinned comment: the ChatGPT Images 2.0 pin image + "PDF link in my reply below 👇".
 - Reply under the pinned comment: the Google Drive share link + one line on what's inside.
 
 **Auto-reply to commenters asking for the link:** when someone comments asking for the guide
@@ -713,7 +880,7 @@ Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_post
 
 ## Post Type Quick Reference
 
-| Type | Image Needed | Nano Banana | Best For |
+| Type | Image Needed | ChatGPT Images 2.0 | Best For |
 |------|-------------|-------------|----------|
 | 1. Plain text on black | No | No | Opinions, breaking news |
 | 2. YouTube thumbnail | Yes | Yes | Tool combos, hacks |
