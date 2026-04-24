@@ -73,5 +73,20 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-24 hourly engagement run — Data source unavailable
+
+**Status:** BLOCKED — no comment data available.
+
+**Why:** Engagement routine requires one of:
+- Blotato `list-posts` + `list-comments` endpoints (NOT EXPOSED by Blotato MCP)
+- Claude-in-Chrome MCP to scrape Edison's browser (NOT AVAILABLE to this agent)
+- Direct X/Facebook/Instagram/LinkedIn API access (NOT AVAILABLE)
+
+**Result:** Zero comments fetched for X, Facebook, Instagram, LinkedIn.
+
+**Next step:** Wire up one of the above data sources (e.g., add list-posts/list-comments to Blotato MCP, or enable Claude-in-Chrome proxy, or add native Twitter API integration).
+
+---
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None fetched this run. Awaiting comment-data source integration.*
