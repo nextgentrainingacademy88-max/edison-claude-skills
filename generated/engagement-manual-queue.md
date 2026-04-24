@@ -73,5 +73,14 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-24 09:32 UTC — Hourly engagement routine (no API data available)
+
+**Status:** Run completed. No comment data fetched.
+**Reason:** Blotato MCP does not expose `list-comments` or `list-posts` endpoints. Claude-in-Chrome MCP not available in this session.
+**Accounts verified:** X (aiwithedison), Facebook (NextGen Training Academy), Instagram (edisonchuaofficial, aiwithedison), LinkedIn (Edison Chua), Threads (edisonchuaofficial).
+**Action:** When comment-fetching is wired up (via direct X API, Graph API polling, or Claude-in-Chrome), this routine will populate and auto-reply. For now, engagement manual queue awaits external data source.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
