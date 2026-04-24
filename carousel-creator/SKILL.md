@@ -3,7 +3,7 @@ name: carousel-creator
 description: >
   Edison Chua's carousel creator for LinkedIn AND Instagram. Generates a full branded carousel
   (cover + content slides + CTA) using vibrant flat color + yellow + white branding, Edison's
-  face on cover and CTA slides, real internet memes on content slides, and Nano Banana Pro
+  face on cover and CTA slides, real internet memes on content slides, and ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
   for all graphic generation.
 
   Use this skill whenever Edison says:
@@ -35,7 +35,7 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**kie.ai Nano Banana Pro is the ONLY path for every slide in a carousel. Zero Blotato
+**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path for every slide in a carousel. Zero Blotato
 template fallbacks.**
 
 ### BLACKLIST — These Blotato templates have posted face-less text-on-navy slides to
@@ -49,7 +49,7 @@ Edison's LinkedIn/Facebook/Threads and are BANNED from this skill:
 
 ### Rule A — Face-required slides (Cover, CTA, any slide with Edison)
 
-**kie.ai Nano Banana Pro is the ONLY path.** If kie.ai fails, skip the post — do NOT
+**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path.** If kie.ai fails, skip the post — do NOT
 fall back to any Blotato template.
 
 ```
@@ -59,10 +59,10 @@ Headers:
   Content-Type: application/json
 
 {
-  "model": "nano-banana-pro",
+  "model": "gpt-image-2-image-to-image",
   "input": {
     "prompt": "[full prompt]",
-    "image_input": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "image_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "[ratio]",
     "resolution": "2K"
   }
@@ -80,7 +80,7 @@ or a Blotato-template fallback.**
 
 ### Rule B — Face-free decorative slides (numbered points, checklists, graphics without Edison)
 
-Also kie.ai only — empty `image_input: []`. Blotato built-in infographic templates
+Also kie.ai only — empty `image_urls: []`. Blotato built-in infographic templates
 (Whiteboard, Chalkboard, Manga Panel, Newspaper, etc.) are tempting but lock in a
 generic "Follow me | Repost" footer and rigid layout that does NOT match Edison's
 navy-yellow branding. Stick with kie.ai so every slide matches the cover's vibe.
@@ -95,6 +95,40 @@ If any slide was missing the face when it should have had one, ALSO log
 ---
 
 
+
+
+## OUTFIT VARIETY RULE (read before writing any image prompt)
+
+Edison is DONE with the "dark navy blazer + white tee" default. Rotate outfits aggressively so he
+looks like a real person with a wardrobe, not a corporate stock photo. Pick based on the scene
+vibe and topic:
+
+| # | Outfit | When to use |
+|---|--------|-------------|
+| 1 | Oversized black hoodie + simple chain | AI/tech tool news, late-night hacker vibe |
+| 2 | Bright yellow bomber jacket + white tee | High-energy MrBeast thumbnail, shocked/excited poses |
+| 3 | Denim jacket over black graphic tee | Instagram carousel, casual confident |
+| 4 | Cream oversized crewneck + baseball cap | Chill tip/tutorial posts, "texting a friend" vibe |
+| 5 | Olive utility jacket + olive cargo + white sneaker | Streetwear fashion-forward, pop culture posts |
+| 6 | Washed indigo denim shirt (open) over plain tee | Warm "behind the scenes" / founder story |
+| 7 | Techwear black zip-up + minimal cargo | Cyberpunk / agentic-AI themes |
+| 8 | Heather-grey zip hoodie + black tee | Productivity, "how to" list posts |
+| 9 | Retro color-block track jacket (navy+orange+cream) | Fun high-contrast pop culture / meme moments |
+| 10 | Smart casual: navy blazer over a color tee with jeans | Only for "BREAKING / big announcement" posts — use sparingly, max 15% of runs |
+
+**Hard rules:**
+- NEVER a full suit, NEVER a tie, NEVER a dress shirt tucked in with slacks.
+- The blazer-on-tee combo (#10) is a premium variant, not the default. Use at most 1 in every 7 posts.
+- Rotate — never repeat the same outfit two posts in a row. Track `rotation-state.json` → `image_generation.last_outfit` across runs.
+- Topic-match wins over strict rotation: a techwear topic uses #7 regardless of rotation.
+- Keep his face, skin, and hair consistent (young Asian man, black hair, slim build, warm smile) — only the clothes change.
+
+Substitute the outfit from this table verbatim into any skill template that says
+"wearing a clean modern outfit" or "dark blazer over white tee". Do NOT paste the table
+into the image prompt — paste only the chosen outfit line.
+
+---
+
 # Edison's Carousel Creator
 
 ## Overview
@@ -106,12 +140,12 @@ Each slide falls into one of these types, each handled differently:
 
 | Slide Type | Edison's Face? | Meme? | Generated How |
 |---|---|---|---|
-| Cover | Yes | No | Nano Banana Pro image-to-image |
-| Hook / problem | No | Yes | Nano Banana Pro graphic + meme sourced from web |
-| Numbered point | No | Yes (optional) | Nano Banana Pro graphic + meme sourced from web |
-| Checklist / how-to | No | No | Nano Banana Pro graphic only |
-| Tool spotlight | No | No | Nano Banana Pro graphic + screenshot |
-| CTA / wrap-up | Yes (circle) | No | Nano Banana Pro image-to-image |
+| Cover | Yes | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) image-to-image |
+| Hook / problem | No | Yes | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + meme sourced from web |
+| Numbered point | No | Yes (optional) | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + meme sourced from web |
+| Checklist / how-to | No | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic only |
+| Tool spotlight | No | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + screenshot |
+| CTA / wrap-up | Yes (circle) | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) image-to-image |
 
 Target length: **6-9 slides total**. Don't go over 10 — credits are limited.
 
@@ -225,7 +259,7 @@ whether a meme fits, and what kind of meme would work.
 
 ## Step 2: Use the Proven Prompt Structure
 
-**Do NOT search the Nano Banana Pro prompt library.** The prompt structure below is already
+**Do NOT search the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt library.** The prompt structure below is already
 proven and tested — use it directly. Searching the library wastes tokens and credits.
 
 The templates in Steps 4 onwards are ready to use. Just fill in the topic-specific
@@ -318,10 +352,10 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "nano-banana-pro",
+    "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[prompt]",
-      "image_input": ["[publicUrl]"],
+      "image_urls": ["[publicUrl]"],
       "aspect_ratio": "4:5",
       "resolution": "2K"
     }
@@ -399,7 +433,7 @@ Bold modern poster layout. 4:5 aspect ratio, ultra sharp, clean graphic design.
 DO NOT render any technical instructions as visible text on the image.
 ```
 
-Call kie.ai WITH `image_input: ["[meme_public_url]"]`.
+Call kie.ai WITH `image_urls: ["[meme_public_url]"]`.
 
 ---
 
