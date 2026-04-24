@@ -73,5 +73,27 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-24 14:35 UTC — Infrastructure Check Run
+
+**Status:** INFRASTRUCTURE LIMITATION
+
+The hourly engagement routine executed but encountered missing API endpoints:
+
+1. **X / Twitter:** Blotato `list_posts` / `list_replies` not exposed in current MCP tools.
+2. **Facebook, Instagram, LinkedIn:** Claude-in-Chrome MCP not available in environment.
+
+**Platforms checked:**
+- X / Twitter account: `aiwithedison` ✓ Connected via Blotato
+- PDF state: ✓ Loaded from rotation-state.json (2 topics per platform, GitHub repo link fallback)
+- Engagement log: ✓ Initialized at memory/engagement-log.jsonl
+
+**Action taken:** No replies sent. Routine framework validated and ready for future runs once missing APIs are exposed or integrated.
+
+**Next run:** 2026-04-24T21:00:00Z (1:00 PM MYT)
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
