@@ -35,7 +35,7 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-**kie.ai Nano Banana Pro is the ONLY path for BOTH Threads and X images. Zero Blotato
+**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path for BOTH Threads and X images. Zero Blotato
 template fallbacks.**
 
 ### BLACKLIST — These Blotato templates are BANNED from this skill (they produced
@@ -54,11 +54,11 @@ the plain-navy text slide that got posted to Edison's Threads on 2026-04-23):
 
 ### X / Twitter thumbnail (face-required, 16:9)
 
-kie.ai with `image_input: [face_primary.blotato_url]` from `assets-manifest.json`.
+kie.ai with `image_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
 
 ### Threads Kanji-style branded image (face-required, 4:5)
 
-kie.ai with `image_input: [face_primary.blotato_url]` from `assets-manifest.json`.
+kie.ai with `image_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
 Same visual family as Facebook Type 8 Kanji-style, different aspect ratio (Threads = 4:5).
 
 ### On kie.ai failure (both images):
@@ -73,6 +73,40 @@ Log the actual path used per image in `rotation-state.json` →
 
 ---
 
+
+
+
+## OUTFIT VARIETY RULE (read before writing any image prompt)
+
+Edison is DONE with the "dark navy blazer + white tee" default. Rotate outfits aggressively so he
+looks like a real person with a wardrobe, not a corporate stock photo. Pick based on the scene
+vibe and topic:
+
+| # | Outfit | When to use |
+|---|--------|-------------|
+| 1 | Oversized black hoodie + simple chain | AI/tech tool news, late-night hacker vibe |
+| 2 | Bright yellow bomber jacket + white tee | High-energy MrBeast thumbnail, shocked/excited poses |
+| 3 | Denim jacket over black graphic tee | Instagram carousel, casual confident |
+| 4 | Cream oversized crewneck + baseball cap | Chill tip/tutorial posts, "texting a friend" vibe |
+| 5 | Olive utility jacket + olive cargo + white sneaker | Streetwear fashion-forward, pop culture posts |
+| 6 | Washed indigo denim shirt (open) over plain tee | Warm "behind the scenes" / founder story |
+| 7 | Techwear black zip-up + minimal cargo | Cyberpunk / agentic-AI themes |
+| 8 | Heather-grey zip hoodie + black tee | Productivity, "how to" list posts |
+| 9 | Retro color-block track jacket (navy+orange+cream) | Fun high-contrast pop culture / meme moments |
+| 10 | Smart casual: navy blazer over a color tee with jeans | Only for "BREAKING / big announcement" posts — use sparingly, max 15% of runs |
+
+**Hard rules:**
+- NEVER a full suit, NEVER a tie, NEVER a dress shirt tucked in with slacks.
+- The blazer-on-tee combo (#10) is a premium variant, not the default. Use at most 1 in every 7 posts.
+- Rotate — never repeat the same outfit two posts in a row. Track `rotation-state.json` → `image_generation.last_outfit` across runs.
+- Topic-match wins over strict rotation: a techwear topic uses #7 regardless of rotation.
+- Keep his face, skin, and hair consistent (young Asian man, black hair, slim build, warm smile) — only the clothes change.
+
+Substitute the outfit from this table verbatim into any skill template that says
+"wearing a clean modern outfit" or "dark blazer over white tee". Do NOT paste the table
+into the image prompt — paste only the chosen outfit line.
+
+---
 
 # Edison's Threads and X Content Creator
 
@@ -263,7 +297,7 @@ PREFERRED default Edison style. This replaces the previous infographic style
 Rotate `logo_palm → two_logos → holo_panels → logo_palm...` — never repeat the
 same hero variant twice in a row.
 
-**Nano Banana Pro prompt template for Threads Kanji-style:**
+**ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt template for Threads Kanji-style:**
 ```
 Use the face from the uploaded reference photo exactly. Preserve exact likeness,
 skin tone, hair, facial features. Young Asian man, black hair, slim build, warm
@@ -293,16 +327,16 @@ sharp, high contrast. Preserve exact facial features from reference photo.
 No em dashes in any text.
 ```
 
-**Generate via kie.ai Nano Banana Pro (use permanent face URL directly):**
+**Generate via kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) (use permanent face URL directly):**
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "nano-banana-pro",
+    "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted Kanji-style prompt]",
-      "image_input": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
+      "image_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
       "aspect_ratio": "4:5",
       "resolution": "2K"
     }
@@ -358,16 +392,16 @@ Use the PRIMARY URL directly in `image_input`. Do NOT re-upload.
 - Background glow (if any) must be WHITE — never navy, never teal
 - Bold text overlay: 3-5 words max. Make it the hook of the tweet
 
-**Generate via kie.ai Nano Banana Pro (use permanent face URL directly — no upload step):**
+**Generate via kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) (use permanent face URL directly — no upload step):**
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "nano-banana-pro",
+    "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted thumbnail prompt]",
-      "image_input": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
+      "image_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
@@ -454,7 +488,7 @@ the hourly engagement responder needs the Drive/GitHub link to auto-deliver.
 | 9am MYT | 01:00 UTC |
 | 1pm MYT | 05:00 UTC |
 | kie.ai API key | ${KIE_API_KEY} |
-| kie.ai model | nano-banana-pro |
+| kie.ai model | gpt-image-2-image-to-image |
 | Face photos | See assets-manifest.json face_primary.url |
 
 ---
