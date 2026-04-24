@@ -30,7 +30,7 @@ Every post promising a resource ends with: *"Comment [KEYWORD] and I'll DM you t
 | **GitHub** | ✅ Connected | PAT stored in `.env` as `GITHUB_TOKEN` |
 | **Google Drive** | ✅ Connected | Edison's photos folder shared "Anyone with link" |
 | **Blotato** | ✅ Connected (MCP) | Used for posting to all 5 platforms |
-| **kie.ai Nano Banana Pro** | API-based | Image generation |
+| **kie.ai ChatGPT Images 2.0 (model `gpt-image-2-image-to-image`, field `image_urls`)** | API-based | Image generation |
 
 ### Key Files & URLs
 - **GitHub repo:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills (public)
@@ -91,7 +91,7 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 - Pin-comment on Type 8 / Strategy A posts is always manual (platforms don't expose programmatic pin).
 
 ### Threads
-- Uses the **Kanji-style branded image** (same visual family as Facebook Type 8) — Edison holding or standing beside a glowing 3D tool logo, verified author badge ("Edison Chua | AI Marketing Strategist"), bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE" footer. Aspect ratio **4:5 portrait**, face-required (kie.ai Nano Banana Pro with permanent face URL).
+- Uses the **Kanji-style branded image** (same visual family as Facebook Type 8) — Edison holding or standing beside a glowing 3D tool logo, verified author badge ("Edison Chua | AI Marketing Strategist"), bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE" footer. Aspect ratio **4:5 portrait**, face-required (kie.ai ChatGPT Images 2.0 (model `gpt-image-2-image-to-image`, field `image_urls`) with permanent face URL).
 - Hero-scene rotation: `logo_palm` → `two_logos` → `holo_panels` (tracked in `rotation-state.json` → `threads.last_kanji_hero`).
 - Same topic as X/Twitter, adapted for each platform's format.
 
@@ -130,6 +130,18 @@ Tracks last-used style per skill. Read at start of each run, updated at end.
 Example structure documented in skills.
 
 ---
+
+
+
+## Image Engine (as of 2026-04-24)
+
+All face-required image generation uses **kie.ai ChatGPT Images 2.0** — model `gpt-image-2-image-to-image`, face reference passed in `image_urls: [face_primary.blotato_url]`. Replaces Nano Banana Pro as the default because Images 2.0 has better photorealism, better text rendering, and matches the "eat your own dogfood" rule (we post about Images 2.0, so we generate with Images 2.0).
+
+Tool-match override: if a post's TOPIC is a specific image model (e.g. post about Midjourney 7, Seedream v5, Flux), generate the demo image with THAT tool when possible. Otherwise default to ChatGPT Images 2.0.
+
+## Outfit Variety Rule (as of 2026-04-24)
+
+Every skill file (facebook-content-creator, carousel-creator, threads-x-content-creator, edison-content-image-creator) now carries an **Outfit Variety Table** near the top. Rotate across 10 outfits — hoodies, bombers, denim, techwear, oversized crewnecks, etc. The old "dark navy blazer over white tee" default is DEPRECATED as the go-to look. Smart-casual blazer-on-tee is allowed at most 15% of runs for "BREAKING / big announcement" posts only. Rotation tracked via `rotation-state.json` → `image_generation.last_outfit`.
 
 ## Decisions Made
 
