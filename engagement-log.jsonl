@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-24T09:15:30Z","type":"routine_run","run_id":"hourly-engagement-routine-20260424-0915","platform":"all","status":"infrastructure_check","mode":"api_limited","notes":"Blotato API lacks comment/reply listing; Claude-in-Chrome unavailable; awaiting data source","x_replied":0,"fb_queued":0,"ig_queued":0,"li_queued":0,"ts_queued":0}
