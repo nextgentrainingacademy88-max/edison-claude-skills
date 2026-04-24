@@ -73,5 +73,19 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-24 22:37 UTC — Hourly engagement run
+
+**Mode:** Manual fallback (PC asleep, no comment APIs available)
+
+**Platforms scanned:**
+- X/Twitter: no comment listing endpoint available via Blotato MCP
+- Facebook: Claude-in-Chrome MCP unavailable
+- Instagram: Claude-in-Chrome MCP unavailable
+- LinkedIn: Claude-in-Chrome MCP unavailable
+
+**Result:** No comment data processed. Run logged. State updated.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
