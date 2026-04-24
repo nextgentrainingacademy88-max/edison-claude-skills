@@ -30,16 +30,21 @@
     "_note": "2026-04-24 morning run: kie.ai host was not in the sandbox allowlist so neither the Kanji-style (FB/Threads) nor the MrBeast-style (X) face-required image could be generated. Per feedback_face_required_kie_ai_first.md we did NOT fall back to Blotato templates; instead we used face_primary.blotato_url directly (Edison's real photo) as the media. Intended prompts logged to generated/engagement-manual-queue.md for Edison to regenerate in Chrome + repost or swap in via Blotato library."
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-24T00:00:00Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 2,
-      "note": "2 manual queue entries from 2026-04-24 morning (kie.ai host blocked). Awaiting first real comment data."
+      "manual_queue_items": 0,
+      "note": "Hourly run 2026-04-24 00:00 UTC. Blotato MCP lacks post/reply listing API; Claude-in-Chrome unavailable. No comments fetched."
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "api_gap",
+    "api_status": {
+      "blotato_list_posts": "not_exposed",
+      "blotato_list_replies": "not_exposed",
+      "claude_in_chrome": "unavailable"
+    }
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
