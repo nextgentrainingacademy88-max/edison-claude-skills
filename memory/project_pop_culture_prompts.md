@@ -4,7 +4,7 @@ description: Trending AI image prompts (ChatGPT Images 2.0 era) sourced from Red
 type: project
 ---
 
-> **READ  FIRST.** Every prompt in this file uses the 10-part viral anatomy. If you source a NEW trending prompt from Reddit/Threads/X, apply that anatomy check — never ship a free-form prompt. Swap variables only.
+> **READ memory/feedback_viral_prompt_structure.md FIRST.** Every prompt in this file uses the 10-part viral anatomy (shot type + subject + action + setting + camera + lens + lighting + style + tech specs + face clause + constraints). If you source a NEW trending prompt from Reddit / Threads / X / Instagram, apply the anatomy check before using it. NEVER ship a free-form prompt. Swap variables only.
 
 # Pop Culture / Prompt Showcase Bucket — Trending AI Image Prompts
 
