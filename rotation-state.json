@@ -36,16 +36,18 @@
     "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in image_urls array."
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-24T18:35:41Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 2,
-      "note": "2 manual queue entries from 2026-04-24 morning (kie.ai host blocked). Awaiting first real comment data."
+      "manual_queue_items": 0,
+      "pdf_generated": 0,
+      "note": "Hourly engagement run 2026-04-24 18:35 UTC. Blotato MCP lacks list-posts and list-comments endpoints. No comment data fetched. Manual queue infrastructure ready for when data sources are connected."
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "hourly_engagement",
+    "infrastructure_status": "blotato_list_endpoints_pending"
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
