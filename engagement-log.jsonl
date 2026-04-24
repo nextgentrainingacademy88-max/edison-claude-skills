@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-24T07:33:40Z","type":"hourly_run","run_id":"hourly-engagement-routine-1904","mode":"infrastructure_limited","stats":{"x_replies":0,"fb_auto_replies":0,"ig_auto_replies":0,"li_auto_replies":0,"manual_queue_items":0},"reason":"no_comment_data_source_no_mcp_access","notes":"Blotato comment endpoints not exposed; Claude-in-Chrome MCP unavailable"}
