@@ -143,6 +143,16 @@ Tool-match override: if a post's TOPIC is a specific image model (e.g. post abou
 
 Every skill file (facebook-content-creator, carousel-creator, threads-x-content-creator, edison-content-image-creator) now carries an **Outfit Variety Table** near the top. Rotate across 10 outfits — hoodies, bombers, denim, techwear, oversized crewnecks, etc. The old "dark navy blazer over white tee" default is DEPRECATED as the go-to look. Smart-casual blazer-on-tee is allowed at most 15% of runs for "BREAKING / big announcement" posts only. Rotation tracked via `rotation-state.json` → `image_generation.last_outfit`.
 
+
+
+## Content Bucket #4 — Pop Culture / Prompt Showcase (as of 2026-04-24)
+
+**Share: 30% of all daily posts.** See [memory/project_pop_culture_prompts.md](memory/project_pop_culture_prompts.md) for the full prompt library with 6 rotating angles (F1, ANIME, POSTER, AD, CINEMATIC, TABLE).
+
+Pattern: a cool ChatGPT Images 2.0 generation + short caption + comment-for-prompt CTA. Keep captions under 3 lines. The KEYWORD matches the angle (F1 → F1 prompt, POSTER → 10 style prompts, etc.). The engagement responder auto-DMs the prompt via  → Drive PDF.
+
+Rotation tracked via .
+
 ## Decisions Made
 
 1. **Every LinkedIn post needs an image** — `linkedin-content-writer` is copy only, always paired with image skill.
