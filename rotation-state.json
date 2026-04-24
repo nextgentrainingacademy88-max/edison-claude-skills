@@ -1,30 +1,33 @@
 {
-  "last_updated": "2026-04-23T00:00:00Z",
-  "last_topic_morning": "notebooklm_interactive_audio_studio_slides_classroom",
+  "last_updated": "2026-04-24T01:00:00Z",
+  "last_topic_morning": "chatgpt_images_20_business_owner_playbook",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
   "last_run_slot": "morning",
+  "last_keyword_morning": "IMAGES",
   "linkedin": {
-    "image_skill": "edison-infographic-creator",
+    "image_skill": "carousel-creator",
     "content_image_subtype": "none",
-    "carousel_last_used": "branded_standard_cobalt_opus47",
+    "carousel_last_used": "attempted_branded_cover_kie_ai_host_blocked_fallback_face_photo",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
-    "post_type": "type_1_standard_ai_tip"
+    "post_type": "type_8_kanji_attempted_kie_ai_host_blocked_fallback_face_photo"
   },
   "instagram": {
-    "carousel_style": "branded_standard_notebooklm_april26"
+    "carousel_style": "attempted_branded_standard_images_20_kie_ai_host_blocked_fallback_face_photo"
   },
   "threads": {
-    "last_kanji_hero": null,
-    "last_topic_slug": null,
-    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. Previous infographic_style field deprecated 2026-04-23 when Threads switched to Kanji-style Type 8 image."
+    "last_kanji_hero": "logo_palm_attempted_kie_ai_host_blocked_fallback_face_photo",
+    "last_topic_slug": "chatgpt_images_20_business_owner_playbook",
+    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-24 morning run attempted logo_palm hero but kie.ai host was blocked in sandbox; fell back to posting Edison's permanent face photo as media so nothing published with a wrong generated face. See generated/engagement-manual-queue.md for the intended Kanji prompt to regenerate in Chrome."
   },
   "x": {
-    "thumbnail_style": "carousel_intro_reuse"
+    "thumbnail_style": "mrbeast_attempted_kie_ai_host_blocked_fallback_face_photo"
   },
   "image_generation": {
-    "last_path_used": "blotato_tutorial_carousel_plus_nano_banana_pro_partial_credits"
+    "last_path_used": "kie_ai_host_not_in_allowlist_sandbox_blocked_fallback_face_primary_blotato_url_all_platforms",
+    "last_run_manual_queue_entries": 2,
+    "_note": "2026-04-24 morning run: kie.ai host was not in the sandbox allowlist so neither the Kanji-style (FB/Threads) nor the MrBeast-style (X) face-required image could be generated. Per feedback_face_required_kie_ai_first.md we did NOT fall back to Blotato templates; instead we used face_primary.blotato_url directly (Edison's real photo) as the media. Intended prompts logged to generated/engagement-manual-queue.md for Edison to regenerate in Chrome + repost or swap in via Blotato library."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
@@ -33,14 +36,24 @@
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 0,
-      "note": "Infrastructure setup complete - awaiting comment data source"
+      "manual_queue_items": 2,
+      "note": "2 manual queue entries from 2026-04-24 morning (kie.ai host blocked). Awaiting first real comment data."
     },
     "last_mode": "infrastructure_setup"
   },
-  "linkedin_pdf_links": {},
-  "facebook_pdf_links": {},
-  "instagram_pdf_links": {},
-  "x_pdf_links": {},
-  "threads_pdf_links": {}
+  "linkedin_pdf_links": {
+    "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+  },
+  "facebook_pdf_links": {
+    "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+  },
+  "instagram_pdf_links": {
+    "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+  },
+  "x_pdf_links": {
+    "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+  },
+  "threads_pdf_links": {
+    "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+  }
 }
