@@ -73,5 +73,25 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-24 hourly run (12:00 UTC) — Infrastructure check
+
+**Status:** Infrastructure limited.
+
+**What was attempted:**
+- Blotato MCP account list: ✅ (found @aiwithedison X account ID 16254)
+- Blotato list-posts endpoint: ❌ (not exposed in MCP)
+- Blotato list-comments endpoint: ❌ (not exposed in MCP)
+- Claude-in-Chrome browser scrape (FB/IG/LI): ❌ (MCP not available in this context)
+
+**Result:** No comments fetched. No replies sent. No manual queue items.
+
+**Action required:** To activate engagement automation, wire one of:
+1. Direct X/Twitter API integration (v2 REST API) to fetch replies on posts
+2. Facebook Graph API integration to fetch feed comments
+3. LinkedIn API integration to fetch post comments
+4. Claude-in-Chrome MCP availability in the execution context
+
+---
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None queued yet. Populates once comment-data source is wired up.*
