@@ -73,5 +73,34 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-24 15:38:23Z — Hourly engagement run
+
+**Mode:** Partial manual fallback
+
+### Run Summary
+- **X/Twitter:** Posts and replies not fetchable (Blotato lacks `list_posts`/`list_replies` endpoints)
+- **Facebook:** No browser automation available (Claude-in-Chrome MCP not accessible)
+- **Instagram:** No browser automation available (Claude-in-Chrome MCP not accessible)
+- **LinkedIn:** No browser automation available (Claude-in-Chrome MCP not accessible)
+
+### Results
+| Platform | Automated Replies | Manual Queue Items | Status |
+|----------|-------------------|--------------------|--------|
+| X/Twitter | 0 | 0 | Data fetch limitation |
+| Facebook | — | 0 | Browser automation unavailable |
+| Instagram | — | 0 | Browser automation unavailable |
+| LinkedIn | — | 0 | Browser automation unavailable |
+| **Total** | **0** | **0** | — |
+
+### Next Steps to Enable Full Automation
+1. **X/Twitter:** Implement Twitter API v2 client (`/v2/tweets/search/recent` + `/v2/tweets/{id}/replies`)
+2. **FB/IG/LinkedIn:** Wire up Claude-in-Chrome MCP for scheduled PC presence or add comment scraping via platform Graph APIs
+3. **Blotato enhancement:** Add `blotato_list_posts()` and `blotato_get_post_replies()` endpoints
+
+**State updated:** rotation-state.json ✓
+**Log entry appended:** engagement-log.jsonl ✓
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None queued yet. Populates once comment data becomes available.*
