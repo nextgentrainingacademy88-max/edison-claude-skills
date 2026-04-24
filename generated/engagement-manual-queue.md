@@ -1,23 +1,33 @@
 # Manual Engagement Queue
-**Generated:** 2026-04-22 UTC
-**Run ID:** hourly-engagement-routine-2026-04-22T20:28:48Z
+**Generated:** 2026-04-24 UTC  
+**Run ID:** hourly-engagement-routine-2026-04-24T00:45:15Z
 
 ---
 
-## Infrastructure Status
+## Environment Status
 
-✅ **Engagement logging system online**
-- Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter
-- Manual queue ready for DM packages
-- Engagement log: `engagement-log.jsonl`
+**Mode:** Fallback (manual queue only)
 
-⚠️ **Current Limitation**
-Blotato MCP does not expose `list-posts` or `list-comments` endpoints. To proceed, comment data must be provided via:
-1. Manual CSV/JSON feed of recent comments
-2. Direct API integration (Graph API for FB/IG, LinkedIn API, Twitter API v2)
-3. Browser-based scraping with comment screenshots (Claude-in-Chrome when PC awake)
+**Why:**
+- Claude-in-Chrome MCP unavailable → FB/IG/LinkedIn browser automation disabled
+- Blotato API lacks `list-posts` / `list-comments` endpoints → no X/Twitter comment data available
+- No direct Graph API, LinkedIn API, or Twitter API v2 integration configured
+- Proceeding in receive-only mode; manual data feed required to populate queue
+
+**Infrastructure:**
+✅ Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter  
+✅ Engagement log system initialized: `engagement-log.jsonl`  
+✅ Manual queue ready to accept comment data
+
+---
 
 ## Manual Queue Items
-*None at this time. Feed comments and this section will populate automatically.*
+
+*No comment data available this run. To enable automated responses:*
+- Set up [Twitter API v2](https://developer.twitter.com) integration and pass post URLs + comment data
+- Provide Facebook/Instagram comment CSV with (post_url, commenter_name, comment_text, timestamp)
+- Provide LinkedIn comment data via direct browser screenshots or API
+
+*Once comment sources are added, Edison's DM packages will be generated automatically.*
 
 ---
