@@ -22,9 +22,43 @@ description: >
   Always read the specific sub-type prompt template section in this file before generating.
   Face-required paths use kie.ai with `face_primary.blotato_url` from assets-manifest.json.
 
-  This skill combines photo selection, style decision, Nano Banana Pro prompt crafting,
+  This skill combines photo selection, style decision, ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt crafting,
   Blotato upload, kie.ai generation, and saving — all in one workflow.
 ---
+
+
+## OUTFIT VARIETY RULE (read before writing any image prompt)
+
+Edison is DONE with the "dark navy blazer + white tee" default. Rotate outfits aggressively so he
+looks like a real person with a wardrobe, not a corporate stock photo. Pick based on the scene
+vibe and topic:
+
+| # | Outfit | When to use |
+|---|--------|-------------|
+| 1 | Oversized black hoodie + simple chain | AI/tech tool news, late-night hacker vibe |
+| 2 | Bright yellow bomber jacket + white tee | High-energy MrBeast thumbnail, shocked/excited poses |
+| 3 | Denim jacket over black graphic tee | Instagram carousel, casual confident |
+| 4 | Cream oversized crewneck + baseball cap | Chill tip/tutorial posts, "texting a friend" vibe |
+| 5 | Olive utility jacket + olive cargo + white sneaker | Streetwear fashion-forward, pop culture posts |
+| 6 | Washed indigo denim shirt (open) over plain tee | Warm "behind the scenes" / founder story |
+| 7 | Techwear black zip-up + minimal cargo | Cyberpunk / agentic-AI themes |
+| 8 | Heather-grey zip hoodie + black tee | Productivity, "how to" list posts |
+| 9 | Retro color-block track jacket (navy+orange+cream) | Fun high-contrast pop culture / meme moments |
+| 10 | Smart casual: navy blazer over a color tee with jeans | Only for "BREAKING / big announcement" posts — use sparingly, max 15% of runs |
+
+**Hard rules:**
+- NEVER a full suit, NEVER a tie, NEVER a dress shirt tucked in with slacks.
+- The blazer-on-tee combo (#10) is a premium variant, not the default. Use at most 1 in every 7 posts.
+- Rotate — never repeat the same outfit two posts in a row. Track `rotation-state.json` → `image_generation.last_outfit` across runs.
+- Topic-match wins over strict rotation: a techwear topic uses #7 regardless of rotation.
+- Keep his face, skin, and hair consistent (young Asian man, black hair, slim build, warm smile) — only the clothes change.
+
+Substitute the outfit from this table verbatim into any skill template that says
+"wearing a clean modern outfit" or "dark blazer over white tee". Do NOT paste the table
+into the image prompt — paste only the chosen outfit line.
+
+---
+
 
 ## IMAGE GENERATION PRIORITY RULE
 
@@ -37,11 +71,11 @@ and will produce a generic Asian male that does not look like Edison. They MUST 
 used for face-required images.
 
 **Priority order:**
-1. **kie.ai Nano Banana Pro with image_input** — PRIMARY. Pass `face_primary.blotato_url` from
+1. **kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with image_input** — PRIMARY. Pass `face_primary.blotato_url` from
    `assets-manifest.json` as `image_input[0]`. Use `${KIE_API_KEY}` from env.
 2. **Retry kie.ai once with simplified prompt** if the first call fails/times out.
 3. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`)
-   with `model: "nano-banana-pro"` AND the face URL as input — only if both kie.ai attempts fail.
+   with `model: "gpt-image-2-image-to-image"` AND the face URL as input — only if both kie.ai attempts fail.
 4. **Manual queue** — if all three fail, log the intended prompt to
    `./generated/engagement-manual-queue.md` so Edison can regenerate manually. Do NOT post
    a face-required image with no face or a wrong face.
@@ -75,16 +109,16 @@ generated image. It has two parts that always work together:
   scrolling for THIS specific topic?
 - **Text behind, not on top** — when adding text overlays, text should be layered BEHIND Edison,
   blended into the background. Not a flat bar at the bottom. Not text on top of his face.
-- **Use the Nano Banana Pro library first** — always search for prompt inspiration before writing
+- **Use the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) library first** — always search for prompt inspiration before writing
   from scratch.
 
 ---
 
-### Step 1: Search the Nano Banana Pro Prompt Library
+### Step 1: Search the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) Prompt Library
 
 Fetch the manifest to find the right category:
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/manifest.json"
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/manifest.json"
 ```
 
 Then search the relevant category file. For social/thumbnail content, the most useful files are:
@@ -94,7 +128,7 @@ Then search the relevant category file. For social/thumbnail content, the most u
 
 Search example:
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
   -o /tmp/yt_thumbnails.json
 
 python3 -c "
@@ -114,7 +148,7 @@ for item in data:
 ```
 
 Study the prompt structure — the composition language, lighting descriptors, and style terms
-are what make Nano Banana Pro prompts work well.
+are what make ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompts work well.
 
 ---
 
@@ -207,17 +241,17 @@ curl -X PUT "[presignedUrl]" \
 
 ---
 
-### Step 6: Generate with kie.ai Nano Banana Pro
+### Step 6: Generate with kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
 
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "nano-banana-pro",
+    "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted prompt from Step 3]",
-      "image_input": ["[publicUrl from Blotato]"],
+      "image_urls": ["[publicUrl from Blotato]"],
       "aspect_ratio": "[chosen ratio]",
       "resolution": "2K"
     }
