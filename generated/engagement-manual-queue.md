@@ -135,5 +135,24 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-25 12:00 UTC hourly run — Read APIs unavailable
+
+**Status:** BLOCKED
+
+**Comment fetch methods unavailable:**
+1. Blotato read APIs: No `list_posts` or `get_comments` endpoints exposed
+2. Claude-in-Chrome MCP: Not available in this execution environment
+3. X/Twitter API: No direct API access in current context
+
+**Result:** 0 replies sent, 0 manual queue items generated.
+
+**Next steps:**
+- Await infrastructure deployment (Twitter API integration OR Blotato read endpoints OR Claude-in-Chrome MCP)
+- Next hourly run will attempt again at 2026-04-25T13:00:00Z
+
+---
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None queued yet. Comment-data source unavailable.*

@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-25T12:00:00Z","type":"engagement_run","run_id":"hourly-20260425-1200","status":"blocked","reason":"Comment fetch APIs unavailable","x_replies":0,"fb_replies":0,"ig_replies":0,"li_replies":0,"manual_queue_items":0,"note":"Blotato has no read endpoints; Claude-in-Chrome unavailable; no direct Twitter API access"}
