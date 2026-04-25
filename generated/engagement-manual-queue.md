@@ -135,5 +135,47 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-25 hourly run — **BLOCKED: Comment-data sources unavailable**
+
+**Run timestamp:** 2026-04-25T18:47:30Z
+**Mode:** infrastructure-blocked
+
+### Blocker
+
+Engagement routine requires two tools that are not currently available:
+1. **Claude-in-Chrome MCP** — Required to drive Edison's logged-in browser for FB/IG/LinkedIn comment scraping and reply automation (Step 2 in SKILL.md, section "Fetch New Comments").
+2. **Blotato comments API** — Required to list X/Twitter replies without browser automation (Step 3, X/Twitter subsection).
+
+The routine is defined to require:
+- `mcp__Claude_in_Chrome__tabs_context_mcp` (or equivalent Chrome MCP call) to probe PC awake status
+- `mcp__Claude_in_Chrome__navigate`, `get_page_text`, `find`, `left_click`, `form_input` for FB/IG/LinkedIn 
+- Blotato endpoint to list posts and replies per X account
+
+### What was attempted
+
+1. ✓ Loaded state files (`rotation-state.json`, `engagement-log.jsonl`, project_engagement_routine.md, SKILL.md)
+2. ✗ Attempted to probe Claude-in-Chrome MCP availability → tool not in available MCPs
+3. ✗ Attempted to query Blotato for X posts/replies → endpoint not exposed in MCP tool list
+4. ✗ Cannot generate manual DM packages without comment data
+
+### What would run when tools are available
+
+- X/Twitter: list Edison's posts from last 48h → list replies → classify (resource_request / question / compliment / negative / unclear) → auto-reply via Blotato with warm <25-word responses → log sent replies to engagement-log.jsonl
+- Facebook/Instagram/LinkedIn: probe PC awake → if awake: drive browser to comment pages, auto-reply with human typing cadence + random delays, per-platform caps (FB ≤8, IG ≤8, LI ≤5), screenshot each reply, wait 8-20s between replies; if asleep: prepare manual DM packages for each new comment
+- Auto-PDF generation: if resource_request has no Drive link yet, generate branded PDF (navy + yellow, "AI with Edison"), upload to Drive, save link to rotation-state.json
+- Update rotation-state.json + engagement-log.jsonl + push to GitHub
+
+### Recommendation for Edison
+
+**Option 1 (immediate):** Wire up Claude-in-Chrome MCP to the remote routine harness. Once available, the engagement responder will activate full FB/IG/LinkedIn automation + PC-awake probing.
+
+**Option 2 (parallel):** Expose Blotato comments endpoints. Check Blotato MCP docs to see if list-posts or list-comments can be exposed as additional tools.
+
+**Option 3 (manual for now):** Temporarily comment-poll manually on each platform, then feed comments as a JSON file to the routine so it can reply without Claude-in-Chrome (requires JSON schema + parsing step in SKILL.md).
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
