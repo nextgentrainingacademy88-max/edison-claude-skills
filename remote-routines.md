@@ -109,6 +109,23 @@ Always log the path used per image in `rotation-state.json` under `image_generat
 
 No em dashes anywhere. Colors: navy #0A1628 + yellow #FFD700.
 
+**Step 4a — PRE-PUBLISH IMAGE AUDIT (HARD GATE, runs for every platform before posting):**
+
+For every image URL about to be attached to a Blotato post, run this audit. If ANY check fails, do NOT post that platform. Write the intended prompt + topic + platform to `generated/engagement-manual-queue.md` (commit to GitHub) and SKIP. Posting Edison's bare reference photo is NEVER acceptable, even as a "better than nothing" fallback — it has happened twice now (2026-04-22 wrong-face Blotato template, 2026-04-24 raw face photo on all 5 platforms) and Edison has explicitly forbidden it.
+
+Audit checks (ALL must pass):
+1. **Identity check — URL must not be the raw reference asset.** Reject if the about-to-post URL matches ANY of:
+   - `face_primary.blotato_url` (`https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg`)
+   - `face_primary.drive_url` (`https://lh3.googleusercontent.com/d/1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh`)
+   - any URL containing the drive ID `1xtRHfRctuDwNtOcg9cAhupE5zC1NUikh`
+   - any URL in `face_alternatives[].url` from `assets-manifest.json`
+   - any raw workshop photo URL from `workshop_photos[]` (workshop photos must be DARKENED + text-overlaid, never posted raw)
+2. **Provenance check — URL must come from THIS run.** The image URL must either (a) be a fresh kie.ai output URL (typically on `tempfile.aiquickdraw.com`, `kie.ai`, or the kie.ai media CDN, generated in this run's task), or (b) be a Blotato `database.blotato.io` URL that was uploaded **from a kie.ai output during this run** (track upload IDs in run scratch). If you cannot point to the kie.ai task ID that produced this image, reject.
+3. **Content check — face-required posts must visually contain branding.** For LinkedIn carousel cover, Facebook Type 8, Threads Kanji, X MrBeast thumbnail: the prompt that produced this image must include the navy block + yellow/white headline + "COMMENT FOR MORE" / verified-badge clauses. If the kie.ai task was called with a stripped/simplified prompt that omitted those branding clauses, treat as a content failure and re-run with the full prompt; if both retries returned a stripped image, SKIP and queue.
+4. **Filesize/format sanity.** Reject any image under 50KB or that is the same byte-length as the reference face photo. (Trivial check — catches the case where the URL was rewritten but content is still the raw reference.)
+
+Log the audit result in `rotation-state.json` under `image_generation.last_audit_result` per platform: `"pass_kie_ai_branded"`, `"reject_raw_face_photo"`, `"reject_no_kie_task_id"`, `"reject_branding_missing"`, etc. If ANY platform's audit fails, that platform is SKIPPED — do not silently swap in a different image.
+
 Step 4b - Before publishing, create or locate the resource tied to the KEYWORD (GitHub link, Drive PDF, prompt pack). If no resource exists yet for this topic, auto-generate a branded PDF (navy + yellow, "AI with Edison" cover, practical content) and upload to Google Drive folder 1MyvXqCm8Mhs02OCX1qyWotsT3Pj37Sm- with "Anyone with link" sharing. Store the keyword and link in rotation-state.json under {platform}_pdf_links[topic_slug] so the hourly engagement responder auto-delivers it when someone comments the KEYWORD. Every post copy MUST end with: `Comment [KEYWORD] and I'll DM you the [GitHub link / prompt pack / PDF guide].` Example KEYWORDS: CLAUDE (GitHub repo https://github.com/nextgentrainingacademy88-max/edison-claude-skills), PROMPT (prompt pack), AGENT (agent template), GUIDE (how-to PDF), NOTEBOOK (NotebookLM workflow).
 
 Step 5 - Post to all 5 platforms via the Blotato connector.
