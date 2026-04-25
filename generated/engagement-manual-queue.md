@@ -73,5 +73,28 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-25 00:44 UTC — Hourly engagement routine execution
+
+**Run ID:** hourly-engagement-routine-2026-04-25T00:44:03Z  
+**Mode:** Limited capability (Blotato API does not expose post/reply listing yet)  
+**Status:** ✅ Routine executed; awaiting comment data source integration
+
+### Infrastructure Status
+
+- **X/Twitter:** Blotato account verified (accountId: 16254, @aiwithedison). Reply automation ready once post/reply listing is available.
+- **Facebook, Instagram, LinkedIn:** Claude-in-Chrome MCP not probed (no real posts to fetch comments from yet).
+- **Engagement log:** Deduplication system ready in `./generated/engagement-log.jsonl`.
+- **PDF link mapping:** All 5 platforms have placeholder GitHub repo links in rotation-state.json pending real Drive PDF uploads.
+
+### What happens next
+
+Once Edison publishes his first social media post with a "Comment [KEYWORD] for [RESOURCE]" CTA:
+
+1. **X/Twitter replies** → The hourly routine will auto-fetch replies via Blotato and respond automatically (max 20 per run).
+2. **FB/IG/LinkedIn comments** → If Edison's PC is awake, Claude-in-Chrome will auto-reply in-browser. If asleep, the routine packages a DM response here.
+3. **Resource links** → Pulled from rotation-state.json `{platform}_pdf_links[topic_slug]`, or auto-generated as PDF if missing.
+
+---
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None queued yet. First posts not yet published.*
