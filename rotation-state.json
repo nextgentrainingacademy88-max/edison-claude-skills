@@ -43,7 +43,8 @@
     "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in image_urls array."
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-25T19:36:46Z",
+    "last_run_status": "blocked_infrastructure_unavailable",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
@@ -52,7 +53,8 @@
       "manual_queue_items": 7,
       "note": "5 new manual queue entries from 2026-04-25 afternoon F1 run (Path C fallback, prompts logged for local regen). Plus prior 2 from 2026-04-24."
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "hourly_attempt_blocked",
+    "blocker_reason": "Blotato MCP missing list-posts/list-comments endpoints; Claude-in-Chrome unavailable; no direct platform API access"
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
