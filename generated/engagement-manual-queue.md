@@ -65,6 +65,21 @@ Full library of 6 more pop-culture prompts here: https://github.com/nextgentrain
 
 ---
 
+## 2026-04-25 05:33 UTC hourly run — Infrastructure limited
+
+**Mode:** MANUAL FALLBACK
+**PC state:** asleep (Claude-in-Chrome MCP unavailable)
+**X comment access:** unavailable (Blotato does not expose list-comments)
+**FB/IG/LinkedIn:** skipped (PC asleep, no browser automation)
+**Result:** No new engagement items detected this run. Zero replies sent.
+
+Engagement system is infrastructure-constrained:
+- X/Twitter engagement requires X API access for comment listing (not available via Blotato)
+- Facebook/Instagram/LinkedIn require Claude-in-Chrome MCP when PC awake, or manual data entry
+- Blotato MCP only supports posting; does not support fetching posts or comments
+
+---
+
 ## Infrastructure Status
 
 Engagement logging system online. Blotato accounts verified: Facebook, Instagram, LinkedIn, Threads, X/Twitter.
