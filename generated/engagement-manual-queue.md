@@ -73,5 +73,35 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-25 hourly engagement run — infrastructure check
+
+**Timestamp:** 2026-04-25T00:00:00Z
+**Status:** Infrastructure limited
+
+### Infrastructure Constraints
+
+1. **Claude-in-Chrome MCP unavailable** — Cannot automate browser interactions for Facebook, Instagram, LinkedIn. These platforms require human-like browser behavior to avoid detection/bans.
+
+2. **Blotato comment/reply listing unavailable** — Available Blotato MCP endpoints do not include methods to list post comments or replies. X/Twitter automation requires this data to proceed.
+
+### Engagement Checks Performed
+
+- ✅ Git state: clean, on correct branch `claude/gracious-turing-T3RUQ`
+- ✅ rotation-state.json loaded
+- ✅ engagement-log.jsonl loaded (last run: 2026-04-22T21:28:48Z)
+- ⚠️ Claude-in-Chrome MCP: unavailable (PC-awake check skipped)
+- ⚠️ Blotato comment API: unavailable (no comment data to process)
+
+### Stats This Run
+
+- X/Twitter automated replies: 0 (awaiting API access)
+- Facebook manual DM packages: 0 (no comment data)
+- Instagram manual DM packages: 0 (no comment data)
+- LinkedIn manual DM packages: 0 (no comment data)
+
+**Next run will proceed once comment data becomes available via API or manual feed.**
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
