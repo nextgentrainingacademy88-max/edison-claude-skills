@@ -1,39 +1,43 @@
 {
-  "last_updated": "2026-04-24T02:45:00Z",
-  "last_topic_morning": "chatgpt_images_20_business_owner_playbook",
+  "last_updated": "2026-04-25T01:30:00Z",
+  "last_topic_morning": "gpt_55_agentic_mode_business_owners",
   "last_topic_afternoon": "claude_opus_47_1m_context_for_trainers",
   "last_run_slot": "morning",
-  "last_keyword_morning": "IMAGES",
+  "last_keyword_morning": "GPT55",
   "linkedin": {
-    "image_skill": "carousel-creator",
-    "content_image_subtype": "none",
-    "carousel_last_used": "attempted_branded_cover_kie_ai_host_blocked_fallback_face_photo",
+    "image_skill": "kanji_type8_attempted_workers_dev_blocked_blotato_credits_zero_fallback_face_photo",
+    "content_image_subtype": "logo_palm",
+    "carousel_last_used": "n/a_path_c_fallback",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
-    "post_type": "type_8_kanji_attempted_kie_ai_host_blocked_fallback_face_photo",
-    "last_type8_subvariant": null
+    "post_type": "type_8_kanji_attempted_workers_dev_blocked_blotato_credits_zero_fallback_face_photo",
+    "last_type8_subvariant": "logo_palm"
   },
   "instagram": {
-    "carousel_style": "attempted_branded_standard_images_20_kie_ai_host_blocked_fallback_face_photo",
-    "last_type8_subvariant": null
+    "carousel_style": "kanji_single_attempted_workers_dev_blocked_blotato_credits_zero_fallback_face_photo",
+    "last_type8_subvariant": "logo_palm"
   },
   "threads": {
-    "last_kanji_hero": "logo_palm_attempted_kie_ai_host_blocked_fallback_face_photo",
-    "last_topic_slug": "chatgpt_images_20_business_owner_playbook",
-    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-24 morning run attempted logo_palm hero but kie.ai host was blocked in sandbox; fell back to posting Edison's permanent face photo as media so nothing published with a wrong generated face. See generated/engagement-manual-queue.md for the intended Kanji prompt to regenerate in Chrome."
+    "last_kanji_hero": "holo_panels_attempted_workers_dev_blocked_blotato_credits_zero_fallback_face_photo",
+    "last_topic_slug": "gpt_55_agentic_mode_business_owners",
+    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-25 morning attempted holo_panels via Blotato Path B; insufficient credits. Posted Edison's permanent face photo as media. See generated/engagement-manual-queue.md for full prompts."
   },
   "x": {
-    "thumbnail_style": "mrbeast_attempted_kie_ai_host_blocked_fallback_face_photo"
+    "thumbnail_style": "mrbeast_attempted_workers_dev_blocked_blotato_credits_zero_fallback_face_photo"
   },
   "image_generation": {
-    "last_path_used": "kie_ai_host_not_in_allowlist_sandbox_blocked_fallback_face_primary_blotato_url_all_platforms",
-    "last_run_manual_queue_entries": 2,
-    "_note": "2026-04-24 morning run: kie.ai host was not in the sandbox allowlist so neither the Kanji-style (FB/Threads) nor the MrBeast-style (X) face-required image could be generated. Per feedback_face_required_kie_ai_first.md we did NOT fall back to Blotato templates; instead we used face_primary.blotato_url directly (Edison's real photo) as the media. Intended prompts logged to generated/engagement-manual-queue.md for Edison to regenerate in Chrome + repost or swap in via Blotato library.",
-    "last_outfit": null,
+    "last_path_used": "path_c_raw_face_fallback_workers_dev_not_in_sandbox_allowlist_AND_blotato_credits_zero",
+    "last_run_manual_queue_entries": 3,
+    "_note": "2026-04-25 morning run: Path A (api.kie.ai direct) and Path A-via-Worker (edison-kie-proxy.nextgentrainingacademy88.workers.dev) BOTH returned 'Host not in allowlist' from the Anthropic sandbox firewall. Path B (Blotato create_visual template f524614b-ba01-448c-967a-ce518c52a700) returned insufficient-credits on all 3 attempts. Fell back to Path C: posted Edison's permanent face photo (face_primary.blotato_url) as media for all 6 destinations. ACTION REQUIRED: top up Blotato credits at https://my.blotato.com/settings/billing AND/OR investigate why *.workers.dev is not on the sandbox allowlist (CLAUDE.md claims it is, but two consecutive runs fail). Intended prompts logged for Edison to regenerate in Chrome.",
+    "last_outfit": "techwear_black_zipup_intended_only",
     "model": "gpt-image-2-image-to-image",
     "provider": "kie.ai",
     "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in image_urls array."
+  },
+  "pop_culture": {
+    "last_angle": null,
+    "_note": "2026-04-25 morning was bucket #1 (latest AI news / new release), not pop_culture bucket."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
@@ -42,34 +46,40 @@
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 2,
-      "note": "2 manual queue entries from 2026-04-24 morning (kie.ai host blocked). Awaiting first real comment data."
+      "manual_queue_items": 5,
+      "note": "5 manual queue entries: 2 from 2026-04-24 morning + 3 from 2026-04-25 morning (Worker + Blotato both blocked). Awaiting first real comment data."
     },
     "last_mode": "infrastructure_setup"
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "gpt_55_agentic_mode_business_owners": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "facebook_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "gpt_55_agentic_mode_business_owners": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "instagram_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "gpt_55_agentic_mode_business_owners": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "x_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "gpt_55_agentic_mode_business_owners": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "threads_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "gpt_55_agentic_mode_business_owners": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   },
   "keyword_links": {
     "CLAUDE": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "IMAGES": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
-    "PROMPT": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
+    "PROMPT": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
+    "GPT55": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills"
   }
 }
