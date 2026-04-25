@@ -73,5 +73,24 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-25 hourly run — no comment data available
+
+**Status:** ⏸ Infrastructure incomplete
+
+**Reason:** 
+- Blotato MCP does not expose `list-posts` or `list-comments` endpoints.
+- Claude-in-Chrome MCP unavailable in remote routine context (PC status unknown, MCP not connected).
+- X/Twitter automation ready (Blotato API integration confirmed), awaiting comment-data source.
+- Facebook, Instagram, LinkedIn automation requires either Claude-in-Chrome or direct API integration (not yet available).
+
+**Blockers to unblock future runs:**
+1. Integrate direct X/Twitter API or GraphQL to list recent posts and replies (last 48h, filter by Edison's accounts).
+2. Wire up Claude-in-Chrome MCP probe to check if Edison's PC is awake, then scrape FB/IG/LI comments.
+3. OR expose comment-listing in Blotato MCP (request from Blotato team).
+
+**Queue:** No engagement items to process this run.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*
