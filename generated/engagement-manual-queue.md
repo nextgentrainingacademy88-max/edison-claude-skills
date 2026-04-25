@@ -135,5 +135,31 @@ Once generated, Edison can either:
 
 ---
 
+---
+
+## 2026-04-25 14:00 UTC (hourly run)
+
+**Status:** No posts/replies retrieved — tool limitations.
+
+**Root cause:**
+- Blotato MCP does not expose post-listing or reply-listing endpoints
+- Claude-in-Chrome MCP unavailable (PC asleep / headless environment)
+
+**What wasn't collected:**
+- X/Twitter: no recent posts or replies (would require Blotato.list_posts + Blotato.list_replies)
+- Facebook: no comment scrape (would require Claude-in-Chrome when PC awake)
+- Instagram: no feed comments or DMs (would require Claude-in-Chrome)
+- LinkedIn: no comment activity (would require Claude-in-Chrome)
+
+**Manual workaround for Edison:** Upload a CSV export of recent comments from each platform's native analytics/download feature, or enable integration with one of:
+1. X API v2 (https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query)
+2. Facebook Graph API (direct integration)
+3. LinkedIn API (comment aggregation)
+4. Claude-in-Chrome MCP (browser-based scraping when PC is online)
+
+Next hourly run will retry at 2026-04-25 15:00 UTC.
+
+---
+
 ## Pending engagement replies
 *None queued yet. Populates once a comment-data source is wired up.*

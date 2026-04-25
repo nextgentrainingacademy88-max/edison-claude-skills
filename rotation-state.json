@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-04-25T05:18:00Z",
+  "last_updated": "2026-04-25T14:00:00Z",
   "last_topic_morning": "chatgpt_images_20_business_owner_playbook",
   "last_topic_afternoon": "f1_driver_pop_culture_chatgpt_images_20",
   "last_run_slot": "afternoon",
@@ -43,16 +43,16 @@
     "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in image_urls array."
   },
   "engagement": {
-    "last_engagement_run_utc": "2026-04-22T21:28:48Z",
+    "last_engagement_run_utc": "2026-04-25T14:00:00Z",
     "engagement_stats": {
       "x_replies": 0,
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 7,
-      "note": "5 new manual queue entries from 2026-04-25 afternoon F1 run (Path C fallback, prompts logged for local regen). Plus prior 2 from 2026-04-24."
+      "manual_queue_items": 0,
+      "note": "2026-04-25 14:00 UTC hourly run: no posts/replies retrieved (Blotato MCP lacks list_posts/list_replies endpoints; Claude-in-Chrome MCP unavailable in headless mode). Awaiting comment-data source integration or manual upload."
     },
-    "last_mode": "infrastructure_setup"
+    "last_mode": "hourly_engagement_no_data"
   },
   "linkedin_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
