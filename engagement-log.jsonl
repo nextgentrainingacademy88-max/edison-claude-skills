@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-25T12:34:47Z","type":"engagement_run","run_id":"hourly-engagement-2026-04-25T12:34","mode":"manual_fallback_awaiting_comment_data_api","note":"Infrastructure standing by. Blotato MCP lacks list-posts/list-comments. Claude-in-Chrome unavailable for FB/IG/LI scraping. No comment data could be fetched.","stats":{"x_replies":0,"fb_queue":0,"ig_queue":0,"li_queue":0,"manual_packages":0}}
