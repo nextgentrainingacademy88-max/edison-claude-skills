@@ -21,9 +21,9 @@
 
 ### Why this fell through (DOUBLE failure)
 
-1. **Path A (api.kie.ai direct)** -> `Host not in allowlist` from sandbox firewall.
-2. **Path A-via-Worker (`edison-kie-proxy.nextgentrainingacademy88.workers.dev`)** -> also `Host not in allowlist`. CLAUDE.md claims `*.workers.dev` is on the sandbox allowlist; testing today shows it is NOT. Investigate.
-3. **Path B (Blotato `blotato_create_visual` template `f524614b-ba01-448c-967a-ce518c52a700`)** -> all 3 visuals returned `insufficient-credits`. Top up at https://my.blotato.com/settings/billing.
+1. **Path A (api.kie.ai direct)** → `Host not in allowlist` from sandbox firewall.
+2. **Path A-via-Worker (`edison-kie-proxy.nextgentrainingacademy88.workers.dev`)** → also `Host not in allowlist`. CLAUDE.md claims `*.workers.dev` is on the sandbox allowlist; testing today shows it is NOT. Investigate.
+3. **Path B (Blotato `blotato_create_visual` template `f524614b-ba01-448c-967a-ce518c52a700`)** → all 3 visuals returned `insufficient-credits`. Top up at https://my.blotato.com/settings/billing.
 
 Fell to Path C: posted Edison's permanent face_primary.blotato_url as media on all 6 destinations, captions intact. Per CLAUDE.md, did NOT use Blotato built-in text-on-color templates.
 
@@ -75,6 +75,8 @@ Aspect ratio 16:9 landscape. Preserve exact facial features from the reference p
 1. Top up Blotato credits at https://my.blotato.com/settings/billing so Path B works on the next run.
 2. Investigate why `*.workers.dev` returned `Host not in allowlist` despite CLAUDE.md saying it should be allowlisted. Possible fixes: enable `Bash` permission for that host explicitly in the routine settings, or accept Path C as the new default until Anthropic widens the allowlist.
 3. Optionally regenerate the 3 images above in Chrome (kie.ai web UI) and re-upload as image-only follow-up posts that reference the live thread.
+
+
 
 ---
 
