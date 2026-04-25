@@ -135,5 +135,24 @@ Once generated, Edison can either:
 
 ---
 
-## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+## 2026-04-25 hourly run (07:45 UTC) — Infrastructure unavailable
+
+**Status:** Cannot proceed with engagement polling.
+
+**Issue:** Blotato MCP does not expose `list-posts` or `list-comments` endpoints. The SKILL.md references using "Blotato MCP to list Edison's X posts and replies," but these methods are not available in the current integration.
+
+Additionally, Claude-in-Chrome MCP is not available in this environment, so Facebook, Instagram, and LinkedIn browser automation cannot run.
+
+**Result:**
+- X/Twitter: 0 replies (post/reply fetching API unavailable)
+- Facebook: 0 replies (browser unavailable)
+- Instagram: 0 replies (browser unavailable)
+- LinkedIn: 0 replies (browser unavailable)
+
+**To resume automated engagement:**
+1. Extend Blotato MCP with `list_posts` and `list_comments` endpoints, OR
+2. Wire up Claude-in-Chrome MCP for browser automation on FB/IG/LinkedIn, OR
+3. Integrate a third-party social media API (Hootsuite, Buffer, native X/LinkedIn/Meta APIs)
+
+**Pending engagement replies**
+*None queued this run due to data source unavailability.*

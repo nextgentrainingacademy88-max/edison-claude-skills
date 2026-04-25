@@ -1,0 +1,2 @@
+# Engagement log — one JSON object per line, tracks sent replies to avoid duplicates
+# Format: { "timestamp_utc": "2026-04-25T...", "platform": "x|fb|ig|li", "post_id": "...", "comment_id": "...", "commenter_handle": "...", "reply_type": "auto|manual", "status": "sent|skipped|error" }
