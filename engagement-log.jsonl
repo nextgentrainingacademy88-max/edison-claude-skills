@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-25T12:00:00Z","type":"engagement_run","run_id":"hourly-engagement-routine-2026-04-25-12","mode":"manual_fallback","x_replies_sent":0,"fb_queued":0,"ig_queued":0,"li_queued":0,"note":"No comment data available. Blotato comment APIs not exposed; Claude-in-Chrome MCP not available in server-side routine."}

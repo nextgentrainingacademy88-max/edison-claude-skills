@@ -73,5 +73,21 @@ Once generated, Edison can either:
 
 ---
 
+## 2026-04-25 hourly run (12:00 UTC)
+
+**Status:** No comment data available
+**Reason:** Server-side routine execution without:
+- Claude-in-Chrome MCP (would scrape FB/IG/LinkedIn)
+- Blotato comment-listing APIs (would fetch X replies)
+
+**Blotato account status:** ✅ All 6 accounts connected and authenticated
+**Engagement infrastructure:** ✅ Online and ready
+
+Once Edison's posts start receiving comments, this routine will:
+1. Auto-reply on X/Twitter via Blotato API (max 20/run)
+2. Prepare manual DM packages for FB/IG/LinkedIn
+
+---
+
 ## Pending engagement replies
-*None queued yet. Populates once a comment-data source is wired up.*
+*None queued yet. Awaiting first comment data from Edison's posts.*
