@@ -1,5 +1,67 @@
 # Manual Engagement Queue
-**Last updated:** 2026-04-24 UTC
+**Last updated:** 2026-04-25 UTC
+
+---
+
+## 2026-04-25 afternoon run — Path A worker blocked AND Path B Blotato out of credits
+
+**Topic:** F1 driver pop-culture demo of ChatGPT Images 2.0 (Bucket #4 — Pop Culture / Prompt Showcase, angle F1)
+**Keyword:** `F1`
+**Resource link:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#1-f1-driver-movie-poster-keyword-f1--face-required
+
+**Posts already published with Edison's permanent face photo as media (Path C fallback):**
+- LinkedIn personal: https://linkedin.com/feed/update/urn:li:share:7453673515053907968
+- LinkedIn Nextgen Academy page: https://linkedin.com/feed/update/urn:li:share:7453673544942690305
+- Facebook (Nextgen Academy page): https://facebook.com/726492947207808_122173804988887913
+- Instagram (@aiwithedison): https://www.instagram.com/p/DXiuk2_FLns/
+- Threads (@edisonchuaofficial): https://www.threads.com/@edisonchuaofficial/post/DXiun46Du-J
+- X (@aiwithedison): https://x.com/aiwithedison/status/2047908151618339142
+
+### LOUD FLAG — Path A AND Path B BOTH FAILED
+
+1. **Path A (Cloudflare Worker proxy):** `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev` returned `Host not in allowlist` from sandbox curl AND HTTP 403 from WebFetch. Workers.dev is NOT actually reachable from the remote-routine sandbox right now.
+2. **Path B (Blotato `blotato_create_visual` Product Scene Placement template `f524614b-ba01-448c-967a-ce518c52a700`):** all 5 visual creations returned `insufficient-credits` with the exact message "You don't have enough credits to generate this video. Purchase more credits at https://my.blotato.com/settings/billing to continue."
+
+**Action items for Edison:**
+- [ ] Top up Blotato credits at https://my.blotato.com/settings/billing (the $20 standing top-up CLAUDE.md describes was not in effect today).
+- [ ] Escalate the workers.dev allowlist denial with Anthropic OR add a new approved proxy host. The whole reason the Worker exists is to bypass the api.kie.ai block, but the Worker itself is now also blocked.
+- [ ] Regenerate the 5 prompts below locally (Edison's PC has direct kie.ai access) and swap the rendered images into the 6 Blotato posts above via Blotato's media library.
+
+### Image 1 of 5 — LinkedIn (4:5)
+```
+Cinematic 4:5 movie poster of the man in the reference photo as an F1 driver on the Monaco grid at golden hour. Navy and yellow racing suit with sponsor patches, helmet under right arm, gloves on, confident hero pose. Motion-blurred F1 cars streaking past, pit lane lights glowing. Bold yellow type SEASON FINALE stacked at top with thick black outline, white subtitle MONACO 2026. Photorealistic 8K, shot on 85mm, dramatic rim lighting, lens flare. Preserve exact facial features. No em dashes.
+```
+
+### Image 2 of 5 — Facebook Kanji wrapper (4:5)
+```
+Cinematic 4:5 poster of the man in the reference photo as an F1 driver on Suzuka grid at sunset. Navy and bright yellow racing suit with team patches, helmet at hip, focused gaze at camera. Bottom one-third is deep navy block with bold yellow stacked headline I BECAME AN F1 DRIVER IN 30 SECONDS, white subtext made with ChatGPT Images 2.0, badge label EDISON CHUA AI MARKETING STRATEGIST bottom-left. 8K, shot on 50mm, dramatic rim lighting, lens flare. Preserve exact facial features. No em dashes.
+```
+
+### Image 3 of 5 — Instagram (4:5)
+```
+Editorial 4:5 hero portrait of the man in the reference photo as an F1 driver in the Silverstone paddock at twilight. Navy and yellow Nomex racing suit with sponsor patches, balaclava pulled down, helmet at hip, hand on F1 car. Confident half-smile. Garage lights glowing warm orange behind, blurred mechanics. Bold yellow type F1 ROOKIE SEASON stacked top with thick black outline, white tagline MONACO SUZUKA SILVERSTONE. 8K, 50mm, golden-hour rim light. Preserve facial features.
+```
+
+### Image 4 of 5 — Threads Kanji (4:5)
+```
+Cinematic 4:5 portrait of the man in the reference photo as an F1 driver in front of a glossy navy and yellow F1 car, navy and yellow racing suit, helmet under arm, victorious pose. Marina Bay Singapore pit lane at night, neon yellow track lights glowing. Bottom navy block with bold yellow stacked headline F1 DRIVER MODE UNLOCKED, white text Generated with ChatGPT Images 2.0, badge EDISON CHUA AI MARKETING STRATEGIST bottom-left. 8K, 35mm, rim lighting. Preserve facial features.
+```
+
+### Image 5 of 5 — X MrBeast thumbnail (16:9)
+```
+MrBeast-style 16:9 widescreen YouTube thumbnail of the man in the reference photo as an F1 driver. Eyes wide with shock, mouth open, pointing dramatically at a glowing F1 car beside him. Bright yellow and navy racing suit, helmet in left hand. Monaco grid background, motion-blurred cars at golden hour, hyper-saturated colors, lens flare. Massive yellow text I AM AN F1 DRIVER NOW left third with thick black outline and red drop shadow, white text 30 SECONDS bottom-right. 8K, 24mm. Preserve facial features.
+```
+
+### Auto-DM script for `F1` keyword (when comments roll in)
+```
+Hey, here's the exact prompt I used to make the F1 driver shot in ChatGPT Images 2.0:
+
+Cinematic 9:16 movie poster of me as an F1 driver at [Monaco / Silverstone / Suzuka], standing on the grid in a [team-color] racing suit, helmet under arm, dramatic golden-hour sunset, motion-blurred cars streaking past in the background, bold typography "SEASON FINALE" stacked at top in yellow with thick black outline, photorealistic, 8K, shallow depth of field, shot on 85mm. Preserve exact facial features from the uploaded reference photo. No em dashes.
+
+Just upload your face photo, paste the prompt, swap [Monaco / Silverstone / Suzuka] for the track you want.
+
+Full library of 6 more pop-culture prompts here: https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md
+```
 
 ---
 
