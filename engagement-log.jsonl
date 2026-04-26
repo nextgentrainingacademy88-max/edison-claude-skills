@@ -1,1 +1,2 @@
 {"timestamp":"2026-04-22T20:28:48Z","type":"session_start","run_id":"hourly-engagement-routine","mode":"infrastructure_setup","note":"Engagement logging system initialized"}
+{"timestamp":"2026-04-26T11:00:00Z","type":"engagement_run","run_id":"hourly-engagement-routine-20260426-11","mode":"manual_fallback","x_replies":0,"fb_replies":0,"ig_replies":0,"li_replies":0,"manual_queue_items":0,"note":"Infrastructure unavailable: Blotato lacks post-listing API, Claude-in-Chrome MCP not accessible"}
