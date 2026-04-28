@@ -1,5 +1,70 @@
 # Manual Engagement Queue
-**Last updated:** 2026-04-25 UTC
+**Last updated:** 2026-04-28 UTC
+
+---
+
+## 2026-04-28 afternoon run — VALIDATION GATE: zero posts shipped (Path A + Path B both blocked)
+
+**Topic:** Anime fisheye selfie pop-culture demo of ChatGPT Images 2.0 (Bucket #4 — Pop Culture / Prompt Showcase, angle ANIME)
+**Keyword:** `ANIME`
+**Resource link:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required
+
+**Decision:** Per the run's mandatory validation gate (image URL must be on `tempfile.aiquickdraw.com`, not the face reference URL, kie.ai task `state` must be `success`), ALL 6 destinations were SKIPPED. Better zero posts than a mismatched face. Yesterday's Path C (raw face photo as media) is explicitly disallowed by today's gate.
+
+| # | Destination | Status |
+|---|---|---|
+| 1 | LinkedIn personal (18089) | SKIPPED |
+| 2 | LinkedIn Nextgen Academy page (18089 / 108414535) | SKIPPED |
+| 3 | Facebook Nextgen Academy (27053 / 726492947207808) | SKIPPED |
+| 4 | Instagram @aiwithedison (41734) | SKIPPED |
+| 5 | Threads @edisonchuaofficial (5937) | SKIPPED |
+| 6 | X @aiwithedison (16254) | SKIPPED |
+
+### LOUD FLAG — Path A AND Path B BOTH FAILED (third run in a row)
+
+1. **Path A (Cloudflare Worker proxy):** `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev` returned `Host not in allowlist` from sandbox curl AND HTTP 403 from WebFetch. Direct `api.kie.ai` also returns `Host not in allowlist`. The Worker domain is still NOT on the remote-routine sandbox allowlist as of 2026-04-28 13:14 MYT.
+2. **Path B (Blotato `blotato_create_visual` Product Scene Placement template `f524614b-ba01-448c-967a-ce518c52a700`):** returned `insufficient-credits` with the exact message "You don't have enough credits to generate this video. Purchase more credits at https://my.blotato.com/settings/billing to continue." (Same as 2026-04-25 afternoon run — top-up never happened.)
+
+**Action items for Edison (URGENT — three consecutive runs degraded now):**
+- [ ] Top up Blotato credits at https://my.blotato.com/settings/billing — set the standing $20/month auto-renew the CLAUDE.md mentions.
+- [ ] Escalate the workers.dev allowlist denial with Anthropic. The Worker exists specifically to bypass the api.kie.ai block but the Worker host itself is also denied from the routine sandbox.
+- [ ] Until Path A or Path B is restored, regenerate the 5 prompts below locally on Edison's PC (which has direct kie.ai access), upload to Blotato media library, then post manually via Blotato UI to all 6 destinations.
+
+### Image 1 of 5 — LinkedIn (4:5)
+```
+Ultra-realistic 4:5 vertical fisheye selfie of the man from the reference photo with three anime characters (Naruto, Luffy, Goku) standing right beside him. Everyone is making silly, exaggerated faces, mouths open wide in surprise, eyes squinted, eyebrows up. Setting: small bright living room with white tones, soft white sofa in background, warm sunlight streaming through a window. High camera angle, arm-extended selfie pose. Extreme fisheye lens distortion, edges curve outward. Realistic cinematic lighting. Anime characters rendered with stylized realism, blending naturally with the real photo. Preserve exact facial features from the reference photo (young Asian man, black hair, slim build, warm confident smile). 8K, ultra sharp, photorealistic. No em dashes.
+```
+
+### Image 2 of 5 — Facebook Kanji wrapper (4:5)
+```
+Ultra-realistic 4:5 vertical fisheye selfie of the man from the reference photo with anime characters Goku and Gojo right next to him. Everyone making wide-eyed silly faces, big open smiles. Bright modern living room with off-white walls, sun streaming in from the right. High-angle arm-extended selfie. Extreme fisheye distortion. Bottom one-third is deep navy block (#0A1628) with bold yellow (#FFD700) stacked headline I LIVE WITH ANIME NOW, white subtext made with ChatGPT Images 2.0, badge label EDISON CHUA AI MARKETING STRATEGIST bottom-left with a small blue verified tick, COMMENT FOR MORE centered at the very bottom. Anime characters in stylized realism. Preserve exact facial features. 8K. No em dashes.
+```
+
+### Image 3 of 5 — Instagram (4:5)
+```
+Editorial 4:5 fisheye selfie of the man from the reference photo flanked by Naruto, Luffy, and Doraemon. Everyone in exaggerated surprised expressions, mouths wide, eyes squinted into smiles. Bright minimalist living room with white walls and a yellow throw pillow on a sofa, golden hour light. Extreme fisheye lens, edges curve outward. High camera angle, arm-extended selfie pose. Anime characters rendered with stylized realism that matches the photoreal lighting. Preserve exact facial features. 8K, sharp, vibrant, photorealistic. No em dashes.
+```
+
+### Image 4 of 5 — Threads Kanji (4:5)
+```
+Ultra-realistic 4:5 fisheye selfie of the man from the reference photo with Naruto and Shinchan beside him. All three pulling silly exaggerated faces, mouths open, eyes wide. Bright bedroom with white tones and a small desk in the background, soft afternoon light. High camera angle, arm-extended selfie pose. Extreme fisheye distortion. Bottom navy (#0A1628) block with bold yellow (#FFD700) stacked headline ANIME LIVES IN MY HOUSE NOW, white text Generated with ChatGPT Images 2.0 in 30 seconds, badge EDISON CHUA AI MARKETING STRATEGIST bottom-left with blue verified tick, COMMENT FOR MORE centered at the very bottom. Anime in stylized realism. Preserve exact facial features. 8K. No em dashes.
+```
+
+### Image 5 of 5 — X MrBeast thumbnail (16:9)
+```
+MrBeast-style 16:9 widescreen YouTube thumbnail of the man from the reference photo as the main subject on the right, leaning into a fisheye selfie with Goku, Naruto, and Luffy crowding the frame. Everyone in extreme surprised expressions, mouths wide open, eyes huge. Bright living room background, hyper-saturated colors, dramatic rim lighting, lens flare. Extreme fisheye distortion. Massive yellow (#FFD700) text I LIVE WITH ANIME NOW left third with thick black outline and red drop shadow, white text 30 SECONDS bottom-right. Wide-angle 24mm fisheye look. 8K, ultra sharp. Preserve exact facial features. No em dashes.
+```
+
+### Auto-DM script for `ANIME` keyword (when comments roll in)
+```
+Hey, here's the exact prompt I used to make the anime fisheye selfie in ChatGPT Images 2.0:
+
+Ultra-realistic 9:16 vertical fisheye selfie of me with Naruto, Luffy, and Goku (pick any 2-3 anime characters). We are all making silly, exaggerated faces. Set in a small bright living room with white tones. High camera angle. Extreme fisheye lens distortion. Realistic cinematic lighting. Anime characters rendered with stylized realism. Preserve exact facial features from the uploaded reference photo. No em dashes.
+
+Just upload your face photo, paste the prompt, swap in any anime characters you want.
+
+Full library of 7 pop-culture prompts here: https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md
+```
 
 ---
 
