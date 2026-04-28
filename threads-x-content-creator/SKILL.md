@@ -58,11 +58,11 @@ the plain-navy text slide that got posted to Edison's Threads on 2026-04-23):
 
 ### X / Twitter thumbnail (face-required, 16:9)
 
-kie.ai with `image_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
+kie.ai with `input_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
 
 ### Threads Kanji-style branded image (face-required, 4:5)
 
-kie.ai with `image_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
+kie.ai with `input_urls: [face_primary.blotato_url]` from `assets-manifest.json`.
 Same visual family as Facebook Type 8 Kanji-style, different aspect ratio (Threads = 4:5).
 
 ### On kie.ai failure (both images):
@@ -340,7 +340,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted Kanji-style prompt]",
-      "image_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
+      "input_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
       "aspect_ratio": "4:5",
       "resolution": "2K"
     }
@@ -371,7 +371,7 @@ This is NOT a photo edit — it is an AI-generated stylised image of Edison.
 | Edison Chua Face.jpeg (PRIMARY) | `https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg` |
 | edison2.jpeg | Upload once if needed, then save URL here |
 
-Use the PRIMARY URL directly in `image_input`. Do NOT re-upload.
+Use the PRIMARY URL directly in `input_urls`. Do NOT re-upload.
 
 **X thumbnail prompt pattern (16:9 landscape):**
 ```json
@@ -405,7 +405,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted thumbnail prompt]",
-      "image_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
+      "input_urls": ["https://database.blotato.io/storage/v1/object/public/public_media/b035c60e-57fb-451a-a5c1-f7a2cbb9d990/b04dfb9c-5b63-4c13-8573-b3d5fc7b717e.jpeg"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
