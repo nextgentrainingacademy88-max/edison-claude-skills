@@ -71,8 +71,8 @@ and will produce a generic Asian male that does not look like Edison. They MUST 
 used for face-required images.
 
 **Priority order:**
-1. **kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with image_input** — PRIMARY. Pass `face_primary.blotato_url` from
-   `assets-manifest.json` as `image_input[0]`. Use `${KIE_API_KEY}` from env.
+1. **kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with input_urls** — PRIMARY. Pass `face_primary.blotato_url` from
+   `assets-manifest.json` as `input_urls[0]`. Use `${KIE_API_KEY}` from env.
 2. **Retry kie.ai once with simplified prompt** if the first call fails/times out.
 3. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`)
    with `model: "gpt-image-2-image-to-image"` AND the face URL as input — only if both kie.ai attempts fail.
@@ -223,7 +223,7 @@ Combine the library learnings with the chosen style. Always include:
 - Outdoor/travel feel → `edison3.jpeg` (upload once, save URL)
 - Tech/gaming vibe → `edison2.jpeg` (upload once, save URL)
 
-**SKIP Step 5 entirely when using the PRIMARY face.** Go straight to Step 6 and use the URL above as `image_input`.
+**SKIP Step 5 entirely when using the PRIMARY face.** Go straight to Step 6 and use the URL above as `input_urls`.
 
 ---
 
@@ -251,7 +251,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[crafted prompt from Step 3]",
-      "image_urls": ["[publicUrl from Blotato]"],
+      "input_urls": ["[publicUrl from Blotato]"],
       "aspect_ratio": "[chosen ratio]",
       "resolution": "2K"
     }
