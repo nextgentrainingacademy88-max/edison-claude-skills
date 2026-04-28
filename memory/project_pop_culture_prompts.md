@@ -21,8 +21,8 @@ When sourcing a new trending prompt from Reddit / Twitter / Threads / Instagram,
 
 **Does the original creator's face (or a specific person's face) appear in the generated image?**
 
-- **YES → FACE-REQUIRED path.** Edison swaps his face in. Pass `image_urls: [face_primary.blotato_url]` to kie.ai. Examples: fisheye selfie with anime characters, movie poster character transformation, F1 driver cockpit shot, Marvel hero portrait, cyberpunk protagonist, One Piece crew member.
-- **NO → FACE-FREE path.** Copy the prompt verbatim or make small brand-matching tweaks (colors → navy+yellow, tagline → Edison's). Pass `image_urls: []` to kie.ai. Examples: brand static ads, periodic tables, infographics, product shots, dense UI mockups, stylized typography posters.
+- **YES → FACE-REQUIRED path.** Edison swaps his face in. Pass `input_urls: [face_primary.blotato_url]` to kie.ai. Examples: fisheye selfie with anime characters, movie poster character transformation, F1 driver cockpit shot, Marvel hero portrait, cyberpunk protagonist, One Piece crew member.
+- **NO → FACE-FREE path.** Copy the prompt verbatim or make small brand-matching tweaks (colors → navy+yellow, tagline → Edison's). Pass `input_urls: []` to kie.ai. Examples: brand static ads, periodic tables, infographics, product shots, dense UI mockups, stylized typography posters.
 
 **Copy-and-adapt workflow for net-new prompts:**
 
