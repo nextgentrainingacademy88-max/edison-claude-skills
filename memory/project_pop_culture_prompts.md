@@ -110,7 +110,7 @@ Proof-of-capability post. Images 2.0 is known for rendering small text / infogra
 **Caption:**
 > ChatGPT Images 2.0 rendered a complete periodic table with zero typos.
 >
-> Nano Banana Pro never could.
+> Nano Banana Pro never could. (Edison switched all image gen to ChatGPT Images 2.0 on 2026-04-24 — Nano Banana Pro is deprecated; the line stays as caption flavor.)
 >
 > Comment TABLE and I'll DM you the prompt.
 
