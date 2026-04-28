@@ -25,7 +25,7 @@ viral Facebook style.
 5. Bottom center inside navy: small white uppercase "COMMENT FOR MORE".
 
 **Aspect ratio:** 4:5 portrait.
-**Generation:** Nano Banana Pro via kie.ai, face reference = primary Blotato face URL.
+**Generation:** ChatGPT Images 2.0 (gpt-image-2-image-to-image) via kie.ai, face reference = primary Blotato face URL.
 
 **Why:** This format combines a scroll-stopping hero + personal brand trust (verified
 badge) + a clear engagement CTA. It is the specific format Edison asked for — not a
