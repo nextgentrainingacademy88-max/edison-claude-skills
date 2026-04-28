@@ -65,7 +65,7 @@ Headers:
   "model": "gpt-image-2-image-to-image",
   "input": {
     "prompt": "[full prompt]",
-    "image_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "input_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "4:5",
     "resolution": "2K"
   }
@@ -83,14 +83,14 @@ face-less or wrong-face image. Skipping is always preferred over publishing tras
 
 ### Face-free Facebook post types
 
-- Type 1 (Plain text on black) — use kie.ai with empty image_input for the black canvas + text
+- Type 1 (Plain text on black) — use kie.ai with empty input_urls for the black canvas + text
 - Type 3 (News photo) — use sourced photo, no generation
-- Type 4 (Text list) — use kie.ai with empty image_input for branded list image
+- Type 4 (Text list) — use kie.ai with empty input_urls for branded list image
 - Type 5 (Meme) — sourced meme image from imgflip / Reddit
 - Type 6 (Person collage) — sourced photos
 
 For Type 1 / Type 4 / any branded-graphic-only need, use kie.ai direct with
-`image_urls: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
+`input_urls: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
 lock in a generic "Follow me for more | Repost" footer that doesn't match Edison's
 branding — avoid them.
 
@@ -345,7 +345,7 @@ Bold title text at bottom.
 
 ### Face Photos — Permanent Blotato URLs (no upload needed)
 
-**Do NOT re-upload Edison's face. Use these permanent URLs directly as `image_input` in kie.ai.**
+**Do NOT re-upload Edison's face. Use these permanent URLs directly as `input_urls` in kie.ai.**
 
 | Photo | Blotato URL | Best For |
 |-------|-------------|----------|
@@ -358,7 +358,7 @@ Bold title text at bottom.
 - Outdoor/travel feel → `edison3.jpeg` (upload once, then save URL here)
 - Tech/gaming vibe → `edison2.jpeg` (upload once, then save URL here)
 
-Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `image_input`.
+Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `input_urls`.
 
 ### Search ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) Prompt Library
 
@@ -437,7 +437,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[structured prompt from above]",
-      "image_urls": ["[publicUrl from Blotato upload]"],
+      "input_urls": ["[publicUrl from Blotato upload]"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
