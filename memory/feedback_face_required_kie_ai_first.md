@@ -6,7 +6,7 @@ originSessionId: 42f8fa17-a57a-4d1d-903e-8d50449b4999
 ---
 **HARD RULE:** Any image that must contain Edison's actual face (carousel cover, carousel
 CTA slide, Facebook Type 2/7/8 posts, pin comment images, YouTube thumbnails, LinkedIn
-Type 8 Kanji-style) MUST be generated via kie.ai ChatGPT Images 2.0 (gpt-image-2-image-to-image) with `image_urls[0]`
+Type 8 Kanji-style) MUST be generated via kie.ai ChatGPT Images 2.0 (gpt-image-2-image-to-image) with `input_urls[0]`
 set to `face_primary.blotato_url` from `assets-manifest.json`.
 
 **DO NOT** use Blotato built-in templates (Tutorial Carousel, Quote Card, Whiteboard
@@ -20,7 +20,7 @@ Carousel for the LinkedIn carousel cover + CTA slides. Face URL was discarded by
 template. Edison noticed the generated face didn't look like him across multiple slides.
 
 **Correct path:**
-1. kie.ai ChatGPT Images 2.0 (gpt-image-2-image-to-image) with `image_urls: [face_primary.blotato_url]` — PRIMARY for
+1. kie.ai ChatGPT Images 2.0 (gpt-image-2-image-to-image) with `input_urls: [face_primary.blotato_url]` — PRIMARY for
    face-required images.
 2. Retry kie.ai once with simplified prompt if first call fails.
 3. Blotato Instagram Carousel Slideshow template (id `53cfec04-2500-41cf-8cc1-ba670d2c341a`)
