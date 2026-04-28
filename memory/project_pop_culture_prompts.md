@@ -159,6 +159,34 @@ For each post:
 - Caption ≤3 lines. Don't explain, just hook.
 - Carousel for menu-style posts (POSTER 10 styles, CYBERPUNK 5-7 worlds). Single hero image for all others.
 
+
+
+## Hard rule: COPY VERBATIM, never write from scratch
+
+When sourcing prompts for any face-required pop-culture post:
+
+1. **Find a viral post on Threads or Twitter/X** where the creator literally pasted the prompt they used (e.g. "ChatGPT prompt below: [prompt text]"). Filter: the original generation must include a person's face. Verified-account creators preferred.
+2. **Copy the prompt text verbatim** into the run. Do not paraphrase. Do not "improve" it. Do not split the structure.
+3. **Only swap these variables:**
+   - The original creator's face reference -> Edison's face URL (passed via `input_urls: [face_primary.blotato_url]`)
+   - The character/persona text inside the prompt (e.g. "wearing a Manchester United kit" -> "wearing a casual hoodie") if Edison wants a different costume
+   - Brand colors / taglines if the prompt has them, swapped to navy #0A1628 / yellow #FFD700
+4. **Save attribution + the verbatim prompt text** to the relevant angle section in this file. Future runs reuse the saved version.
+5. **If you can't find a matching trending prompt for today's angle, scrape one before generating** — never write the prompt yourself.
+
+This rule exists because:
+- Trending prompts are over-engineered and battle-tested for the specific model (gpt-image-2-image-to-image)
+- Creators iterate dozens of times before they post; we get the optimal version free
+- "Borrowed prompt" framing becomes part of the engagement hook ("comment KEYWORD for the prompt")
+
+Where to source:
+- Threads: search "chatgpt image 2.0 prompt", "gpt image 2 viral", "ai poster prompt", account names @misskatrinarose @lastaiupdate @techstuff01 @saprilpobud
+- Twitter/X: @nickfloats, @javilopen, @icreatelife, @techhalla, @GuizangHei, replies under @sama announcements
+- Reddit: r/ChatGPT, r/midjourney (filter: hot, last 7 days, score > 500)
+- Instagram: #chatgptprompt #gptimage2 #aiart trending tab
+
+Always credit the original creator in the engagement DM (not in the post caption itself, to keep captions short).
+
 ## Sourcing net-new prompts
 
 When the bucket fires and none of the 7 above fit the day's vibe, scrape fresh trending prompts from:
