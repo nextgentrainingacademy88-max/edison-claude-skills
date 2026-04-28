@@ -66,7 +66,7 @@ Headers:
   "model": "gpt-image-2-image-to-image",
   "input": {
     "prompt": "[full prompt]",
-    "image_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "input_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "[ratio]",
     "resolution": "2K"
   }
@@ -84,7 +84,7 @@ or a Blotato-template fallback.**
 
 ### Rule B — Face-free decorative slides (numbered points, checklists, graphics without Edison)
 
-Also kie.ai only — empty `image_urls: []`. Blotato built-in infographic templates
+Also kie.ai only — empty `input_urls: []`. Blotato built-in infographic templates
 (Whiteboard, Chalkboard, Manga Panel, Newspaper, etc.) are tempting but lock in a
 generic "Follow me | Repost" footer and rigid layout that does NOT match Edison's
 navy-yellow branding. Stick with kie.ai so every slide matches the cover's vibe.
@@ -359,7 +359,7 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
     "model": "gpt-image-2-image-to-image",
     "input": {
       "prompt": "[prompt]",
-      "image_urls": ["[publicUrl]"],
+      "input_urls": ["[publicUrl]"],
       "aspect_ratio": "4:5",
       "resolution": "2K"
     }
@@ -423,7 +423,7 @@ Save the Blotato `publicUrl` for the meme.
 
 **Step 3 — Generate the slide with the meme baked in:**
 
-Pass the meme as `image_input` so kie.ai composites it directly into the design.
+Pass the meme as `input_urls` so kie.ai composites it directly into the design.
 Never use a placeholder box — the meme must be visually embedded in the final image.
 
 ```
@@ -437,7 +437,7 @@ Bold modern poster layout. 4:5 aspect ratio, ultra sharp, clean graphic design.
 DO NOT render any technical instructions as visible text on the image.
 ```
 
-Call kie.ai WITH `image_urls: ["[meme_public_url]"]`.
+Call kie.ai WITH `input_urls: ["[meme_public_url]"]`.
 
 ---
 
@@ -546,7 +546,7 @@ DO NOT render any technical instructions as text on the image.
 Only render the headline, subtext, bell icon, and bottom-left name/title.
 ```
 
-Call kie.ai WITH `image_input` (same face URL as cover).
+Call kie.ai WITH `input_urls` (same face URL as cover).
 
 ---
 
@@ -621,7 +621,7 @@ Ask Edison: any slides to regenerate or adjust?
 
 1. **NEVER use a placeholder.** No "meme goes here" box, no grey rectangle, no dotted
    outline saying "insert meme". The actual meme image must be downloaded, uploaded to
-   Blotato, passed as `image_input` to kie.ai, and composited into the final slide. If
+   Blotato, passed as `input_urls` to kie.ai, and composited into the final slide. If
    the meme cannot be sourced, skip the meme and use a clean text-only slide instead.
    Never publish a slide with a placeholder.
 
