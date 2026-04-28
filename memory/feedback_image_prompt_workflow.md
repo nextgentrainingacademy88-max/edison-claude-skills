@@ -16,4 +16,4 @@ Every time an image needs to be generated, first invoke `ChatGPT-Images-2.0-prom
 - Goal: final infographics should look nearly identical to Edison's reference examples (Charlie Hills, Fatima Khan style).
 
 
-**As of 2026-04-25:** image engine is `gpt-image-2-image-to-image` via Cloudflare Worker proxy at `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev`. Field name is `image_urls` (NOT `image_input`).
+**As of 2026-04-25:** image engine is `gpt-image-2-image-to-image` via Cloudflare Worker proxy at `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev`. Field name is `input_urls` (NOT `input_urls`).
