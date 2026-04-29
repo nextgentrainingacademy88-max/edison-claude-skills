@@ -1,5 +1,130 @@
 # Manual Engagement Queue
-**Last updated:** 2026-04-28 UTC
+**Last updated:** 2026-04-29 UTC
+
+---
+
+## 2026-04-29 morning run — VALIDATION GATE: zero posts shipped (Path A + Path B both blocked, FOURTH consecutive run degraded)
+
+**Topic:** Cyberpunk 2077 / Blade Runner Tokyo self-insert pop-culture demo of ChatGPT Images 2.0 (Bucket #4 — Pop Culture / Prompt Showcase, angle CYBERPUNK, world #1)
+**Keyword:** `CYBERPUNK`
+**Resource link:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#7-cyberpunk--fiction-world-self-insert-keyword-cyberpunk--face-required
+**Outfit:** techwear (long black trench coat with glowing cyan trim, per the verbatim template)
+
+**Decision:** Per the run's mandatory validation gate (image URL must be on `tempfile.aiquickdraw.com`, not the face reference URL, kie.ai task `state` must be `success`), ALL 6 destinations were SKIPPED. Better zero posts than a mismatched face. Path C (raw face photo as media) is explicitly disallowed by today's gate.
+
+| # | Destination | Status |
+|---|---|---|
+| 1 | LinkedIn personal (18089) | SKIPPED |
+| 2 | LinkedIn Nextgen Academy page (18089 / 108414535) | SKIPPED |
+| 3 | Facebook Nextgen Academy (27053 / 726492947207808) | SKIPPED |
+| 4 | Instagram @aiwithedison (41734) | SKIPPED |
+| 5 | Threads @edisonchuaofficial (5937) | SKIPPED |
+| 6 | X @aiwithedison (16254) | SKIPPED |
+
+### LOUD FLAG — Path A AND Path B BOTH FAILED (FOURTH run in a row)
+
+1. **Path A (Cloudflare Worker proxy):** `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev` returns HTTP 403 `Host not in allowlist` from sandbox curl. Direct `api.kie.ai` also returns HTTP 403 `Host not in allowlist`. The Worker domain is STILL not on the remote-routine sandbox allowlist as of 2026-04-29 09:00 MYT.
+2. **Path B (Blotato `blotato_create_visual` Product Scene Placement template `f524614b-ba01-448c-967a-ce518c52a700`):** returned `insufficient-credits` again. Probe job id `76a70e33-081d-4987-8d26-c995f51e6c1e`. Top-up still has not happened despite three prior flags (2026-04-25, 2026-04-28 morning, 2026-04-28 afternoon).
+
+**Action items for Edison (URGENT — FOURTH consecutive degraded run):**
+- [ ] **Highest priority — top up Blotato credits at https://my.blotato.com/settings/billing AND enable the standing $20/month auto-renew the CLAUDE.md mentions.** Path B is the only fallback that respects the validation gate, and it has been broken for 4 runs.
+- [ ] Escalate the workers.dev allowlist denial with Anthropic. Either re-add `*.workers.dev` to the routine sandbox egress allowlist, or share a different approved proxy host so Path A can be rebuilt.
+- [ ] Until either is restored, regenerate the 5 prompts below locally on Edison's PC (which has direct kie.ai access), upload to Blotato media library, then post manually via Blotato UI to all 6 destinations.
+
+### Captions (ready to paste once images exist)
+
+**LinkedIn personal (relatable first-person, 3-5 hashtags):**
+```
+ChatGPT Images 2.0 dropped me into a Blade Runner Tokyo at 2am.
+30 seconds, one face photo, one paragraph of prompt.
+
+Comment CYBERPUNK and I will DM you the exact prompt I used.
+
+#ChatGPT #AIimages #SmallBusiness #Solopreneur #AItools
+```
+
+**LinkedIn Nextgen Academy page (authoritative brand voice, 3-5 hashtags):**
+```
+We just put our founder Edison Chua inside a rain-slicked cyberpunk megacity using ChatGPT Images 2.0 in under a minute.
+Same workflow business owners can use to create on-brand hero images without hiring a photographer or designer.
+
+Comment CYBERPUNK and we will DM you the exact prompt.
+
+#GenerativeAI #ChatGPT #AImarketing #SmallBusiness #BusinessGrowth
+```
+
+**Facebook Nextgen Academy page (Kanji-style image + 5 hashtags):**
+```
+ChatGPT Images 2.0 put me inside a Blade Runner cyberpunk Tokyo. 30 seconds. One reference photo.
+
+Stop paying $300 for stock photos and AI photoshoots. This is the new baseline for any business owner.
+
+Comment CYBERPUNK and I will DM you the exact prompt.
+
+#AIforBusiness #ChatGPT #SolopreneurTools #AIcontent #SmallBusinessOwner
+```
+
+**Instagram @aiwithedison (max 5 hashtags):**
+```
+Cyberpunk Tokyo. 2am. Neon rain.
+Built in 30 seconds with ChatGPT Images 2.0.
+
+Comment CYBERPUNK for the prompt.
+
+#ChatGPT #AIart #ChatGPTimages #SmallBusinessAI #AItools
+```
+
+**Threads @edisonchuaofficial (NO hashtags):**
+```
+ChatGPT Images 2.0 put me inside a Blade Runner Tokyo. 30 seconds. One face photo.
+
+Comment CYBERPUNK and I will DM you the prompt.
+```
+
+**X / Twitter @aiwithedison (1-2 hashtags):**
+```
+ChatGPT Images 2.0 dropped me into a Blade Runner Tokyo. 30 seconds. One face photo.
+
+Comment CYBERPUNK for the prompt.
+
+#ChatGPT
+```
+
+### Image 1 of 5 — LinkedIn (4:5, single hero, no overlay text)
+```
+Cinematic 4:5 vertical portrait of the man from the reference photo standing in the middle of a rain-slicked neon-lit Blade Runner-style cyberpunk Tokyo megacity at 2am. He is wearing a long black trench coat with glowing cyan trim and subtle circuit-pattern details, dark techwear shirt underneath. Flying cars streak across the sky leaving cyan and magenta light trails, towering holographic billboards in Japanese kanji glow above him in pink and electric blue, steam rising from manhole covers, puddles reflecting the neon. Dramatic rim lighting from the right, volumetric fog, cinematic depth of field, shot on 35mm. Photorealistic 8K, ultra sharp, high contrast. Preserve exact facial features from the reference photo (young Asian man, black hair, slim build, warm confident smile). No em dashes. No extra text beyond what is specified.
+```
+
+### Image 2 of 5 — Facebook Kanji wrapper (4:5, with bottom navy block + headline)
+```
+Cinematic 4:5 vertical portrait of the man from the reference photo standing in the middle of a rain-slicked neon-lit Blade Runner-style cyberpunk Tokyo megacity at night. He is wearing a long black trench coat with glowing cyan trim and circuit-pattern details. Flying cars streak overhead, towering kanji holograms glow pink and cyan, neon puddle reflections. Bottom one-third of the frame is a solid deep navy block (#0A1628) with a bold yellow (#FFD700) stacked headline I BECAME A CYBERPUNK PROTAGONIST, white subtext made with ChatGPT Images 2.0 in 30 seconds, small badge label EDISON CHUA AI MARKETING STRATEGIST bottom-left next to a circular headshot and a small blue verified tick, COMMENT FOR MORE centered uppercase white at the very bottom. Dramatic rim lighting, volumetric fog, shot on 35mm. Photorealistic 8K. Preserve exact facial features. No em dashes.
+```
+
+### Image 3 of 5 — Instagram (4:5, single hero, no overlay text)
+```
+Editorial 4:5 vertical portrait of the man from the reference photo as a cyberpunk protagonist standing in the middle of rain-slicked neon-lit Tokyo at 2am. Long black techwear trench coat with glowing cyan trim and circuit-pattern details, dark mock-neck shirt underneath. Towering holographic kanji billboards in pink and electric blue glow above him, flying cars streak across the sky leaving light trails, neon-soaked puddles reflect under his feet, soft steam from manhole covers. Dramatic rim lighting from the right, volumetric fog, shallow depth of field, shot on 35mm. Photorealistic 8K, ultra sharp, high contrast. Preserve exact facial features from the reference photo. No em dashes.
+```
+
+### Image 4 of 5 — Threads Kanji (4:5, with bottom navy block + headline)
+```
+Cinematic 4:5 vertical portrait of the man from the reference photo standing in a rain-slicked neon-lit Blade Runner cyberpunk Tokyo street at midnight. Long black techwear trench coat with glowing cyan trim and subtle circuit-pattern details. Towering kanji holograms in pink and cyan glow above, flying cars streak across the sky. Bottom navy block (#0A1628) with bold yellow (#FFD700) stacked headline CYBERPUNK MODE UNLOCKED, white subtext Generated with ChatGPT Images 2.0, badge EDISON CHUA AI MARKETING STRATEGIST bottom-left next to a small blue verified tick, COMMENT FOR MORE centered uppercase white at the very bottom. Dramatic rim lighting, volumetric fog, shot on 35mm. Photorealistic 8K. Preserve exact facial features. No em dashes.
+```
+
+### Image 5 of 5 — X MrBeast thumbnail (16:9)
+```
+MrBeast-style 16:9 widescreen YouTube thumbnail of the man from the reference photo as a cyberpunk protagonist on the right side of the frame. Eyes wide with shock, mouth slightly open, leaning forward into the lens. Long black techwear trench coat with glowing cyan trim. Background: rain-slicked neon-lit Blade Runner cyberpunk Tokyo, towering holographic kanji billboards in pink and cyan, flying cars streaking past, hyper-saturated colors, dramatic rim lighting, lens flare. Massive yellow (#FFD700) text I AM A CYBERPUNK NOW left third with thick black outline and red drop shadow, white text 30 SECONDS bottom-right. Wide-angle 24mm fisheye look. 8K, ultra sharp, high contrast. Preserve exact facial features from the reference photo. No em dashes.
+```
+
+### Auto-DM script for `CYBERPUNK` keyword (when comments roll in)
+```
+Hey, here is the exact prompt I used to drop myself into Blade Runner Tokyo with ChatGPT Images 2.0:
+
+Cinematic 9:16 portrait of me standing in the middle of a rain-slicked neon-lit Blade Runner-style cyberpunk megacity at night. Long black trench coat with glowing cyan trim and subtle circuit-pattern details. Flying cars streaking across the sky, towering holographic billboards in Japanese kanji, neon puddles. Dramatic rim lighting, volumetric fog, cinematic depth of field, shot on 35mm. Photorealistic 8K. Preserve exact facial features from the uploaded reference photo. No em dashes.
+
+Just upload your face photo, paste the prompt, swap the world (Cyberpunk / One Piece / Avengers Tower / Star Wars / Rivendell / Arrakis / Naruto / GTA 6 / Squid Game / Wednesday).
+
+Full library of 7 pop-culture prompts here: https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md
+```
 
 ---
 
