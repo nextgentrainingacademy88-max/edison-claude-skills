@@ -1,46 +1,46 @@
 {
-  "last_updated": "2026-04-29T01:30:00Z",
+  "last_updated": "2026-04-29T05:25:00Z",
   "last_topic_morning": "cyberpunk_blade_runner_tokyo_pop_culture_chatgpt_images_20",
-  "last_topic_afternoon": "anime_fisheye_pop_culture_chatgpt_images_20",
-  "last_run_slot": "morning",
+  "last_topic_afternoon": "ad_coca_cola_print_pop_culture_chatgpt_images_20",
+  "last_run_slot": "afternoon",
   "last_keyword_morning": "CYBERPUNK",
-  "last_keyword_afternoon": "ANIME",
+  "last_keyword_afternoon": "AD",
   "pop_culture": {
-    "last_angle": "CYBERPUNK",
+    "last_angle": "AD",
     "last_angle_date": "2026-04-29",
-    "last_sub_variant": "blade_runner_tokyo_world_1_techwear_trench",
-    "_note": "Default rotation order: F1 -> ANIME -> CYBERPUNK -> AD -> POSTER -> CINEMATIC -> TABLE. Next slot (2026-04-29 afternoon) should pick AD."
+    "last_sub_variant": "coca_cola_taste_the_feeling_face_free_4x5_and_16x9",
+    "_note": "Default rotation order: F1 -> ANIME -> CYBERPUNK -> AD -> POSTER -> CINEMATIC -> TABLE. Next slot (2026-04-30 morning) should pick POSTER (10-style carousel)."
   },
   "linkedin": {
-    "image_skill": "pop_culture_cyberpunk_validation_gate_skipped_no_post",
+    "image_skill": "pop_culture_ad_validation_gate_skipped_no_post",
     "content_image_subtype": "none",
-    "carousel_last_used": "attempted_cyberpunk_tokyo_kie_ai_host_blocked_blotato_no_credits_skipped",
+    "carousel_last_used": "attempted_ad_coca_cola_kie_ai_host_blocked_blotato_no_credits_skipped",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
-    "post_type": "pop_culture_cyberpunk_validation_gate_skipped_no_post",
+    "post_type": "pop_culture_ad_validation_gate_skipped_no_post",
     "last_type8_subvariant": null
   },
   "instagram": {
-    "carousel_style": "pop_culture_cyberpunk_validation_gate_skipped_no_post",
+    "carousel_style": "pop_culture_ad_validation_gate_skipped_no_post",
     "last_type8_subvariant": null
   },
   "threads": {
-    "last_kanji_hero": "pop_culture_cyberpunk_validation_gate_skipped_no_post",
-    "last_topic_slug": "cyberpunk_blade_runner_tokyo_pop_culture_chatgpt_images_20",
-    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-29 morning: validation gate enforced; no post shipped. Path A worker blocked (HTTP 403 'Host not in allowlist'), Path B Blotato no credits (probe job 76a70e33-081d-4987-8d26-c995f51e6c1e), Path C raw face photo forbidden by gate. See generated/engagement-manual-queue.md for verbatim prompts to regenerate locally."
+    "last_kanji_hero": "pop_culture_ad_validation_gate_skipped_no_post",
+    "last_topic_slug": "ad_coca_cola_print_pop_culture_chatgpt_images_20",
+    "_note": "Hero rotation: logo_palm -> two_logos -> holo_panels. 2026-04-29 afternoon: validation gate enforced; no post shipped. AD is face-free so kanji wrapper not applicable. Path A worker blocked (HTTP 403 'Host not in allowlist'), Path B Blotato no credits (probe job bd484de3-d994-4f26-bf09-486960a6020b). See generated/engagement-manual-queue.md for verbatim Coca-Cola brand-ad prompts (4:5 + 16:9) to regenerate locally."
   },
   "x": {
-    "thumbnail_style": "pop_culture_cyberpunk_validation_gate_skipped_no_post"
+    "thumbnail_style": "pop_culture_ad_validation_gate_skipped_no_post"
   },
   "image_generation": {
-    "last_path_used": "none_validation_gate_skipped_2026_04_29_morning_path_a_worker_blocked_path_b_blotato_no_credits",
-    "last_run_manual_queue_entries": 5,
-    "_note": "2026-04-29 morning CYBERPUNK pop-culture run: Path A Cloudflare Worker (https://edison-kie-proxy.nextgentrainingacademy88.workers.dev) returned HTTP 403 'Host not in allowlist' from sandbox curl. Direct api.kie.ai also returned HTTP 403 'Host not in allowlist'. Path B Blotato create_visual Product Scene Placement template f524614b-... returned 'insufficient-credits' (probe job 76a70e33-081d-4987-8d26-c995f51e6c1e). Per validation gate 0b (URL must live on tempfile.aiquickdraw.com, must differ from face reference URL, kie.ai task state must equal success), ALL 6 destinations SKIPPED. Path C (raw face photo) forbidden because the URL equals the face reference. FOURTH consecutive degraded run. URGENT: Edison must (a) top up Blotato credits at https://my.blotato.com/settings/billing AND (b) escalate workers.dev allowlist denial with Anthropic.",
-    "last_outfit": "techwear_long_black_trench_cyan_trim_pending_local_regen",
+    "last_path_used": "none_validation_gate_skipped_2026_04_29_afternoon_path_a_worker_blocked_path_b_blotato_no_credits",
+    "last_run_manual_queue_entries": 6,
+    "_note": "2026-04-29 afternoon AD (Coca-Cola print ad) pop-culture run: Path A Cloudflare Worker (https://edison-kie-proxy.nextgentrainingacademy88.workers.dev) returned HTTP 403 'Host not in allowlist' from both sandbox curl and WebFetch. Path B Blotato create_visual Product Scene Placement template f524614b-... returned 'insufficient-credits' (probe job bd484de3-d994-4f26-bf09-486960a6020b). Per validation gate 0b (URL must live on tempfile.aiquickdraw.com, must differ from face reference URL, kie.ai task state must equal success), ALL 6 destinations SKIPPED. AD is face-free so Path C raw-face fallback is irrelevant — there is no generated image at all. FIFTH consecutive degraded run. URGENT: Edison must (a) top up Blotato credits at https://my.blotato.com/settings/billing AND (b) escalate workers.dev allowlist denial with Anthropic.",
+    "last_outfit": "n_a_face_free_ad_angle",
     "model": "gpt-image-2-image-to-image",
     "provider": "kie.ai",
-    "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in input_urls array."
+    "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in input_urls array. AD angle is face-free so input_urls=[]."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
@@ -49,8 +49,8 @@
       "fb_auto_replies": 0,
       "ig_auto_replies": 0,
       "li_auto_replies": 0,
-      "manual_queue_items": 17,
-      "note": "5 new manual queue entries from 2026-04-29 morning CYBERPUNK run (validation-gate skip, no posts shipped, prompts logged for local regen). Plus 5 from 2026-04-28 afternoon ANIME, 5 from 2026-04-25, 2 from 2026-04-24."
+      "manual_queue_items": 23,
+      "note": "6 new manual queue entries from 2026-04-29 afternoon AD run (validation-gate skip, no posts shipped, Coca-Cola prompts logged for local regen). Plus 5 from 2026-04-29 morning CYBERPUNK, 5 from 2026-04-28 afternoon ANIME, 5 from 2026-04-25, 2 from 2026-04-24."
     },
     "last_mode": "validation_gate_skip"
   },
@@ -58,37 +58,44 @@
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "f1_driver_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md",
-    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "ad_coca_cola_print_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   },
   "facebook_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "f1_driver_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md",
-    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "ad_coca_cola_print_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   },
   "instagram_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "f1_driver_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md",
-    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "ad_coca_cola_print_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   },
   "x_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "f1_driver_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md",
-    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "ad_coca_cola_print_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   },
   "threads_pdf_links": {
     "chatgpt_images_20_business_owner_playbook": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "claude_code_skills_build_agent_army": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "f1_driver_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md",
-    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "anime_fisheye_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "ad_coca_cola_print_pop_culture_chatgpt_images_20": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   },
   "keyword_links": {
     "CLAUDE": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "IMAGES": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "PROMPT": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills",
     "F1": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#1-f1-driver-movie-poster-keyword-f1--face-required",
-    "ANIME": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required"
+    "ANIME": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#2-anime-selfie-fisheye-keyword-anime--face-required",
+    "CYBERPUNK": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#7-cyberpunk--fiction-world-self-insert-keyword-cyberpunk--face-required",
+    "AD": "https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free"
   }
 }

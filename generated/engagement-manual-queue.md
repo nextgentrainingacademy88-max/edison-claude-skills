@@ -1,5 +1,118 @@
 # Manual Engagement Queue
-**Last updated:** 2026-04-29 UTC
+**Last updated:** 2026-04-29 UTC (afternoon)
+
+---
+
+## 2026-04-29 afternoon run — VALIDATION GATE: zero posts shipped (Path A + Path B both blocked, FIFTH consecutive run degraded)
+
+**Topic:** Brand static print-ad recreation pop-culture demo of ChatGPT Images 2.0 (Bucket #4 — Pop Culture / Prompt Showcase, angle AD, brand: Coca-Cola)
+**Keyword:** `AD`
+**Resource link:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free
+**Outfit:** N/A (face-free angle, product is the hero)
+**Rotation:** AD has not appeared in the last 7 days (last_angle = CYBERPUNK on 2026-04-29 morning, before that ANIME 2026-04-28 afternoon, F1 2026-04-28 morning). Qualifies.
+
+**Decision:** Per the run's mandatory validation gate (image URL must live on `tempfile.aiquickdraw.com`, must differ from face reference URL, kie.ai task `state` must equal `success`), ALL 6 destinations were SKIPPED. Better zero posts than no image / wrong image.
+
+| # | Destination | Status |
+|---|---|---|
+| 1 | LinkedIn personal (18089) | SKIPPED |
+| 2 | LinkedIn Nextgen Academy page (18089 / 108414535) | SKIPPED |
+| 3 | Facebook Nextgen Academy (27053 / 726492947207808) | SKIPPED |
+| 4 | Instagram @aiwithedison (41734) | SKIPPED |
+| 5 | Threads @edisonchuaofficial (5937) | SKIPPED |
+| 6 | X @aiwithedison (16254) | SKIPPED |
+
+### LOUD FLAG — Path A AND Path B BOTH FAILED (FIFTH consecutive run)
+
+1. **Path A (Cloudflare Worker proxy):** `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev/api/v1/jobs/createTask` returned HTTP 403 `Host not in allowlist` from sandbox curl AND from WebFetch. The Worker domain remains blocked by the routine sandbox allowlist as of 2026-04-29 13:00 MYT.
+2. **Path B (Blotato `blotato_create_visual` Product Scene Placement template `f524614b-ba01-448c-967a-ce518c52a700`):** returned `insufficient-credits`. Probe job id `bd484de3-d994-4f26-bf09-486960a6020b`. Top-up still has not happened.
+
+**Action items for Edison (URGENT — FIFTH consecutive degraded run):**
+- [ ] **Highest priority — top up Blotato credits at https://my.blotato.com/settings/billing AND enable the standing $20/month auto-renew the CLAUDE.md mentions.** Path B is the only routine-side fallback that respects the validation gate; it has been broken for 5 runs.
+- [ ] Escalate the `*.workers.dev` allowlist denial with Anthropic. Either re-add `*.workers.dev` to the routine sandbox egress allowlist, or share an approved proxy host so Path A can be rebuilt.
+- [ ] Until either is restored, regenerate the prompt below locally on Edison's PC (which has direct kie.ai access), upload to Blotato media library, then post manually to all 6 destinations through the Blotato dashboard.
+
+### Verbatim prompts (for local regeneration on Edison's PC)
+
+**Variant A — 4:5 portrait (LinkedIn personal, LinkedIn page, Facebook, Instagram, Threads):**
+```
+Coca-Cola print ad, photorealistic ice-cold glass Coca-Cola bottle as hero with condensation droplets and a single splash of caramel-cola liquid frozen mid-air, classic Coca-Cola red and white palette with deep navy #0A1628 background gradient, bold English tagline "TASTE THE FEELING" stacked at top in the official Coca-Cola Spencerian script in white with subtle yellow #FFD700 underline accent, clean studio lighting with rim highlights on the bottle, minimal seamless background, 4:5 portrait, high-end advertising aesthetic, 8K, shot on 85mm. No em dashes.
+```
+- kie.ai model: `gpt-image-2-image-to-image`
+- `input_urls`: `[]` (face-free)
+- `aspect_ratio`: `4:5`
+
+**Variant B — 16:9 wide (X / Twitter):**
+```
+Coca-Cola print ad, photorealistic ice-cold glass Coca-Cola bottle as hero on the left third of frame with condensation droplets and a single splash of caramel-cola liquid frozen mid-air, classic Coca-Cola red and white palette with deep navy #0A1628 background gradient on the right two-thirds, bold English tagline "TASTE THE FEELING" placed right of the bottle in the official Coca-Cola Spencerian script in white with subtle yellow #FFD700 underline accent, clean studio lighting with rim highlights on the bottle, minimal seamless background, 16:9 widescreen, high-end advertising aesthetic, 8K, shot on 85mm. No em dashes.
+```
+- kie.ai model: `gpt-image-2-image-to-image`
+- `input_urls`: `[]` (face-free)
+- `aspect_ratio`: `16:9`
+
+Attribution: prompt template adapted from `tegadesigns1` brand-ad series on Threads (Apr 2026, 127 likes / 55 comments) and saved to `memory/project_pop_culture_prompts.md` under angle 4 (AD).
+
+### Captions (ready to paste once images exist)
+
+**LinkedIn personal (relatable first-person, 3-5 hashtags):**
+```
+Clients used to pay designers $300 for a single print ad like this.
+ChatGPT Images 2.0 made it in 30 seconds. Zero Photoshop.
+
+Comment AD and I will DM you the exact prompt I used.
+
+#ChatGPT #AIdesign #SmallBusiness #Solopreneur #AItools
+```
+
+**LinkedIn Nextgen Academy page (authoritative brand voice, 3-5 hashtags):**
+```
+A polished print-ad concept used to take a designer half a day and a $300 invoice.
+With ChatGPT Images 2.0, our team produced this in under a minute. Same workflow we teach business owners who want on-brand visuals without hiring out.
+
+Comment AD and we will DM you the exact prompt.
+
+#GenerativeAI #ChatGPT #AImarketing #SmallBusiness #BusinessGrowth
+```
+
+**Facebook Nextgen Academy page (5 hashtags max):**
+```
+Designers charge $300 for an ad like this. ChatGPT Images 2.0 made it in 30 seconds.
+
+Business owners, this is the new baseline. Stop paying agency rates for static visuals.
+
+Comment AD and I will DM you the exact prompt.
+
+#AIforBusiness #ChatGPT #SolopreneurTools #AIcontent #SmallBusinessOwner
+```
+
+**Instagram @aiwithedison (max 5 hashtags):**
+```
+$300 designer ad. 30 seconds in ChatGPT Images 2.0.
+
+Comment AD for the prompt.
+
+#ChatGPT #AIdesign #ChatGPTimages #SmallBusinessAI #AItools
+```
+
+**Threads @edisonchuaofficial (NO hashtags):**
+```
+Designers charge $300 for an ad like this.
+ChatGPT Images 2.0 made it in 30 seconds.
+
+Comment AD and I will DM you the exact prompt.
+```
+
+**X @aiwithedison (1-2 hashtags):**
+```
+$300 designer ad → 30 seconds in ChatGPT Images 2.0.
+
+Comment AD for the prompt.
+
+#ChatGPT
+```
+
+### Comment-for-link delivery setup
+- `keyword_links["AD"]` set to `https://github.com/nextgentrainingacademy88-max/edison-claude-skills/blob/main/memory/project_pop_culture_prompts.md#4-brand-static-ad-recreation-keyword-ad--face-free` so the hourly engagement responder DMs the prompt automatically once posts go live.
 
 ---
 
