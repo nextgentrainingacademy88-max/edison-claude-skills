@@ -202,6 +202,24 @@ Why: Anthropic's remote routine sandbox blocks direct outbound HTTPS to `api.kie
 
 **Worker code** lives in the Cloudflare dashboard under Worker name `edison-kie-proxy`. Free tier (100k req/day) is more than enough for 2 daily runs x 6 images x 365 days.
 
+
+
+## Posting Mode (as of 2026-04-29) — LOCAL primary
+
+Posting is now handled by **local scheduled-tasks on Edison's PC** (not the claude.ai cloud Routines).
+
+| Routine | Mode | When |
+|---|---|---|
+| Morning post | LOCAL `social-media-morning-post` | 9:03 AM MYT (cron `3 9 * * *`) |
+| Afternoon post | LOCAL `social-media-afternoon-post` | 1:07 PM MYT (cron `7 13 * * *`) |
+| Engagement hourly | REMOTE (claude.ai Routine) | every :30 |
+
+Local fires when Claude Code is running on the PC. If the PC is offline at the cron time, that slot is missed — Edison can run the catch-up command manually when he reopens Claude Code. De-dup via `last_topic_morning_date` / `last_topic_afternoon_date` in `rotation-state.json` prevents double posts.
+
+Cloud Morning + Afternoon routines are DISABLED but retained for emergency rollback (their prompts are kept current with `input_urls` field + Worker proxy + validation gate).
+
+Full local routine docs: see `memory/project_local_routine.md`.
+
 ## Decisions Made
 
 1. **Every LinkedIn post needs an image** — `linkedin-content-writer` is copy only, always paired with image skill.
