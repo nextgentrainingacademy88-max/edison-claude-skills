@@ -82,16 +82,16 @@ LOCAL has direct access to `api.kie.ai` — no Worker proxy needed. The two sche
 with body:
 ```
 {
-  "model": "gpt-image-2-image-to-image",
+  "model": "nano-banana-pro",
   "input": {
     "prompt": "<verbatim viral prompt>",
-    "input_urls": ["<face_primary.blotato_url>"],
+    "image_input": ["<face_primary.blotato_url>"],
     "aspect_ratio": "4:5"
   }
 }
 ```
 
-**Critical:** field is `input_urls` (NOT `image_urls`). Wrong field silently disables face preservation. Confirmed working 2026-04-29 with the cyberpunk test.
+**Critical:** field is `image_input` (NOT `image_urls`). Wrong field silently disables face preservation. Confirmed working 2026-04-29 with the cyberpunk test.
 
 ## Validation gate (mandatory before posting)
 
@@ -126,4 +126,4 @@ If local tasks break (Claude Code crash, PC permanently offline, etc.), re-enabl
 2. claude.ai Routines → "Social Media Afternoon Post (1pm MYT)" → enable
 3. Disable both local scheduled tasks (`mcp__scheduled-tasks__update_scheduled_task` with `enabled: false`).
 
-The remote routines retain the latest prompt with the Worker proxy + `input_urls` + validation gate, so a rollback works in one click.
+The remote routines retain the latest prompt with the Worker proxy + `image_input` + validation gate, so a rollback works in one click.
