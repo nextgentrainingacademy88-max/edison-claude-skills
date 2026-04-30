@@ -1,10 +1,10 @@
 ---
-name: Always consult ChatGPT-Images-2.0-prompts-recommend-skill (formerly gpt-image-2-image-to-image (ChatGPT Images 2.0)-prompts-recommend-skill — same library, all prompts compatible with gpt-image-2) before generating images
-description: Before calling kie.ai ChatGPT Images 2.0, always invoke the prompt recommendation skill to pull from the 10,000+ curated prompt library instead of freestyling
+name: Always consult nano-banana-pro-prompts-recommend-skill (formerly nano-banana-pro (Nano Banana Pro)-prompts-recommend-skill — same library, all prompts compatible with gpt-image-2) before generating images
+description: Before calling kie.ai Nano Banana Pro, always invoke the prompt recommendation skill to pull from the 10,000+ curated prompt library instead of freestyling
 type: feedback
 originSessionId: 42f8fa17-a57a-4d1d-903e-8d50449b4999
 ---
-Every time an image needs to be generated, first invoke `ChatGPT-Images-2.0-prompts-recommend-skill (formerly gpt-image-2-image-to-image (ChatGPT Images 2.0)-prompts-recommend-skill — same library, all prompts compatible with gpt-image-2)` to find a proven prompt template from its 10,000+ curated library. Only after that skill recommends a prompt structure should you craft the final kie.ai prompt.
+Every time an image needs to be generated, first invoke `nano-banana-pro-prompts-recommend-skill (formerly nano-banana-pro (Nano Banana Pro)-prompts-recommend-skill — same library, all prompts compatible with gpt-image-2)` to find a proven prompt template from its 10,000+ curated library. Only after that skill recommends a prompt structure should you craft the final kie.ai prompt.
 
 **Why:** Edison noticed that freestyled prompts (written from memory or reference-matching) produce generic, decorative output. The curated library has tested prompt structures that reliably match specific visual styles. He wants reference-accurate reproduction, not creative reinterpretation.
 
@@ -16,4 +16,4 @@ Every time an image needs to be generated, first invoke `ChatGPT-Images-2.0-prom
 - Goal: final infographics should look nearly identical to Edison's reference examples (Charlie Hills, Fatima Khan style).
 
 
-**As of 2026-04-25:** image engine is `gpt-image-2-image-to-image` via Cloudflare Worker proxy at `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev`. Field name is `input_urls` (NOT `input_urls`).
+**As of 2026-04-25:** image engine is `nano-banana-pro` via Cloudflare Worker proxy at `https://api.kie.ai`. Field name is `image_input` (NOT `image_input`).
