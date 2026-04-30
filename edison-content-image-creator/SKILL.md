@@ -22,7 +22,7 @@ description: >
   Always read the specific sub-type prompt template section in this file before generating.
   Face-required paths use kie.ai with `face_primary.blotato_url` from assets-manifest.json.
 
-  This skill combines photo selection, style decision, ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt crafting,
+  This skill combines photo selection, style decision, Nano Banana Pro (kie.ai nano-banana-pro) prompt crafting,
   Blotato upload, kie.ai generation, and saving — all in one workflow.
 ---
 
@@ -71,11 +71,11 @@ and will produce a generic Asian male that does not look like Edison. They MUST 
 used for face-required images.
 
 **Priority order:**
-1. **kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with input_urls** — PRIMARY. Pass `face_primary.blotato_url` from
-   `assets-manifest.json` as `input_urls[0]`. Use `${KIE_API_KEY}` from env.
+1. **kie.ai Nano Banana Pro (kie.ai nano-banana-pro) with image_input** — PRIMARY. Pass `face_primary.blotato_url` from
+   `assets-manifest.json` as `image_input[0]`. Use `${KIE_API_KEY}` from env.
 2. **Retry kie.ai once with simplified prompt** if the first call fails/times out.
 3. **Blotato Instagram Carousel Slideshow** (template id `53cfec04-2500-41cf-8cc1-ba670d2c341a`)
-   with `model: "gpt-image-2-image-to-image"` AND the face URL as input — only if both kie.ai attempts fail.
+   with `model: "nano-banana-pro"` AND the face URL as input — only if both kie.ai attempts fail.
 4. **Manual queue** — if all three fail, log the intended prompt to
    `./generated/engagement-manual-queue.md` so Edison can regenerate manually. Do NOT post
    a face-required image with no face or a wrong face.
@@ -109,16 +109,16 @@ generated image. It has two parts that always work together:
   scrolling for THIS specific topic?
 - **Text behind, not on top** — when adding text overlays, text should be layered BEHIND Edison,
   blended into the background. Not a flat bar at the bottom. Not text on top of his face.
-- **Use the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) library first** — always search for prompt inspiration before writing
+- **Use the Nano Banana Pro (kie.ai nano-banana-pro) library first** — always search for prompt inspiration before writing
   from scratch.
 
 ---
 
-### Step 1: Search the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) Prompt Library
+### Step 1: Search the Nano Banana Pro (kie.ai nano-banana-pro) Prompt Library
 
 Fetch the manifest to find the right category:
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/manifest.json"
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/manifest.json"
 ```
 
 Then search the relevant category file. For social/thumbnail content, the most useful files are:
@@ -128,7 +128,7 @@ Then search the relevant category file. For social/thumbnail content, the most u
 
 Search example:
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
   -o /tmp/yt_thumbnails.json
 
 python3 -c "
@@ -148,7 +148,7 @@ for item in data:
 ```
 
 Study the prompt structure — the composition language, lighting descriptors, and style terms
-are what make ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompts work well.
+are what make Nano Banana Pro (kie.ai nano-banana-pro) prompts work well.
 
 ---
 
@@ -223,7 +223,7 @@ Combine the library learnings with the chosen style. Always include:
 - Outdoor/travel feel → `edison3.jpeg` (upload once, save URL)
 - Tech/gaming vibe → `edison2.jpeg` (upload once, save URL)
 
-**SKIP Step 5 entirely when using the PRIMARY face.** Go straight to Step 6 and use the URL above as `input_urls`.
+**SKIP Step 5 entirely when using the PRIMARY face.** Go straight to Step 6 and use the URL above as `image_input`.
 
 ---
 
@@ -241,17 +241,17 @@ curl -X PUT "[presignedUrl]" \
 
 ---
 
-### Step 6: Generate with kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
+### Step 6: Generate with kie.ai Nano Banana Pro (kie.ai nano-banana-pro)
 
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-image-2-image-to-image",
+    "model": "nano-banana-pro",
     "input": {
       "prompt": "[crafted prompt from Step 3]",
-      "input_urls": ["[publicUrl from Blotato]"],
+      "image_input": ["[publicUrl from Blotato]"],
       "aspect_ratio": "[chosen ratio]",
       "resolution": "2K"
     }
