@@ -62,3 +62,15 @@ comments the KEYWORD.
    framework. End with "Comment [KEYWORD]" CTA if a resource is promised.
 3. Engagement step: the hourly responder delivers the linked resource when someone
    comments the matching KEYWORD.
+
+## Reaffirmed 2026-04-30 — 3-bucket value strategy, no pop-culture self-insert
+
+Active content buckets per post:
+- (a) NEW AI tool releases / NEW features (Claude updates, ChatGPT new features, NotebookLM, Manus, Gemini, Perplexity, Sora, Veo, Kling, etc.) — **40%**
+- (b) Practical how-to tips with copy-paste prompts and stack combos — **35%**
+- (c) How to make money with AI tools (case studies, side hustle stack, agency builds) — **25%**
+
+Pop-culture self-insert (F1, cyberpunk, anime poster, etc.) was tested on 2026-04-29/30 and DEPRECATED — face preservation via `gpt-image-2-image-to-image` was unreliable and the F1 test post received negative feedback. See `memory/project_pop_culture_prompts.md` for the deprecation note.
+
+Image engine: Nano Banana Pro (model `nano-banana-pro`, field `image_input`) via direct kie.ai calls when running locally on Edison's PC. The Cloudflare Worker proxy is no longer needed in this setup.
+
