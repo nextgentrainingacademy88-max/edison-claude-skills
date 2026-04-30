@@ -4,7 +4,7 @@ description: >
   Edison Chua's complete Facebook content creation system. Handles all 7 Facebook post types:
   plain text on black, YouTube thumbnail style (face + tool icons + bold text), celebrity/news
   photo + text overlay, text list posts, meme + caption, person collage + headline, and face +
-  flow diagram posts. Generates images with ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) where needed, writes post copy, and
+  flow diagram posts. Generates images with Nano Banana Pro (kie.ai nano-banana-pro) where needed, writes post copy, and
   schedules to Facebook via Blotato.
 
   Trigger when Edison says: "create a Facebook post", "make a Facebook image", "post this to
@@ -29,11 +29,11 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-> **Remote routine usage note (as of 2026-04-25):** when this skill runs from a remote routine sandbox, replace every https://api.kie.ai URL with https://edison-kie-proxy.nextgentrainingacademy88.workers.dev (transparent Cloudflare Worker proxy). The sandbox blocks direct outbound to api.kie.ai; the Worker is on workers.dev which IS allowlisted. Same paths, same headers, same body, same response shape. From a local PC, api.kie.ai works directly without the Worker.
+> **Remote routine usage note (as of 2026-04-25):** when this skill runs from a remote routine sandbox, replace every https://api.kie.ai URL with https://api.kie.ai (transparent Cloudflare Worker proxy). The sandbox blocks direct outbound to api.kie.ai; the Worker is on workers.dev which IS allowlisted. Same paths, same headers, same body, same response shape. From a local PC, api.kie.ai works directly without the Worker.
 
 
 
-**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path for every face-required Facebook post type.
+**kie.ai Nano Banana Pro (kie.ai nano-banana-pro) is the ONLY path for every face-required Facebook post type.
 Zero Blotato template fallbacks.**
 
 ### BLACKLIST — These Blotato templates are BANNED from this skill (they produced
@@ -62,10 +62,10 @@ Headers:
   Content-Type: application/json
 
 {
-  "model": "gpt-image-2-image-to-image",
+  "model": "nano-banana-pro",
   "input": {
     "prompt": "[full prompt]",
-    "input_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "image_input": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "4:5",
     "resolution": "2K"
   }
@@ -83,14 +83,14 @@ face-less or wrong-face image. Skipping is always preferred over publishing tras
 
 ### Face-free Facebook post types
 
-- Type 1 (Plain text on black) — use kie.ai with empty input_urls for the black canvas + text
+- Type 1 (Plain text on black) — use kie.ai with empty image_input for the black canvas + text
 - Type 3 (News photo) — use sourced photo, no generation
-- Type 4 (Text list) — use kie.ai with empty input_urls for branded list image
+- Type 4 (Text list) — use kie.ai with empty image_input for branded list image
 - Type 5 (Meme) — sourced meme image from imgflip / Reddit
 - Type 6 (Person collage) — sourced photos
 
 For Type 1 / Type 4 / any branded-graphic-only need, use kie.ai direct with
-`input_urls: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
+`image_input: []`. The Blotato Whiteboard / Chalkboard / Manga / Newspaper templates
 lock in a generic "Follow me for more | Repost" footer that doesn't match Edison's
 branding — avoid them.
 
@@ -214,14 +214,14 @@ Pick based on topic. Here are the 7 types:
 **When to use:** AI tool comparisons, "X + Y = Result" posts, tool stack reveals, high-energy how-to.
 **Design:** Edison's face on the left in dramatic lighting. Tool logos/icons arranged right or bottom.
 Bold oversized white/yellow text as the headline. Dark background.
-**Example trigger:** "NotebookLM + Gemini hack", "OpenClaw + ChatGPT Images 2.0 = $20,000 websites"
-**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image). Uses Edison's face photo. See Part 2.
+**Example trigger:** "NotebookLM + Gemini hack", "OpenClaw + Nano Banana Pro = $20,000 websites"
+**Production:** Requires Nano Banana Pro (kie.ai nano-banana-pro). Uses Edison's face photo. See Part 2.
 
 ### Type 3 — News Photo + Bold Text Overlay
 **When to use:** Celebrity or public figure news stories, viral internet moments, trending real-world events.
 **Design:** Real news photo or public figure image. Bold yellow/white text overlaid at the bottom.
 **Example trigger:** Khaby Lame story, Elon Musk news, tech CEO announcement
-**Production:** Source a real photo (search online or screenshot from news). Add text overlay in the prompt OR describe as a captioned image. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) needed.
+**Production:** Source a real photo (search online or screenshot from news). Add text overlay in the prompt OR describe as a captioned image. No Nano Banana Pro (kie.ai nano-banana-pro) needed.
 
 ### Type 4 — Text List Post
 **When to use:** Comparison lists, free alternatives, tool swaps, tips lists. Goes viral from pure usefulness.
@@ -257,14 +257,14 @@ Fallbacks: `https://knowyourmeme.com/memes/trending`,
 `https://www.reddit.com/r/memes/top/.json?t=week`, `https://giphy.com/explore/meme`.
 
 **Production:** Download the chosen meme, pass to Blotato with a text overlay caption OR
-post directly as the media with the caption in the post body. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) needed.
+post directly as the media with the caption in the post body. No Nano Banana Pro (kie.ai nano-banana-pro) needed.
 Write a short punchy caption above or below.
 
 ### Type 6 — Person Collage + Bold Headline
 **When to use:** "Top X people/creators/tools" listicles, story-driven posts about multiple figures.
 **Design:** Multiple real photos of people arranged together. Big bold headline text at bottom.
 **Example trigger:** "5 AI creators who went from broke to millionaires", "These 3 CEOs changed AI forever"
-**Production:** Screenshot or collage of real photos sourced online. Bold text overlay. No ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image).
+**Production:** Screenshot or collage of real photos sourced online. Bold text overlay. No Nano Banana Pro (kie.ai nano-banana-pro).
 
 ### Type 8 — Kanji-Style Branded Post (PREFERRED DEFAULT)
 **When to use:** AI tool spotlights, "how to master [tool]" guides, tip lists, product announcements,
@@ -299,11 +299,11 @@ viral Facebook format.
 - "USE [TOOL] TO [OUTCOME] 100X FASTER. THE ONLY [X] PROMPTS YOU NEED."
 
 **Example trigger:** "How to use NotebookLM", "Claude Opus 4.7 just shipped", "5 Gemini prompts"
-**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) with Edison's face. Use the prompt template below.
+**Production:** Requires Nano Banana Pro (kie.ai nano-banana-pro) with Edison's face. Use the prompt template below.
 **Post-posting:** ALWAYS pair with Strategy A comment thread (full tips in comments) AND pin the
 first comment (see Pin Comment Protocol below).
 
-**ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt template for Type 8:**
+**Nano Banana Pro (kie.ai nano-banana-pro) prompt template for Type 8:**
 ```
 Use the face from the uploaded reference photo exactly. Preserve exact likeness, skin tone,
 hair, facial features. Young Asian man, black hair, slim build, warm confident smile, wearing [OUTFIT FROM OUTFIT VARIETY TABLE — pick the one that matches the topic vibe, rotate across runs].
@@ -337,7 +337,7 @@ Preserve exact facial features from reference photo. No em dashes in any text.
 **Design:** Edison's face on one side. A visual curve or flow diagram with labeled steps on the other.
 Bold title text at bottom.
 **Example trigger:** Affiliate marketing steps, funnel stages, AI learning journey
-**Production:** Requires ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image). Uses Edison's face photo. See Part 2.
+**Production:** Requires Nano Banana Pro (kie.ai nano-banana-pro). Uses Edison's face photo. See Part 2.
 
 ---
 
@@ -345,7 +345,7 @@ Bold title text at bottom.
 
 ### Face Photos — Permanent Blotato URLs (no upload needed)
 
-**Do NOT re-upload Edison's face. Use these permanent URLs directly as `input_urls` in kie.ai.**
+**Do NOT re-upload Edison's face. Use these permanent URLs directly as `image_input` in kie.ai.**
 
 | Photo | Blotato URL | Best For |
 |-------|-------------|----------|
@@ -358,20 +358,20 @@ Bold title text at bottom.
 - Outdoor/travel feel → `edison3.jpeg` (upload once, then save URL here)
 - Tech/gaming vibe → `edison2.jpeg` (upload once, then save URL here)
 
-Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `input_urls`.
+Skip the upload step for Types 2, 7, and 8 — use the PRIMARY URL directly in `image_input`.
 
-### Search ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) Prompt Library
+### Search Nano Banana Pro (kie.ai nano-banana-pro) Prompt Library
 
 For Type 2 (YouTube Thumbnail style), search the library first:
 
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/manifest.json"
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/manifest.json"
 ```
 
 Then fetch relevant category file (youtube-thumbnail.json for Type 2):
 
 ```bash
-curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/gpt-image-2-image-to-image-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
+curl -s "https://raw.githubusercontent.com/YouMind-OpenLab/nano-banana-pro-prompts-recommend-skill/main/references/youtube-thumbnail.json" \
   -o /tmp/yt_thumbnails.json
 
 python3 -c "
@@ -427,17 +427,17 @@ curl -X PUT "[presignedUrl]" \
 ```
 Then save the new `publicUrl` into the table above for permanent reuse.
 
-### Generate with kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
+### Generate with kie.ai Nano Banana Pro (kie.ai nano-banana-pro)
 
 ```bash
 curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-image-2-image-to-image",
+    "model": "nano-banana-pro",
     "input": {
       "prompt": "[structured prompt from above]",
-      "input_urls": ["[publicUrl from Blotato upload]"],
+      "image_input": ["[publicUrl from Blotato upload]"],
       "aspect_ratio": "16:9",
       "resolution": "2K"
     }
@@ -648,7 +648,7 @@ Style: cinematic stock-photo energy, shallow depth of field, warm orange highlig
 can appear from the side (hand + cuff of hoodie, shoulder + jawline) — face is optional but
 brand consistency improves if his face is partially visible.
 
-**Prompt template (kie.ai gpt-image-2-image-to-image):**
+**Prompt template (kie.ai nano-banana-pro):**
 ```
 A young Asian man ([outfit from OUTFIT VARIETY TABLE]) sits at a wooden cafe table in front
 of an open laptop. Warm side-window light, visible coffee cup with steam. A burst of floating
@@ -760,7 +760,7 @@ Every Type 8 post AND every Strategy A tips post MUST have its first comment pin
 comment is a second branded image + a CTA block that carries the reader from the post into the
 value drop (the full tip comments) or into a PDF/resource link.
 
-**Step 1 — Generate the pin-comment image with ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)** (use Edison's face, 1:1 square):
+**Step 1 — Generate the pin-comment image with Nano Banana Pro (kie.ai nano-banana-pro)** (use Edison's face, 1:1 square):
 
 Prompt template:
 ```
@@ -820,7 +820,7 @@ a PDF and share it via Google Drive. This is what the pin comment promises ("Gra
    ```
 
 **Posting flow:**
-- First pinned comment: the ChatGPT Images 2.0 pin image + "PDF link in my reply below 👇".
+- First pinned comment: the Nano Banana Pro pin image + "PDF link in my reply below 👇".
 - Reply under the pinned comment: the Google Drive share link + one line on what's inside.
 
 **Auto-reply to commenters asking for the link:** when someone comments asking for the guide
@@ -884,7 +884,7 @@ Tool: mcp__519a64f8-a8a3-437b-a8c0-da574ff4903f__blotato_create_post
 
 ## Post Type Quick Reference
 
-| Type | Image Needed | ChatGPT Images 2.0 | Best For |
+| Type | Image Needed | Nano Banana Pro | Best For |
 |------|-------------|-------------|----------|
 | 1. Plain text on black | No | No | Opinions, breaking news |
 | 2. YouTube thumbnail | Yes | Yes | Tool combos, hacks |
