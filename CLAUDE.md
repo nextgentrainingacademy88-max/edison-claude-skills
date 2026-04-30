@@ -30,7 +30,7 @@ Every post promising a resource ends with: *"Comment [KEYWORD] and I'll DM you t
 | **GitHub** | ✅ Connected | PAT stored in `.env` as `GITHUB_TOKEN` |
 | **Google Drive** | ✅ Connected | Edison's photos folder shared "Anyone with link" |
 | **Blotato** | ✅ Connected (MCP) | Used for posting to all 5 platforms |
-| **kie.ai ChatGPT Images 2.0 (model `gpt-image-2-image-to-image`, field `input_urls`)** | API-based | Image generation |
+| **kie.ai Nano Banana Pro (model `nano-banana-pro`, field `image_input`)** | API-based | Image generation |
 
 ### Key Files & URLs
 - **GitHub repo:** https://github.com/nextgentrainingacademy88-max/edison-claude-skills (public)
@@ -91,7 +91,7 @@ Every LinkedIn post = `linkedin-content-writer` + ONE image skill:
 - Pin-comment on Type 8 / Strategy A posts is always manual (platforms don't expose programmatic pin).
 
 ### Threads
-- Uses the **Kanji-style branded image** (same visual family as Facebook Type 8) — Edison holding or standing beside a glowing 3D tool logo, verified author badge ("Edison Chua | AI Marketing Strategist"), bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE" footer. Aspect ratio **4:5 portrait**, face-required (kie.ai ChatGPT Images 2.0 (model `gpt-image-2-image-to-image`, field `input_urls`) with permanent face URL).
+- Uses the **Kanji-style branded image** (same visual family as Facebook Type 8) — Edison holding or standing beside a glowing 3D tool logo, verified author badge ("Edison Chua | AI Marketing Strategist"), bottom navy block with bold yellow + white stacked headline, "COMMENT FOR MORE" footer. Aspect ratio **4:5 portrait**, face-required (kie.ai Nano Banana Pro (model `nano-banana-pro`, field `image_input`) with permanent face URL).
 - Hero-scene rotation: `logo_palm` → `two_logos` → `holo_panels` (tracked in `rotation-state.json` → `threads.last_kanji_hero`).
 - Same topic as X/Twitter, adapted for each platform's format.
 
@@ -135,9 +135,9 @@ Example structure documented in skills.
 
 ## Image Engine (as of 2026-04-24)
 
-All face-required image generation uses **kie.ai ChatGPT Images 2.0** — model `gpt-image-2-image-to-image`, face reference passed in `input_urls: [face_primary.blotato_url]`. Replaces Nano Banana Pro as the default because Images 2.0 has better photorealism, better text rendering, and matches the "eat your own dogfood" rule (we post about Images 2.0, so we generate with Images 2.0).
+All face-required image generation uses **kie.ai Nano Banana Pro** — model `nano-banana-pro`, face reference passed in `image_input: [face_primary.blotato_url]`. Replaces Nano Banana Pro as the default because Images 2.0 has better photorealism, better text rendering, and matches the "eat your own dogfood" rule (we post about Images 2.0, so we generate with Images 2.0).
 
-Tool-match override: if a post's TOPIC is a specific image model (e.g. post about Midjourney 7, Seedream v5, Flux), generate the demo image with THAT tool when possible. Otherwise default to ChatGPT Images 2.0.
+Tool-match override: if a post's TOPIC is a specific image model (e.g. post about Midjourney 7, Seedream v5, Flux), generate the demo image with THAT tool when possible. Otherwise default to Nano Banana Pro.
 
 ## Outfit Variety Rule (as of 2026-04-24)
 
@@ -149,7 +149,7 @@ Every skill file (facebook-content-creator, carousel-creator, threads-x-content-
 
 **Share: 30% of all daily posts.** See [memory/project_pop_culture_prompts.md](memory/project_pop_culture_prompts.md) for the full prompt library with 6 rotating angles (F1, ANIME, POSTER, AD, CINEMATIC, TABLE).
 
-Pattern: a cool ChatGPT Images 2.0 generation + short caption + comment-for-prompt CTA. Keep captions under 3 lines. The KEYWORD matches the angle (F1 → F1 prompt, POSTER → 10 style prompts, etc.). The engagement responder auto-DMs the prompt via  → Drive PDF.
+Pattern: a cool Nano Banana Pro generation + short caption + comment-for-prompt CTA. Keep captions under 3 lines. The KEYWORD matches the angle (F1 → F1 prompt, POSTER → 10 style prompts, etc.). The engagement responder auto-DMs the prompt via  → Drive PDF.
 
 Rotation tracked via .
 
@@ -172,7 +172,7 @@ LinkedIn uses the SAME image, two destinations, slightly different caption tone 
 
 ## Image Engine Policy (as of 2026-04-25)
 
-**ChatGPT Images 2.0 is the ONLY approved image model.** Model ID: `gpt-image-2-image-to-image` via kie.ai. Field: `input_urls` (NOT `input_urls`). Nano Banana Pro / Seedream / Flux etc. are deprecated — do not use.
+**Nano Banana Pro is the ONLY approved image model.** Model ID: `nano-banana-pro` via kie.ai. Field: `image_input` (NOT `image_input`). Nano Banana Pro / Seedream / Flux etc. are deprecated — do not use.
 
 ### Three-path image generation chain
 
@@ -186,15 +186,15 @@ Path B requires Blotato credits. Keep a $20/month credit top-up on the Blotato a
 
 ## Cloudflare Worker Proxy — kie.ai gateway (as of 2026-04-25)
 
-**Worker URL:** `https://edison-kie-proxy.nextgentrainingacademy88.workers.dev`
+**Worker URL:** `https://api.kie.ai`
 
-This Worker is a transparent proxy: any path hit on `edison-kie-proxy.nextgentrainingacademy88.workers.dev` forwards to the same path on `api.kie.ai`. The Authorization header is passed through.
+This Worker is a transparent proxy: any path hit on `api.kie.ai` forwards to the same path on `api.kie.ai`. The Authorization header is passed through.
 
 Why: Anthropic's remote routine sandbox blocks direct outbound HTTPS to `api.kie.ai` (confirmed 2026-04-24 morning run and 2026-04-25 morning run). The Worker sits on `*.workers.dev` which IS on the sandbox allowlist. Routines call the Worker URL instead of kie.ai, the Worker relays server-side (no firewall on Cloudflare's end), and the response comes back transparently.
 
 **From the remote routine:**
-- Create: `POST https://edison-kie-proxy.nextgentrainingacademy88.workers.dev/api/v1/jobs/createTask` with `Authorization: Bearer <KIE_API_KEY>` and the standard kie.ai body.
-- Poll: `GET https://edison-kie-proxy.nextgentrainingacademy88.workers.dev/api/v1/jobs/recordInfo?taskId=<id>` with the same Authorization header.
+- Create: `POST https://api.kie.ai/api/v1/jobs/createTask` with `Authorization: Bearer <KIE_API_KEY>` and the standard kie.ai body.
+- Poll: `GET https://api.kie.ai/api/v1/jobs/recordInfo?taskId=<id>` with the same Authorization header.
 
 **From local (Edison's PC):** `api.kie.ai` works directly — no need for the Worker.
 
@@ -216,7 +216,7 @@ Posting is now handled by **local scheduled-tasks on Edison's PC** (not the clau
 
 Local fires when Claude Code is running on the PC. If the PC is offline at the cron time, that slot is missed — Edison can run the catch-up command manually when he reopens Claude Code. De-dup via `last_topic_morning_date` / `last_topic_afternoon_date` in `rotation-state.json` prevents double posts.
 
-Cloud Morning + Afternoon routines are DISABLED but retained for emergency rollback (their prompts are kept current with `input_urls` field + Worker proxy + validation gate).
+Cloud Morning + Afternoon routines are DISABLED but retained for emergency rollback (their prompts are kept current with `image_input` field + Worker proxy + validation gate).
 
 Full local routine docs: see `memory/project_local_routine.md`.
 
