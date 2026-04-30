@@ -1,8 +1,16 @@
 ---
 name: Pop Culture / Prompt Showcase content bucket
-description: Trending AI image prompts (ChatGPT Images 2.0 era) sourced from Reddit, Twitter/X, Threads, Instagram. Each prompt has a KEYWORD for the comment-for-link CTA. Content bucket #4 — target ~30% of all daily posts. Face-required vs face-free split with a decision workflow.
+description: Trending AI image prompts (Nano Banana Pro era) sourced from Reddit, Twitter/X, Threads, Instagram. Each prompt has a KEYWORD for the comment-for-link CTA. Content bucket #4 — target ~30% of all daily posts. Face-required vs face-free split with a decision workflow.
 type: project
 ---
+
+> **DEPRECATED 2026-04-30 — Pop Culture / Prompt Showcase bucket retired.**
+>
+> Edison's directive: revert to the original 3-bucket value-focused content strategy (AI tool releases, practical how-to, money with AI tools). The pop-culture self-insert posts (F1 driver, cyberpunk, anime selfie, etc.) are no longer in rotation. The face-preservation issues with `gpt-image-2-image-to-image` made these visually unreliable, and the audience response to the F1 test post was negative.
+>
+> The 7 angle prompts in this file (F1, ANIME, POSTER, AD, CINEMATIC, TABLE, CYBERPUNK) are kept as a reference library only. They will not auto-fire in scheduled runs.
+>
+> Active content strategy lives in `memory/project_content_topic_strategy.md`. Image engine reverted to Nano Banana Pro (model `nano-banana-pro`, field `image_input`).
 
 > **READ memory/feedback_viral_prompt_structure.md FIRST.** Every prompt in this file uses the 10-part viral anatomy (shot type + subject + action + setting + camera + lens + lighting + style + tech specs + face clause + constraints). If you source a NEW trending prompt from Reddit / Threads / X / Instagram, apply the anatomy check before using it. NEVER ship a free-form prompt. Swap variables only.
 
@@ -11,7 +19,7 @@ type: project
 **Bucket share of daily posts:** ~30%.
 **Hook pattern:** short caption (1-3 lines) teasing a cool AI-generated image, then `Comment [KEYWORD] and I'll DM you the prompt.`
 **Goal:** drive mass comments from people who want the prompt → DM auto-reply delivers the prompt → follower growth + algorithm boost.
-**Image engine:** kie.ai `gpt-image-2-image-to-image` (ChatGPT Images 2.0).
+**Image engine:** kie.ai `nano-banana-pro` (Nano Banana Pro).
 
 ---
 
@@ -21,8 +29,8 @@ When sourcing a new trending prompt from Reddit / Twitter / Threads / Instagram,
 
 **Does the original creator's face (or a specific person's face) appear in the generated image?**
 
-- **YES → FACE-REQUIRED path.** Edison swaps his face in. Pass `input_urls: [face_primary.blotato_url]` to kie.ai. Examples: fisheye selfie with anime characters, movie poster character transformation, F1 driver cockpit shot, Marvel hero portrait, cyberpunk protagonist, One Piece crew member.
-- **NO → FACE-FREE path.** Copy the prompt verbatim or make small brand-matching tweaks (colors → navy+yellow, tagline → Edison's). Pass `input_urls: []` to kie.ai. Examples: brand static ads, periodic tables, infographics, product shots, dense UI mockups, stylized typography posters.
+- **YES → FACE-REQUIRED path.** Edison swaps his face in. Pass `image_input: [face_primary.blotato_url]` to kie.ai. Examples: fisheye selfie with anime characters, movie poster character transformation, F1 driver cockpit shot, Marvel hero portrait, cyberpunk protagonist, One Piece crew member.
+- **NO → FACE-FREE path.** Copy the prompt verbatim or make small brand-matching tweaks (colors → navy+yellow, tagline → Edison's). Pass `image_input: []` to kie.ai. Examples: brand static ads, periodic tables, infographics, product shots, dense UI mockups, stylized typography posters.
 
 **Copy-and-adapt workflow for net-new prompts:**
 
@@ -40,7 +48,7 @@ When sourcing a new trending prompt from Reddit / Twitter / Threads / Instagram,
 
 ### 1. F1 Driver Movie Poster (KEYWORD: `F1`) — FACE-REQUIRED
 **Caption:**
-> I turned myself into an F1 driver in 30 seconds using ChatGPT Images 2.0.
+> I turned myself into an F1 driver in 30 seconds using Nano Banana Pro.
 >
 > Comment F1 and I'll DM you the exact prompt.
 
@@ -53,7 +61,7 @@ Cinematic 9:16 movie poster of me as an F1 driver at [Monaco / Silverstone / Suz
 Viral on Threads Apr 2026. Fisheye selfie + anime characters + silly faces.
 
 **Caption:**
-> Made this with ChatGPT Images 2.0. 30 seconds.
+> Made this with Nano Banana Pro. 30 seconds.
 >
 > Comment ANIME and I'll DM you the prompt.
 
@@ -66,7 +74,7 @@ Ultra-realistic 9:16 vertical fisheye selfie of me with [Naruto / Luffy / Goku /
 10-style menu, perfect for a 10-slide carousel.
 
 **Caption (carousel):**
-> 10 ways ChatGPT Images 2.0 turned my face into a poster.
+> 10 ways Nano Banana Pro turned my face into a poster.
 >
 > Comment POSTER and I'll DM you all 10 prompts.
 
@@ -82,7 +90,7 @@ Transform the face in the reference image into [STYLE] movie poster — [style-s
 
 **Caption:**
 > Clients pay designers $300 for this.
-> ChatGPT Images 2.0 made it in 30 seconds.
+> Nano Banana Pro made it in 30 seconds.
 >
 > Comment AD and I'll DM you the prompt.
 
@@ -95,7 +103,7 @@ Transform the face in the reference image into [STYLE] movie poster — [style-s
 Rain+neon is the signature dark aesthetic of 2026.
 
 **Caption:**
-> ChatGPT Images 2.0 turned me into a Marvel character.
+> Nano Banana Pro turned me into a Marvel character.
 >
 > Comment CINEMATIC and I'll DM you the prompt.
 
@@ -108,9 +116,9 @@ Cinematic portrait of me as [Loki / Deku / Spider-Man / Gojo / Iron Man / Wolver
 Proof-of-capability post. Images 2.0 is known for rendering small text / infographics flawlessly. Appeals to nerds + educators + SME owners.
 
 **Caption:**
-> ChatGPT Images 2.0 rendered a complete periodic table with zero typos.
+> Nano Banana Pro rendered a complete periodic table with zero typos.
 >
-> Nano Banana Pro never could. (Edison switched all image gen to ChatGPT Images 2.0 on 2026-04-24 — Nano Banana Pro is deprecated; the line stays as caption flavor.)
+> Nano Banana Pro never could. (Edison switched all image gen to Nano Banana Pro on 2026-04-24 — Nano Banana Pro is deprecated; the line stays as caption flavor.)
 >
 > Comment TABLE and I'll DM you the prompt.
 
@@ -123,7 +131,7 @@ Create a detailed periodic table of [AI tools 2026 / programming languages / F1 
 Edison dropped into cyberpunk, Blade Runner, One Piece crew, Marvel Avengers, Star Wars, etc. High-engagement because of the "put me in ___" hook.
 
 **Caption:**
-> ChatGPT Images 2.0 put me in a cyberpunk city.
+> Nano Banana Pro put me in a cyberpunk city.
 >
 > Comment CYBERPUNK and I'll DM you the prompt.
 
@@ -168,14 +176,14 @@ When sourcing prompts for any face-required pop-culture post:
 1. **Find a viral post on Threads or Twitter/X** where the creator literally pasted the prompt they used (e.g. "ChatGPT prompt below: [prompt text]"). Filter: the original generation must include a person's face. Verified-account creators preferred.
 2. **Copy the prompt text verbatim** into the run. Do not paraphrase. Do not "improve" it. Do not split the structure.
 3. **Only swap these variables:**
-   - The original creator's face reference -> Edison's face URL (passed via `input_urls: [face_primary.blotato_url]`)
+   - The original creator's face reference -> Edison's face URL (passed via `image_input: [face_primary.blotato_url]`)
    - The character/persona text inside the prompt (e.g. "wearing a Manchester United kit" -> "wearing a casual hoodie") if Edison wants a different costume
    - Brand colors / taglines if the prompt has them, swapped to navy #0A1628 / yellow #FFD700
 4. **Save attribution + the verbatim prompt text** to the relevant angle section in this file. Future runs reuse the saved version.
 5. **If you can't find a matching trending prompt for today's angle, scrape one before generating** — never write the prompt yourself.
 
 This rule exists because:
-- Trending prompts are over-engineered and battle-tested for the specific model (gpt-image-2-image-to-image)
+- Trending prompts are over-engineered and battle-tested for the specific model (nano-banana-pro)
 - Creators iterate dozens of times before they post; we get the optimal version free
 - "Borrowed prompt" framing becomes part of the engagement hook ("comment KEYWORD for the prompt")
 
