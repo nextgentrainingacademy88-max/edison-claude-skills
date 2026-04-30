@@ -3,7 +3,7 @@ name: carousel-creator
 description: >
   Edison Chua's carousel creator for LinkedIn AND Instagram. Generates a full branded carousel
   (cover + content slides + CTA) using vibrant flat color + yellow + white branding, Edison's
-  face on cover and CTA slides, real internet memes on content slides, and ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image)
+  face on cover and CTA slides, real internet memes on content slides, and Nano Banana Pro (kie.ai nano-banana-pro)
   for all graphic generation.
 
   Use this skill whenever Edison says:
@@ -35,11 +35,11 @@ description: >
 
 ## IMAGE GENERATION PRIORITY RULE
 
-> **Remote routine usage note (as of 2026-04-25):** when this skill runs from a remote routine sandbox, replace every https://api.kie.ai URL with https://edison-kie-proxy.nextgentrainingacademy88.workers.dev (transparent Cloudflare Worker proxy). The sandbox blocks direct outbound to api.kie.ai; the Worker is on workers.dev which IS allowlisted. Same paths, same headers, same body, same response shape. From a local PC, api.kie.ai works directly without the Worker.
+> **Remote routine usage note (as of 2026-04-25):** when this skill runs from a remote routine sandbox, replace every https://api.kie.ai URL with https://api.kie.ai (transparent Cloudflare Worker proxy). The sandbox blocks direct outbound to api.kie.ai; the Worker is on workers.dev which IS allowlisted. Same paths, same headers, same body, same response shape. From a local PC, api.kie.ai works directly without the Worker.
 
 
 
-**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path for every slide in a carousel. Zero Blotato
+**kie.ai Nano Banana Pro (kie.ai nano-banana-pro) is the ONLY path for every slide in a carousel. Zero Blotato
 template fallbacks.**
 
 ### BLACKLIST — These Blotato templates have posted face-less text-on-navy slides to
@@ -53,7 +53,7 @@ Edison's LinkedIn/Facebook/Threads and are BANNED from this skill:
 
 ### Rule A — Face-required slides (Cover, CTA, any slide with Edison)
 
-**kie.ai ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) is the ONLY path.** If kie.ai fails, skip the post — do NOT
+**kie.ai Nano Banana Pro (kie.ai nano-banana-pro) is the ONLY path.** If kie.ai fails, skip the post — do NOT
 fall back to any Blotato template.
 
 ```
@@ -63,10 +63,10 @@ Headers:
   Content-Type: application/json
 
 {
-  "model": "gpt-image-2-image-to-image",
+  "model": "nano-banana-pro",
   "input": {
     "prompt": "[full prompt]",
-    "input_urls": ["[face_primary.blotato_url from assets-manifest.json]"],
+    "image_input": ["[face_primary.blotato_url from assets-manifest.json]"],
     "aspect_ratio": "[ratio]",
     "resolution": "2K"
   }
@@ -84,7 +84,7 @@ or a Blotato-template fallback.**
 
 ### Rule B — Face-free decorative slides (numbered points, checklists, graphics without Edison)
 
-Also kie.ai only — empty `input_urls: []`. Blotato built-in infographic templates
+Also kie.ai only — empty `image_input: []`. Blotato built-in infographic templates
 (Whiteboard, Chalkboard, Manga Panel, Newspaper, etc.) are tempting but lock in a
 generic "Follow me | Repost" footer and rigid layout that does NOT match Edison's
 navy-yellow branding. Stick with kie.ai so every slide matches the cover's vibe.
@@ -144,12 +144,12 @@ Each slide falls into one of these types, each handled differently:
 
 | Slide Type | Edison's Face? | Meme? | Generated How |
 |---|---|---|---|
-| Cover | Yes | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) image-to-image |
-| Hook / problem | No | Yes | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + meme sourced from web |
-| Numbered point | No | Yes (optional) | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + meme sourced from web |
-| Checklist / how-to | No | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic only |
-| Tool spotlight | No | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) graphic + screenshot |
-| CTA / wrap-up | Yes (circle) | No | ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) image-to-image |
+| Cover | Yes | No | Nano Banana Pro (kie.ai nano-banana-pro) image-to-image |
+| Hook / problem | No | Yes | Nano Banana Pro (kie.ai nano-banana-pro) graphic + meme sourced from web |
+| Numbered point | No | Yes (optional) | Nano Banana Pro (kie.ai nano-banana-pro) graphic + meme sourced from web |
+| Checklist / how-to | No | No | Nano Banana Pro (kie.ai nano-banana-pro) graphic only |
+| Tool spotlight | No | No | Nano Banana Pro (kie.ai nano-banana-pro) graphic + screenshot |
+| CTA / wrap-up | Yes (circle) | No | Nano Banana Pro (kie.ai nano-banana-pro) image-to-image |
 
 Target length: **6-9 slides total**. Don't go over 10 — credits are limited.
 
@@ -263,7 +263,7 @@ whether a meme fits, and what kind of meme would work.
 
 ## Step 2: Use the Proven Prompt Structure
 
-**Do NOT search the ChatGPT Images 2.0 (kie.ai gpt-image-2-image-to-image) prompt library.** The prompt structure below is already
+**Do NOT search the Nano Banana Pro (kie.ai nano-banana-pro) prompt library.** The prompt structure below is already
 proven and tested — use it directly. Searching the library wastes tokens and credits.
 
 The templates in Steps 4 onwards are ready to use. Just fill in the topic-specific
@@ -356,10 +356,10 @@ curl -s -X POST "https://api.kie.ai/api/v1/jobs/createTask" \
   -H "Authorization: Bearer ${KIE_API_KEY}" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-image-2-image-to-image",
+    "model": "nano-banana-pro",
     "input": {
       "prompt": "[prompt]",
-      "input_urls": ["[publicUrl]"],
+      "image_input": ["[publicUrl]"],
       "aspect_ratio": "4:5",
       "resolution": "2K"
     }
@@ -423,7 +423,7 @@ Save the Blotato `publicUrl` for the meme.
 
 **Step 3 — Generate the slide with the meme baked in:**
 
-Pass the meme as `input_urls` so kie.ai composites it directly into the design.
+Pass the meme as `image_input` so kie.ai composites it directly into the design.
 Never use a placeholder box — the meme must be visually embedded in the final image.
 
 ```
@@ -437,7 +437,7 @@ Bold modern poster layout. 4:5 aspect ratio, ultra sharp, clean graphic design.
 DO NOT render any technical instructions as visible text on the image.
 ```
 
-Call kie.ai WITH `input_urls: ["[meme_public_url]"]`.
+Call kie.ai WITH `image_input: ["[meme_public_url]"]`.
 
 ---
 
@@ -546,7 +546,7 @@ DO NOT render any technical instructions as text on the image.
 Only render the headline, subtext, bell icon, and bottom-left name/title.
 ```
 
-Call kie.ai WITH `input_urls` (same face URL as cover).
+Call kie.ai WITH `image_input` (same face URL as cover).
 
 ---
 
@@ -621,7 +621,7 @@ Ask Edison: any slides to regenerate or adjust?
 
 1. **NEVER use a placeholder.** No "meme goes here" box, no grey rectangle, no dotted
    outline saying "insert meme". The actual meme image must be downloaded, uploaded to
-   Blotato, passed as `input_urls` to kie.ai, and composited into the final slide. If
+   Blotato, passed as `image_input` to kie.ai, and composited into the final slide. If
    the meme cannot be sourced, skip the meme and use a clean text-only slide instead.
    Never publish a slide with a placeholder.
 
