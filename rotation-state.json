@@ -13,12 +13,12 @@
     "last_subvariant": "F1/monaco-grid-season-finale"
   },
   "linkedin": {
-    "last_topic": "claude_finance_agents_business_owners",
-    "last_image_style": "Y3_clean_authority",
-    "last_routine_run_utc": "2026-05-13T19:23:00Z",
-    "image_skill": "edison-content-image-creator",
-    "content_image_subtype": "Y3_clean_authority",
-    "carousel_last_used": "attempted_ad_coca_cola_kie_ai_host_blocked_blotato_no_credits_skipped",
+    "last_topic": "chatgpt_workspace_agents_business_owners",
+    "last_image_format": "carousel",
+    "last_slide_count": 7,
+    "last_routine_run_utc": "2026-05-13T20:13:00Z",
+    "image_skill": "carousel-creator",
+    "carousel_last_used": "chatgpt_workspace_agents_electric_blue_7slides_higgsfield",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
@@ -41,10 +41,10 @@
     "last_path_used": "none_validation_gate_skipped_2026_04_29_afternoon_path_a_worker_blocked_path_b_blotato_no_credits",
     "last_run_manual_queue_entries": 6,
     "_note": "2026-04-29 afternoon AD (Coca-Cola print ad) pop-culture run: Path A Cloudflare Worker (https://edison-kie-proxy.nextgentrainingacademy88.workers.dev) returned HTTP 403 'Host not in allowlist' from both sandbox curl and WebFetch. Path B Blotato create_visual Product Scene Placement template f524614b-... returned 'insufficient-credits' (probe job bd484de3-d994-4f26-bf09-486960a6020b). Per validation gate 0b (URL must live on tempfile.aiquickdraw.com, must differ from face reference URL, kie.ai task state must equal success), ALL 6 destinations SKIPPED. AD is face-free so Path C raw-face fallback is irrelevant — there is no generated image at all. FIFTH consecutive degraded run. URGENT: Edison must (a) top up Blotato credits at https://my.blotato.com/settings/billing AND (b) escalate workers.dev allowlist denial with Anthropic.",
-    "last_outfit": "heather_grey_zip_hoodie_black_tee",
-    "model": "gpt-image-2-image-to-image",
-    "provider": "kie.ai",
-    "note": "Switched from nano-banana-pro on 2026-04-24. Face reference goes in input_urls array. AD angle is face-free so input_urls=[]."
+    "last_outfit": "bright_yellow_bomber_jacket_white_tee",
+    "model": "nano_banana_2",
+    "provider": "higgsfield",
+    "note": "2026-05-13 LinkedIn carousel: ChatGPT Workspace Agents, 7 slides, electric blue #1565C0, Higgsfield nano_banana_2, all slides completed successfully."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
