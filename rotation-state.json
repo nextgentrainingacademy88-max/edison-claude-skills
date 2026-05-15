@@ -13,12 +13,12 @@
     "last_subvariant": "F1/monaco-grid-season-finale"
   },
   "linkedin": {
-    "last_topic": "claude_code_agent_view_multi_agent_business",
+    "last_topic": "gemini_intelligence_android_proactive_ai_business",
     "last_image_format": "carousel",
-    "last_slide_count": 7,
-    "last_routine_run_utc": "2026-05-14T02:04:14Z",
+    "last_slide_count": 8,
+    "last_routine_run_utc": "2026-05-15T02:13:00Z",
     "image_skill": "carousel-creator",
-    "carousel_last_used": "claude_code_agent_view_teal_7slides_higgsfield",
+    "carousel_last_used": "gemini_intelligence_electric_blue_8slides_higgsfield",
     "infographic_style": "analogy_notebooklm_april26"
   },
   "facebook": {
@@ -41,10 +41,10 @@
     "last_path_used": "none_validation_gate_skipped_2026_04_29_afternoon_path_a_worker_blocked_path_b_blotato_no_credits",
     "last_run_manual_queue_entries": 6,
     "_note": "2026-04-29 afternoon AD (Coca-Cola print ad) pop-culture run: Path A Cloudflare Worker (https://edison-kie-proxy.nextgentrainingacademy88.workers.dev) returned HTTP 403 'Host not in allowlist' from both sandbox curl and WebFetch. Path B Blotato create_visual Product Scene Placement template f524614b-... returned 'insufficient-credits' (probe job bd484de3-d994-4f26-bf09-486960a6020b). Per validation gate 0b (URL must live on tempfile.aiquickdraw.com, must differ from face reference URL, kie.ai task state must equal success), ALL 6 destinations SKIPPED. AD is face-free so Path C raw-face fallback is irrelevant — there is no generated image at all. FIFTH consecutive degraded run. URGENT: Edison must (a) top up Blotato credits at https://my.blotato.com/settings/billing AND (b) escalate workers.dev allowlist denial with Anthropic.",
-    "last_outfit": "techwear_black_zipup_cargo",
+    "last_outfit": "heather_grey_zip_hoodie_black_tee",
     "model": "nano_banana_2",
     "provider": "higgsfield",
-    "note": "2026-05-14 LinkedIn carousel: Claude Code Agent View, 7 slides, bright teal #00BFA6, Higgsfield nano_banana_2, all slides completed successfully."
+    "note": "2026-05-15 LinkedIn carousel: Gemini Intelligence Android proactive AI, 8 slides, electric blue #1565C0, Higgsfield nano_banana_2. Slide 7 original job timed out; retry (f05b36ee) succeeded."
   },
   "engagement": {
     "last_engagement_run_utc": "2026-04-22T21:28:48Z",
